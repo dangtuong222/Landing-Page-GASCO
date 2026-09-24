@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" width="100%" height="100%">
+  <rect width="500" height="320" fill="#1e1b4b" rx="12"/>
+  <!-- Document Representation -->
+  <rect x="60" y="30" width="220" height="230" rx="6" fill="#ffffff" fill-opacity="0.95"/>
+  <rect x="80" y="50" width="120" height="12" rx="3" fill="#4338ca"/>
+  <rect x="80" y="75" width="180" height="8" rx="2" fill="#cbd5e1"/>
+  <rect x="80" y="90" width="160" height="8" rx="2" fill="#cbd5e1"/>
+  <rect x="80" y="105" width="140" height="8" rx="2" fill="#cbd5e1"/>
+  <!-- Table inside doc -->
+  <rect x="80" y="125" width="180" height="40" fill="#e0e7ff" rx="4"/>
+  <line x1="80" y1="145" x2="260" y2="145" stroke="#c7d2fe"/>
+  <!-- Stamp / Badge -->
+  <circle cx="230" cy="200" r="28" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="2"/>
+  <text x="230" y="204" fill="#059669" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">QCVN 05:2023</text>
+  <!-- Format Badges -->
+  <rect x="20" y="270" width="70" height="30" rx="6" fill="#4f46e5"/><text x="55" y="290" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">PDF</text>
+  <rect x="100" y="270" width="80" height="30" rx="6" fill="#4338ca"/><text x="140" y="290" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">DOCX</text>
+  <text x="480" y="290" fill="#a5b4fc" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="end">Báo Cáo So Chuẩn &amp; Hotspot</text>
+</svg>

@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Trung tâm 12 giải pháp UAV của GASCOLAE: quản trị carbon, quan trắc môi trường, giám sát khí thải và cảnh báo rủi ro thiên tai."
+    />
+    <meta name="theme-color" content="#071512" />
+    <title>GASCOLAE | Trung tâm 12 giải pháp UAV</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23071512%22/><path d=%22M15 34 32 13l17 21-17 17z%22 fill=%22none%22 stroke=%22%238ce49a%22 stroke-width=%226%22 stroke-linejoin=%22round%22/><circle cx=%2232%22 cy=%2234%22 r=%225%22 fill=%22%232ad6c9%22/></svg>" />
+    <link rel="stylesheet" href="assets/dashboard.css" />
+    <script src="assets/dashboard.js" defer></script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#dich-vu">Đi thẳng tới danh sách dịch vụ</a>
+
+    <div class="page-ambient" aria-hidden="true">
+      <span class="ambient-orb ambient-orb--one"></span>
+      <span class="ambient-orb ambient-orb--two"></span>
+      <span class="ambient-grid"></span>
+    </div>
+
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
+        <a class="brand" href="#top" aria-label="GASCOLAE - Trang chủ">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 42 42" role="img">
+              <path d="M8.5 23.4 21 7.8l12.5 15.6L21 34.2 8.5 23.4Z" />
+              <circle cx="21" cy="23.1" r="3.8" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>GASCOLAE</strong>
+            <small>UAV SOLUTIONS HUB</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Điều hướng chính">
+          <a href="#tong-quan">Tổng quan</a>
+          <a href="#linh-vuc">Lĩnh vực</a>
+          <a href="#dich-vu">12 dịch vụ</a>
+        </nav>
+
+        <a class="header-cta" href="#dich-vu">
+          Khám phá giải pháp
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero shell" id="tong-quan" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Một nền tảng · Mười hai giải pháp</p>
+          <h1 id="hero-title">
+            Dữ liệu từ bầu trời.<br />
+            <span>Quyết định trên mặt đất.</span>
+          </h1>
+          <p class="hero-lead">
+            Hệ sinh thái giải pháp UAV cho quan trắc môi trường, quản trị carbon,
+            giám sát khí thải và chủ động ứng phó rủi ro — nay được kết nối tại
+            một điểm đến duy nhất.
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#dich-vu">
+              Xem toàn bộ dịch vụ
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" /></svg>
+            </a>
+            <a class="button button--ghost" href="#linh-vuc">Khám phá theo lĩnh vực</a>
+          </div>
+          <div class="trust-row" aria-label="Năng lực nền tảng">
+            <span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" /></svg>
+              Dữ liệu truy xuất được
+            </span>
+            <span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" /></svg>
+              Báo cáo sẵn sàng MRV
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Một số lĩnh vực ứng dụng UAV nổi bật">
+          <div class="radar" aria-hidden="true">
+            <span class="radar-ring radar-ring--one"></span>
+            <span class="radar-ring radar-ring--two"></span>
+            <span class="radar-ring radar-ring--three"></span>
+            <span class="radar-line"></span>
+            <span class="radar-core">
+              <svg viewBox="0 0 42 42"><path d="M7 23.4 21 7l14 16.4L21 35 7 23.4Z" /><circle cx="21" cy="23" r="4" /></svg>
+            </span>
+          </div>
+
+          <figure class="visual-card visual-card--main">
+            <img src="assets/dashboard-thumbnails/service-03.webp" alt="UAV lập bản đồ carbon" width="640" height="400" fetchpriority="high" />
+            <figcaption><span>Carbon Intelligence</span><strong>Bản đồ phát thải chính xác</strong></figcaption>
+          </figure>
+          <figure class="visual-card visual-card--top">
+            <img src="assets/dashboard-thumbnails/service-01.webp" alt="UAV hỗ trợ dự báo lũ lụt" width="640" height="400" />
+            <figcaption><span>Climate Resilience</span><strong>Chủ động trước rủi ro</strong></figcaption>
+          </figure>
+          <figure class="visual-card visual-card--bottom">
+            <img src="assets/dashboard-thumbnails/service-08.webp" alt="UAV quan trắc bụi mịn đô thị" width="640" height="400" />
+            <figcaption><span>Air Quality</span><strong>Quan trắc không gian 3D</strong></figcaption>
+          </figure>
+          <span class="telemetry telemetry--one"><i></i> LiDAR ONLINE</span>
+          <span class="telemetry telemetry--two"><i></i> MRV READY</span>
+        </div>
+      </section>
+
+      <section class="metrics shell" aria-label="Tổng quan nền tảng">
+        <article>
+          <strong>12</strong>
+          <span>Giải pháp chuyên biệt</span>
+        </article>
+        <article>
+          <strong>04</strong>
+          <span>Nhóm ứng dụng trọng tâm</span>
+        </article>
+        <article>
+          <strong>01</strong>
+          <span>Trung tâm truy cập</span>
+        </article>
+        <article>
+          <strong>360°</strong>
+          <span>Từ thu thập đến báo cáo</span>
+        </article>
+      </section>
+
+      <section class="domains section shell" id="linh-vuc" aria-labelledby="domains-title">
+        <div class="section-heading section-heading--split">
+          <div>
+            <p class="section-kicker">Hệ sinh thái giải pháp</p>
+            <h2 id="domains-title">Bắt đầu từ bài toán của bạn</h2>
+          </div>
+          <p>
+            Mỗi giải pháp là một quy trình hoàn chỉnh, kết nối thiết bị bay,
+            cảm biến chuyên dụng, phân tích dữ liệu và hồ sơ bàn giao.
+          </p>
+        </div>
+
+        <div class="domain-grid">
+          <a class="domain-card" href="#dich-vu" data-filter-jump="risk">
+            <span class="domain-icon domain-icon--blue" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 17c2.2-3.5 4.7-5.2 7.5-5.2 2.9 0 4.7 1.1 8.5 5.2M6 9l3-3 3 3 4-5 3 4" /></svg>
+            </span>
+            <span class="domain-index">01</span>
+            <h3>Thiên tai &amp; hạ tầng</h3>
+            <p>Dự báo lũ lụt, giám sát sạt lở và hỗ trợ phản ứng nhanh bằng dữ liệu không gian.</p>
+            <span class="domain-link">Xem 2 giải pháp <b>→</b></span>
+          </a>
+
+          <a class="domain-card" href="#dich-vu" data-filter-jump="carbon">
+            <span class="domain-icon domain-icon--green" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19 5c-7 .2-11.6 3.8-12 10.8M5 20c2.5-4.2 6-6.8 11-8M19 5c.3 7-2.8 11-8.2 11C7.2 16 5 13.9 5 11c0-4 4.7-6.8 14-6Z" /></svg>
+            </span>
+            <span class="domain-index">02</span>
+            <h3>Carbon &amp; MRV</h3>
+            <p>Đo đạc, định lượng, lập bản đồ và chuẩn hóa dữ liệu cho báo cáo carbon.</p>
+            <span class="domain-link">Xem 6 giải pháp <b>→</b></span>
+          </a>
+
+          <a class="domain-card" href="#dich-vu" data-filter-jump="air">
+            <span class="domain-icon domain-icon--cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 8h11.5a2.5 2.5 0 1 0-2.3-3.5M3 12h16a2 2 0 1 1-1.7 3M3 16h8" /></svg>
+            </span>
+            <span class="domain-index">03</span>
+            <h3>Chất lượng không khí</h3>
+            <p>Nhìn thấy bụi mịn, đa khí và điểm nóng ô nhiễm trong cả không gian 2D lẫn 3D.</p>
+            <span class="domain-link">Xem 3 giải pháp <b>→</b></span>
+          </a>
+
+          <a class="domain-card" href="#dich-vu" data-filter-jump="emissions">
+            <span class="domain-icon domain-icon--amber" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v4M4.2 7.2l2.9 2.9M19.8 7.2l-2.9 2.9M5 18h14M8 18v-3.3a4 4 0 0 1 8 0V18" /></svg>
+            </span>
+            <span class="domain-index">04</span>
+            <h3>Khí thải &amp; methane</h3>
+            <p>Phát hiện, định lượng và theo dõi nguồn phát thải tại công nghiệp, cảng và bãi rác.</p>
+            <span class="domain-link">Xem 4 giải pháp <b>→</b></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="services section" id="dich-vu" aria-labelledby="services-title">
+        <div class="shell">
+          <div class="section-heading services-heading">
+            <p class="section-kicker">Danh mục dịch vụ</p>
+            <h2 id="services-title">12 giải pháp. Một mục tiêu chung.</h2>
+            <p>Chọn một lĩnh vực hoặc tìm theo nhu cầu để đi thẳng tới landing page chi tiết.</p>
+          </div>
+
+          <div class="service-toolbar" aria-label="Bộ lọc dịch vụ">
+            <div class="filter-list" role="group" aria-label="Lọc theo lĩnh vực">
+              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Tất cả</button>
+              <button class="filter-button" type="button" data-filter="risk" aria-pressed="false">Thiên tai &amp; hạ tầng</button>
+              <button class="filter-button" type="button" data-filter="carbon" aria-pressed="false">Carbon &amp; MRV</button>
+              <button class="filter-button" type="button" data-filter="air" aria-pressed="false">Không khí</button>
+              <button class="filter-button" type="button" data-filter="emissions" aria-pressed="false">Khí thải &amp; methane</button>
+            </div>
+
+            <label class="search-box">
+              <span class="sr-only">Tìm kiếm dịch vụ</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" /><path d="m13 13 4 4" /></svg>
+              <input type="search" data-service-search placeholder="Tìm theo tên, mã hoặc công nghệ..." autocomplete="off" />
+              <kbd>/</kbd>
+            </label>
+          </div>
+
+          <div class="results-meta" aria-live="polite">
+            <span>Đang hiển thị <strong data-result-count>12</strong> giải pháp</span>
+            <span class="results-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="service-grid" data-service-grid>
+            <a class="service-card" href="landing_page_01/" data-categories="risk" data-search="S0296 lũ lụt dự báo cứu nạn lidar thermal rgb thiên tai bảo hiểm">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-01.webp" alt="UAV dự báo và khắc phục hậu quả lũ lụt" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">01</span>
+                <span class="service-code">S0296</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Thiên tai &amp; hạ tầng</p>
+                <h3>Dự báo &amp; khắc phục hậu quả lũ lụt</h3>
+                <p>LiDAR, Thermal và RGB hỗ trợ mô phỏng lũ 3D, tìm kiếm cứu nạn và đánh giá thiệt hại.</p>
+                <div class="service-tags"><span>LiDAR</span><span>Thermal</span><span>d-MRV</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_02/" data-categories="risk" data-search="S0297 sạt lở taluy đường đèo núi cảnh báo lidar iot insar">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-02.webp" alt="UAV và IoT giám sát sạt lở taluy" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">02</span>
+                <span class="service-code">S0297</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Thiên tai &amp; hạ tầng</p>
+                <h3>Giám sát sạt lở taluy đường đèo núi</h3>
+                <p>Kết hợp UAV/LiDAR, cảm biến IoT và AI để theo dõi biến dạng, cảnh báo sớm rủi ro.</p>
+                <div class="service-tags"><span>UAV 3D</span><span>IoT</span><span>AI</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_03/" data-categories="carbon" data-search="S0291 bản đồ carbon footprint khí nhà kính phát thải kiểm kê CBAM ISO 14064">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-03.webp" alt="UAV lập bản đồ carbon footprint" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">03</span>
+                <span class="service-code">S0291</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Carbon &amp; MRV</p>
+                <h3>Bản đồ carbon footprint bằng UAV</h3>
+                <p>Định vị nguồn phát thải và trữ lượng carbon bằng dữ liệu không gian, sẵn sàng cho kiểm kê KNK.</p>
+                <div class="service-tags"><span>Carbon map</span><span>CBAM</span><span>ISO 14064</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_04/" data-categories="carbon" data-search="S0295 mái nhà xanh giảm phát thải CO2 carbon UAV MRV ESG vegetation">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-04.webp" alt="UAV định lượng carbon mái nhà xanh" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">04</span>
+                <span class="service-code">S0295</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Carbon &amp; MRV</p>
+                <h3>MRV carbon mái nhà xanh</h3>
+                <p>Định lượng hấp thụ carbon bằng UAV và ô mẫu thực địa, tạo báo cáo tCO₂e có thể kiểm chứng.</p>
+                <div class="service-tags"><span>Green roof</span><span>MRV</span><span>ESG</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_05/" data-categories="carbon emissions" data-search="S0301 methane rò rỉ UAV TDLAS dầu khí than chất thải tín chỉ carbon">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-05.webp" alt="UAV-TDLAS phát hiện rò rỉ methane" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">05</span>
+                <span class="service-code">S0301</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Khí thải &amp; methane</p>
+                <h3>Phát hiện rò rỉ methane bằng UAV-TDLAS</h3>
+                <p>Khảo sát nhanh, định lượng kg/h và chuyển dữ liệu đo thành hồ sơ MRV cho tín chỉ carbon.</p>
+                <div class="service-tags"><span>TDLAS</span><span>CH₄</span><span>Carbon credit</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_06/" data-categories="carbon" data-search="S0300 carbon rừng lâm nghiệp lidar sinh khối EUDR tín chỉ VM0047 IPCC">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-06.webp" alt="UAV-LiDAR đo đạc carbon rừng" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">06</span>
+                <span class="service-code">S0300</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Carbon &amp; MRV</p>
+                <h3>Đo đạc carbon rừng bằng UAV-LiDAR</h3>
+                <p>Lập bản đồ sinh khối, carbon và hồ sơ MRV phục vụ tín chỉ carbon, quản lý rừng, EUDR.</p>
+                <div class="service-tags"><span>Forest LiDAR</span><span>EUDR</span><span>VM0047</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_07/" data-categories="air" data-search="quan trắc đa khí UAV ô nhiễm không khí đô thị khu công nghiệp sensor">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-07.webp" alt="UAV quan trắc đa khí đô thị" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">07</span>
+                <span class="service-code">S0289</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Chất lượng không khí</p>
+                <h3>Quan trắc đa khí bằng UAV</h3>
+                <p>Đo nhiều chỉ tiêu khí theo không gian cho đô thị và khu công nghiệp, nhận diện vùng ô nhiễm.</p>
+                <div class="service-tags"><span>Multi-gas</span><span>3D profile</span><span>Urban</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_08/" data-categories="air" data-search="S0298 bụi mịn PM2.5 PM10 đô thị 3D NO2 SO2 CO O3 hotspot QCVN WHO">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-08.webp" alt="UAV quan trắc bụi mịn đô thị 3D" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">08</span>
+                <span class="service-code">S0298</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Chất lượng không khí</p>
+                <h3>Quan trắc bụi mịn đô thị 3D</h3>
+                <p>Bản đồ PM2.5/PM10 theo không gian và cao độ, phát hiện hotspot, đối chiếu QCVN và WHO.</p>
+                <div class="service-tags"><span>PM2.5</span><span>3D map</span><span>Hotspot</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_09/" data-categories="air" data-search="S0299 UAV phun vi hạt tích điện bụi mịn PM2.5 soiling pin mặt trời PV IEC 61724">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-09.webp" alt="UAV phun vi hạt tích điện kiểm soát soiling PV" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">09</span>
+                <span class="service-code">S0299</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Chất lượng không khí</p>
+                <h3>Kiểm soát soiling PV bằng vi hạt tích điện</h3>
+                <p>UAV phun vi hạt làm sạch bụi bám trên module quang điện và đánh giá soiling ratio.</p>
+                <div class="service-tags"><span>Electrostatic</span><span>Solar PV</span><span>IEC 61724</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_10/" data-categories="emissions" data-search="S0303 tàu biển khí thải UAV sniffer SO2 CO2 cảng biển hàng hải FSC">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-10.webp" alt="UAV giám sát khí thải tàu biển" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">10</span>
+                <span class="service-code">S0303</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Khí thải &amp; methane</p>
+                <h3>Giám sát khí thải tàu biển</h3>
+                <p>UAV sniffer đo SO₂/CO₂, nhận dạng tàu và chuẩn hóa báo cáo phục vụ cảng, cơ quan hàng hải.</p>
+                <div class="service-tags"><span>UAV sniffer</span><span>SO₂/CO₂</span><span>Maritime</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_11/" data-categories="carbon emissions" data-search="S0302 khí nhà kính khu công nghiệp KCN methane CH4 CO2 đa cảm biến bản đồ MRV">
+              <div class="service-media">
+                <img src="assets/dashboard-thumbnails/service-11.webp" alt="UAV đa cảm biến giám sát khí nhà kính khu công nghiệp" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">11</span>
+                <span class="service-code">S0302</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Khí thải &amp; methane</p>
+                <h3>Giám sát khí nhà kính khu công nghiệp</h3>
+                <p>UAV đa cảm biến thu thập CH₄, CO₂, lập bản đồ không gian và xây dựng báo cáo giám sát KNK.</p>
+                <div class="service-tags"><span>Multi-sensor</span><span>GHG</span><span>Industrial</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+
+            <a class="service-card" href="landing_page_12/" data-categories="carbon emissions" data-search="S0294 methane bãi rác landfill không gian cao độ định lượng MRV CH4">
+              <div class="service-media">
+                <img src="landing_page_12/src/assets/hero_main.svg" alt="UAV quan trắc methane bãi rác" width="640" height="400" loading="lazy" decoding="async" />
+                <span class="service-number">12</span>
+                <span class="service-code">S0294</span>
+                <span class="media-overlay"></span>
+              </div>
+              <div class="service-body">
+                <p class="service-category">Khí thải &amp; methane</p>
+                <h3>Quan trắc methane bãi rác</h3>
+                <p>Lập bản đồ methane theo không gian–cao độ, định lượng theo chiến dịch và chuẩn bị báo cáo MRV.</p>
+                <div class="service-tags"><span>Landfill</span><span>CH₄</span><span>MRV</span></div>
+                <span class="service-link">Khám phá dịch vụ <b>↗</b></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="empty-state" data-empty-state hidden>
+            <span aria-hidden="true">⌁</span>
+            <h3>Chưa tìm thấy giải pháp phù hợp</h3>
+            <p>Thử từ khóa ngắn hơn hoặc quay về xem toàn bộ 12 dịch vụ.</p>
+            <button type="button" data-reset-filter>Xem tất cả dịch vụ</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform section shell" aria-labelledby="platform-title">
+        <div class="platform-panel">
+          <div class="platform-copy">
+            <p class="section-kicker">Một luồng dữ liệu liền mạch</p>
+            <h2 id="platform-title">Từ chuyến bay đến quyết định</h2>
+            <p>
+              Mười hai dịch vụ cùng chia sẻ một cách tiếp cận: thu nhận dữ liệu đúng bài toán,
+              chuyển hóa thành insight có vị trí và bàn giao đầu ra sẵn sàng sử dụng.
+            </p>
+            <a href="#dich-vu">Chọn giải pháp của bạn <span>→</span></a>
+          </div>
+          <ol class="process-list">
+            <li><span>01</span><div><strong>Thu thập</strong><small>UAV · LiDAR · Thermal · TDLAS · IoT</small></div></li>
+            <li><span>02</span><div><strong>Phân tích</strong><small>Bản đồ 2D/3D · AI · GIS · Định lượng</small></div></li>
+            <li><span>03</span><div><strong>Bàn giao</strong><small>Dashboard · Cảnh báo · Báo cáo · MRV</small></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="final-cta shell" aria-labelledby="final-title">
+        <div>
+          <p class="section-kicker">GASCOLAE UAV SOLUTIONS</p>
+          <h2 id="final-title">Chọn đúng dữ liệu.<br />Ra quyết định tốt hơn.</h2>
+        </div>
+        <a class="button button--light" href="#dich-vu">
+          Mở danh mục 12 dịch vụ
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" /></svg>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <a class="brand brand--footer" href="#top" aria-label="GASCOLAE - Lên đầu trang">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 42 42"><path d="M8.5 23.4 21 7.8l12.5 15.6L21 34.2 8.5 23.4Z" /><circle cx="21" cy="23.1" r="3.8" /></svg>
+          </span>
+          <span class="brand-copy"><strong>GASCOLAE</strong><small>UAV SOLUTIONS HUB</small></span>
+        </a>
+        <p>12 giải pháp chuyên biệt · 01 điểm truy cập</p>
+        <a class="back-top" href="#top">Lên đầu trang <span>↑</span></a>
+      </div>
+      <div class="shell footer-bottom">
+        <span>© <span data-current-year>2026</span> GASCOLAE. All rights reserved.</span>
+        <span>Environmental intelligence from above.</span>
+      </div>
+    </footer>
+  </body>
+</html>

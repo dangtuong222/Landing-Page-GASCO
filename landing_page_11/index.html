@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UAV đa cảm biến giám sát khí nhà kính KCN | S0302</title>
+  <meta name="description" content="S0302 hỗ trợ thu thập dữ liệu CH4, CO2, lập bản đồ theo không gian và báo cáo giám sát KNK/MRV theo phạm vi được xác nhận tại khu công nghiệp.">
+  <meta name="keywords" content="UAV giám sát khí nhà kính khu công nghiệp, lập bản đồ CH4, giám sát CO2, UAV đa cảm biến, dữ liệu MRV, sàng lọc rò rỉ methane, S0302, GASCOLAE">
+  <meta name="author" content="GASCOLAE Platform">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="src/style.css">
+
+  <!-- Three.js CDN r128 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+<body>
+
+  <!-- 1. NAVBAR -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="brand-name">GASCOLAE</span>
+        <span class="service-tag">S0302</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link active">Trang chủ</a></li>
+        <li><a href="#problems" class="nav-link">Bối cảnh</a></li>
+        <li><a href="#solution" class="nav-link">Giải pháp</a></li>
+        <li><a href="#capabilities" class="nav-link">Năng lực</a></li>
+        <li><a href="#use-cases" class="nav-link">Ứng dụng</a></li>
+        <li><a href="#how-it-works" class="nav-link">Quy trình</a></li>
+        <li><a href="#levels" class="nav-link">Gói dịch vụ</a></li>
+        <li><a href="#deliverables" class="nav-link">Bàn giao</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#ai-agent" class="nav-link highlight">AI Agent</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-nav">
+          <span>Yêu cầu tư vấn</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. HERO SECTION -->
+  <section id="hero" class="hero-section">
+    <!-- 3D Canvas Background -->
+    <div class="hero-canvas-container">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+
+    <div class="container hero-content-wrapper">
+      <div class="hero-text-col animate-fade-up">
+        <div class="badge-pill">
+          <span class="pulse-dot"></span>
+          <span>GASCOLAE PLATFORM • SERVICE S0302</span>
+        </div>
+
+        <h1 class="hero-title">
+          UAV Đa Cảm Biến Lập Bản Đồ & Giám Sát <br>
+          <span class="gradient-text">Khí Nhà Kính KCN</span>
+        </h1>
+
+        <p class="hero-subhead">
+          Thu thập dữ liệu CH4, CO2 và các thông số theo cấu hình; tạo bản đồ có tham chiếu không gian để hỗ trợ kiểm kê KNK, MRV và quản lý điểm bất thường tại khu công nghiệp.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-primary btn-lg glow-btn">
+            <span>Yêu cầu tư vấn phạm vi</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#solution" class="btn btn-secondary btn-lg">
+            <span>Tìm hiểu quy trình & đầu ra</span>
+          </a>
+        </div>
+
+        <!-- HUD Badges -->
+        <div class="hud-badges">
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>TDLAS Methane Screening</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+            <span>Cảm biến Đa Khí (CO2/CH4)</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+            <span>Bản đồ GIS Tham chiếu Không gian</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Kiểm soát QA/QC & MRV Gate</span>
+          </div>
+        </div>
+
+        <!-- Animated Stats Counters -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="5">&lt; 5</span><span class="unit">cm</span></div>
+            <div class="stat-label">Sai số mây điểm & định vị RTK tham chiếu không gian</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="100">100</span><span class="unit">%</span></div>
+            <div class="stat-label">Đồng bộ dữ liệu cảm biến, vị trí & khí tượng</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="3">3</span><span class="unit">Level</span></div>
+            <div class="stat-label">Level 1 Screening, Level 2 Multi-gas, Level 3 Conditional Flux <span class="unverified-tag" title="Thông tin từ tài liệu Asset 09">[CẦN XÁC MINH]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-visual-col animate-fade-up">
+        <div class="hero-media-wrapper glass-card lightbox-trigger" data-img="hero_main.png" data-caption="Mô phỏng dữ liệu UAV đa cảm biến & Bản đồ nhiệt khí thải nhà kính KCN S0302">
+          <div class="scan-laser-line"></div>
+          <div class="media-badge">KHẢO SÁT S0302</div>
+          <div class="visual-placeholder hero-img">
+            <img src="src/assets/hero_main.png" alt="Mô phỏng dữ liệu UAV đa cảm biến & Bản đồ nhiệt khí thải nhà kính KCN S0302" class="hero-img-display">
+          </div>
+          <div class="media-footer-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Click để phóng to ảnh mô phỏng dữ liệu dã chiến UAV S0302</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CUSTOMER PROBLEMS SECTION -->
+  <section id="problems" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">THÁCH THỨC BỐI CẢNH</span>
+        <h2 class="section-title">Thách Thức Trong Kiểm Kê KNK & Giám Sát Khí Thải KCN</h2>
+        <p class="section-subtitle">Các cơ sở thuộc phạm vi kiểm kê và BQL KCN gặp khó khăn khi phát hiện điểm bất thường và lập dữ liệu MRV có truy xuất.</p>
+      </div>
+
+      <div class="grid grid-3-cols problems-grid">
+        <!-- Problem 1 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="src-badge">SRC-02, 05, 12, 13</div>
+          <h3 class="problem-title">Nhu cầu dữ liệu kiểm kê KNK & MRV</h3>
+          <p class="problem-desc">
+            Cơ sở thuộc phạm vi áp dụng cần chuẩn bị dữ liệu kiểm kê KNK và MRV có phương pháp, truy xuất và giới hạn sử dụng rõ ràng để hỗ trợ tổng hợp, đối chiếu và báo cáo.
+          </p>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 03</div>
+          <h3 class="problem-title">Khó khoanh vùng CH4 phát tán</h3>
+          <p class="problem-desc">
+            CH4 phát tán từ bồn bể, tuyến ống hoặc nguồn nghi ngờ rất khó quan sát bằng mắt thường, thiếu căn cứ không gian để khoanh vùng hotspot và ưu tiên kiểm tra tại hiện trường.
+          </p>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 03, 06</div>
+          <h3 class="problem-title">Đo thủ công bị hạn chế độ phủ</h3>
+          <p class="problem-desc">
+            Đo thủ công mặt đất bị giới hạn về tiếp cận độ cao và diện tích rộng, khó tạo bản đồ theo phân khu và so sánh tương quan giữa các khu vực trong cùng đợt khảo sát.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SOLUTION / SERVICE OVERVIEW SECTION -->
+  <section id="solution" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">GIẢI PHÁP CÔNG NGHỆ</span>
+        <h2 class="section-title">Tổng Quan Dịch Vụ UAV Giám Sát Khí Thải S0302</h2>
+        <p class="section-subtitle">Tích hợp cảm biến chuyên dụng, định vị GIS và quy trình kiểm soát QA/QC nghiêm ngặt.</p>
+      </div>
+
+      <!-- Overview Technical Box -->
+      <div class="solution-box animate-fade-up">
+        <div class="solution-header-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>Khung Phạm Vi Kỹ Thuật & Quy Tắc Kiểm Soát Output</span>
+        </div>
+        <p class="solution-desc">
+          S0302 hỗ trợ screening và mapping theo payload được duyệt. Level 3 flux/CO2e chỉ được đề xuất khi có background, trường gió, source/plume geometry, sampling plan, method validation, uncertainty và acceptance criteria được Technical/Quality phê duyệt. Flux gắn với time window đo; không ngoại suy một ca bay thành CO2e/năm nếu thiếu GWP, activity data và temporal representativeness. Nếu gate không đạt, đầu ra chỉ là mapping/screening.
+        </p>
+      </div>
+
+      <!-- Key Benefits Grid -->
+      <div class="grid grid-3-cols benefits-grid">
+        <!-- Benefit 1 -->
+        <div class="glass-card benefit-card animate-fade-up">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="src-badge">SRC-02, 05, 12, 13</div>
+          <h3 class="benefit-title">Hỗ trợ chuẩn bị dữ liệu KNK/MRV</h3>
+          <p class="benefit-desc">
+            Bản đồ và báo cáo cung cấp đầu vào kỹ thuật có truy xuất; giá trị sử dụng trong hồ sơ chính thức phụ thuộc vào quy định, phương pháp và thẩm định áp dụng.
+          </p>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="glass-card benefit-card animate-fade-up">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 03, 07</div>
+          <h3 class="benefit-title">Khoanh vùng điểm bất thường</h3>
+          <p class="benefit-desc">
+            Dữ liệu theo không gian giúp ưu tiên khu vực cần kiểm tra hoặc đo xác nhận; không phải cảnh báo an toàn hay kết luận rò rỉ cuối cùng tại nguồn.
+          </p>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="glass-card benefit-card animate-fade-up">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 03, 06</div>
+          <h3 class="benefit-title">Mở rộng góc nhìn không gian</h3>
+          <p class="benefit-desc">
+            UAV hỗ trợ thu thập dữ liệu tại nhiều khu vực theo kế hoạch bay, điều kiện hiện trường và quyền tiếp cận đã được phê duyệt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. KEY CAPABILITIES / TECHNOLOGY SECTION -->
+  <section id="capabilities" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">NĂNG LỰC CỐT LÕI</span>
+        <h2 class="section-title">Công Nghệ & Tính Năng Nổi Bật S0302</h2>
+        <p class="section-subtitle">Kết hợp cảm biến TDLAS, mô-đun đa khí và đồng bộ dữ liệu vị trí - khí tượng.</p>
+      </div>
+
+      <div class="capabilities-grid">
+        <!-- Cap 1 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up" data-img="tech_cap1.png">
+          <div class="cap-media-wrapper">
+            <img src="src/assets/tech_cap1.png" alt="Sàng lọc CH4 bằng TDLAS">
+            <div class="cap-zoom-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="src-badge">SRC-01, 03, 07</div>
+          <h3 class="cap-title">Sàng lọc CH4 bằng TDLAS</h3>
+          <p class="cap-desc">
+            Thu thập tín hiệu CH4 để hỗ trợ nhận diện điểm bất thường tại khu vực mục tiêu như bồn bể, tuyến ống hoặc cụm sản xuất.
+          </p>
+          <div class="cap-status">
+            <span class="status-verified">Model & dải đo: Cần Technical xác nhận</span>
+          </div>
+        </div>
+
+        <!-- Cap 2 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up" data-img="tech_cap2.png">
+          <div class="cap-media-wrapper">
+            <img src="src/assets/tech_cap2.png" alt="Giám sát đa khí">
+            <div class="cap-zoom-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="src-badge">SRC-01</div>
+          <h3 class="cap-title">Giám sát Đa Khí</h3>
+          <p class="cap-desc">
+            Thu thập CO2/NOx/SO2 hoặc các thông số khác theo mô-đun cảm biến được lựa chọn cụ thể cho từng dự án.
+          </p>
+          <div class="cap-status">
+            <span class="status-verified">Danh mục khí: Theo cấu hình dự án</span>
+          </div>
+        </div>
+
+        <!-- Cap 3 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up" data-img="tech_cap3.png">
+          <div class="cap-media-wrapper">
+            <img src="src/assets/tech_cap3.png" alt="Định vị và phân tích GIS">
+            <div class="cap-zoom-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="src-badge">SRC-01, 06, 08</div>
+          <h3 class="cap-title">Định vị & Phân tích GIS</h3>
+          <p class="cap-desc">
+            Đồng bộ dữ liệu vị trí/thời gian, khí tượng và trình bày thành lớp bản đồ có tham chiếu không gian phù hợp.
+          </p>
+          <div class="cap-status">
+            <span class="status-verified">Định dạng bàn giao: GeoTIFF / Layer GIS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. USE CASES SECTION -->
+  <section id="use-cases" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">KỊCH BẢN ỨNG DỤNG</span>
+        <h2 class="section-title">Các Trường Hợp Sử Dụng Thực Tế S0302</h2>
+        <p class="section-subtitle">Đáp ứng nhu cầu khảo sát KNK đa dạng tại các khu công nghiệp và nhà máy sản xuất.</p>
+      </div>
+
+      <div class="grid grid-3-cols usecases-grid">
+        <!-- Use Case 1 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <span class="usecase-tag">Tình huống 01</span>
+          <h3 class="usecase-title">Kiểm kê KNK định kỳ</h3>
+          <div class="usecase-client">Ban Quản lý KCN hoặc Nhà máy kiểm kê KNK</div>
+          <p class="usecase-output">
+            <strong>Output chính:</strong> Bản đồ phân bố và báo cáo giám sát theo mục tiêu; không mặc nhiên là hồ sơ pháp lý hoàn chỉnh.
+          </p>
+        </div>
+
+        <!-- Use Case 2 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <span class="usecase-tag">Tình huống 02</span>
+          <h3 class="usecase-title">Sàng lọc CH4 tại tài sản mục tiêu</h3>
+          <div class="usecase-client">Đội môi trường / O&M nhà máy</div>
+          <p class="usecase-output">
+            <strong>Output chính:</strong> Danh sách hotspot điểm bất thường và bằng chứng hình ảnh liên quan nếu thuộc phạm vi bàn giao.
+          </p>
+        </div>
+
+        <!-- Use Case 3 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <span class="usecase-tag">Tình huống 03</span>
+          <h3 class="usecase-title">Giám sát đa khí & Đánh giá trước/sau</h3>
+          <div class="usecase-client">Đơn vị vận hành KCN & Đội kỹ thuật</div>
+          <p class="usecase-output">
+            <strong>Output chính:</strong> Bản đồ đa khí, bảng tổng hợp dữ liệu theo scope; việc so sánh phụ thuộc điều kiện đo và QA/QC.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. HOW IT WORKS (SOP WORKFLOW) SECTION -->
+  <section id="how-it-works" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">QUY TRÌNH TRIỂN KHAI</span>
+        <h2 class="section-title">Quy Trình 5 Bước Khảo Sát & Giám Sát S0302</h2>
+        <p class="section-subtitle">Đảm bảo an toàn bay HSE, tuân thủ pháp lý và kiểm soát chất lượng dữ liệu khép kín.</p>
+      </div>
+
+      <div class="workflow-timeline">
+        <!-- Step 1 -->
+        <div class="glass-card workflow-step-card animate-fade-up">
+          <div class="step-number">01</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Tiếp Nhận & Scoping</h4>
+          <p class="step-desc">
+            Xác nhận mục tiêu, Level, ranh giới và dữ liệu đầu vào qua kênh bảo mật phù hợp.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card workflow-step-card animate-fade-up">
+          <div class="step-number">02</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Khảo Sát & GO/NO-GO</h4>
+          <p class="step-desc">
+            Lập kế hoạch HSE và Mission Limits Sheet. Pilot/Operations/EHS thực hiện GO/NO-GO trước ca bay.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card workflow-step-card animate-fade-up">
+          <div class="step-number">03</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Thu Thập Dữ Liệu</h4>
+          <p class="step-desc">
+            Thu thập dữ liệu cảm biến, khí tượng, thời gian và vị trí theo kế hoạch bay được duyệt.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="glass-card workflow-step-card animate-fade-up">
+          <div class="step-number">04</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Xử Lý & QA/QC</h4>
+          <p class="step-desc">
+            Kiểm tra chất lượng, đồng bộ mây điểm và xử lý dữ liệu trong phạm vi đã thống nhất.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="glass-card workflow-step-card animate-fade-up">
+          <div class="step-number">05</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Rà Soát & Bàn Giao</h4>
+          <p class="step-desc">
+            Rà soát báo cáo, bàn giao có kiểm soát và thống nhất nhu cầu đo/kiểm tra bổ sung.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SERVICE LEVELS / PACKAGES SECTION -->
+  <section id="levels" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">CẤP ĐỘ DỊCH VỤ</span>
+        <h2 class="section-title">Các Gói Dịch Vụ Khảo Sát S0302</h2>
+        <p class="section-subtitle">Không hiển thị giá công khai; báo giá chính thức do Sales/Finance xác nhận riêng sau khi thống nhất phạm vi.</p>
+      </div>
+
+      <div class="levels-grid">
+        <!-- Level 1 -->
+        <div class="glass-card level-card animate-fade-up">
+          <div class="level-header">
+            <h3 class="level-name">Level 1</h3>
+            <div class="level-subtitle">Sàng lọc CH4 / LDAR Screening</div>
+          </div>
+          <div class="level-body">
+            <p class="level-scope">
+              UAV + TDLAS tại tài sản mục tiêu; tạo bản đồ điểm bất thường và danh sách ưu tiên theo phạm vi khảo sát.
+            </p>
+          </div>
+          <div class="level-pricing-tag">
+            <span>Tư vấn phạm vi (Không hiển thị giá)</span>
+          </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="glass-card level-card recommended animate-fade-up">
+          <span class="level-badge-rec">KHUYÊN DÙNG</span>
+          <div class="level-header">
+            <h3 class="level-name">Level 2</h3>
+            <div class="level-subtitle">Giám sát Đa Khí & MRV Cơ Bản</div>
+          </div>
+          <div class="level-body">
+            <p class="level-scope">
+              TDLAS + Cảm biến đa khí (CO2, CH4...) + Khí tượng; bản đồ phân bố theo phân khu, dữ liệu và báo cáo MRV cơ bản.
+            </p>
+          </div>
+          <div class="level-pricing-tag">
+            <span>Tư vấn phạm vi (Không hiển thị giá)</span>
+          </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="glass-card level-card animate-fade-up">
+          <div class="level-header">
+            <h3 class="level-name">Level 3</h3>
+            <div class="level-subtitle">Flux/ESG & AI Có Điều Kiện</div>
+          </div>
+          <div class="level-body">
+            <p class="level-scope">
+              Chỉ mở sau khi phê duyệt các cổng kiểm soát data, method, validation và uncertainty. Gate fail thì mapping-only.
+            </p>
+          </div>
+          <div class="level-pricing-tag">
+            <span class="status-pending">Conditional / Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. DELIVERABLES SECTION -->
+  <section id="deliverables" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">SẢN PHẨM BÀN GIAO</span>
+        <h2 class="section-title">Danh Mục Bàn Giao Kỹ Thuật S0302</h2>
+        <p class="section-subtitle">Bao gồm lớp dữ liệu không gian, báo cáo giám sát KNK và danh sách hotspot.</p>
+      </div>
+
+      <div class="grid grid-3-cols deliverables-grid">
+        <!-- Deliv 1 -->
+        <div class="glass-card deliverable-card animate-fade-up">
+          <div class="deliv-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3 class="deliv-title">Bản đồ phân bố khí</h3>
+          <p class="deliv-desc">
+            Lớp bản đồ CH4/CO2 hoặc đa khí có tham chiếu không gian, định dạng theo thỏa thuận (GeoTIFF, Shapefile, Layer GIS).
+          </p>
+
+          <div class="deliv-status">
+            <span class="status-verified">Theo Level / Dữ liệu đạt QA/QC</span>
+          </div>
+        </div>
+
+        <!-- Deliv 2 -->
+        <div class="glass-card deliverable-card animate-fade-up">
+          <div class="deliv-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="deliv-title">Báo cáo giám sát KNK/MRV</h3>
+          <p class="deliv-desc">
+            Tóm tắt phạm vi, phương pháp, điều kiện đo, kết quả, giới hạn sử dụng và điểm cần kiểm tra xác nhận thêm.
+          </p>
+
+          <div class="deliv-status">
+            <span class="status-verified">Hỗ trợ nghiệp vụ / Không thay CEMS</span>
+          </div>
+        </div>
+
+        <!-- Deliv 3 -->
+        <div class="glass-card deliverable-card animate-fade-up">
+          <div class="deliv-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="deliv-title">Dữ liệu điểm bất thường</h3>
+          <p class="deliv-desc">
+            Bộ dữ liệu theo quyền bàn giao; danh sách hotspot và hình ảnh vị trí nếu thuộc phạm vi được phép công bố.
+          </p>
+
+          <div class="deliv-status">
+            <span class="status-verified">Theo scope & Tiêu chí nghiệm thu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. WHY GASCOLAE / POSITIONING SECTION -->
+  <section id="positioning" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">ĐỊNH VỊ NĂNG LỰC</span>
+        <h2 class="section-title">Tại Sao Lựa Chọn Nền Tảng GASCOLAE?</h2>
+        <p class="section-subtitle">Cam kết tuân thủ minh bạch phạm vi, quy trình có kiểm soát và tích hợp dữ liệu không gian.</p>
+      </div>
+
+      <div class="grid grid-3-cols">
+        <!-- Pos 1 -->
+        <div class="glass-card position-card animate-fade-up">
+          <div class="position-number">01</div>
+          <div>
+            <h3 class="position-title">Tích hợp dữ liệu không gian</h3>
+            <p class="position-desc">
+              Kết hợp cảm biến khí, khí tượng và vị trí GPS/RTK để tạo góc nhìn trực quan theo phân khu nhà máy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pos 2 -->
+        <div class="glass-card position-card animate-fade-up">
+          <div class="position-number">02</div>
+          <div>
+            <h3 class="position-title">Quy trình có điểm kiểm soát</h3>
+            <p class="position-desc">
+              Pháp lý/HSE, GO/NO-GO, QA/QC và giới hạn phương pháp được tuân thủ nghiêm ngặt trong quy trình.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pos 3 -->
+        <div class="glass-card position-card animate-fade-up">
+          <div class="position-number">03</div>
+          <div>
+            <h3 class="position-title">Phạm vi minh bạch</h3>
+            <p class="position-desc">
+              Level, deliverables và định dạng bàn giao được xác nhận theo dự án; nội dung chưa kiểm chứng không biến thành cam kết.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FAQ ACCORDION SECTION -->
+  <section id="faq" class="section-padding dark-bg">
+    <div class="container max-w-900">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">GIẢI ĐÁP THẮC MẮC</span>
+        <h2 class="section-title">Câu Hỏi Thường Gặp Về Dịch Vụ S0302</h2>
+        <p class="section-subtitle">Thông tin giải đáp dựa trên nguồn tri thức đã phê duyệt của GASCOLAE.</p>
+      </div>
+
+      <div class="faq-container animate-fade-up">
+        <!-- FAQ 1 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>1. Dịch vụ có thay thế CEMS hoặc hồ sơ pháp lý không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Không. UAV hỗ trợ khảo sát nguồn phát tán và lập bản đồ phân bố. Việc sử dụng trong hồ sơ chính thức phụ thuộc quy định hiện hành, phương pháp luận và cơ quan thẩm định áp dụng. <em>[Nguồn: SRC-02; CODE_01 / CODE_02]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>2. Dịch vụ S0302 bao gồm những Level nào?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Level 1 sàng lọc CH4; Level 2 giám sát đa khí / MRV cơ bản; Level 3 flux/ESG/AI là phương án có điều kiện, chờ xác nhận năng lực và deliverables thực tế. <em>[Nguồn: SRC-01; SRC-03; SRC-05; SRC-08; SRC-11]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>3. Cần chuẩn bị gì trước khi triển khai khảo sát?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Cần xác nhận mục tiêu, ranh giới, đầu mối HSE, quyền tiếp cận site và hồ sơ phối hợp bay. Chi tiết nhạy cảm chỉ trao đổi qua kênh được phê duyệt, không nhập vào form công khai. <em>[Nguồn: SRC-04; CODE_04]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>4. Có thể nhận báo giá ngay từ AI hoặc trang này không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Không. Trang web và Trợ lý AI không hiển thị, tính toán, ước tính hoặc suy ra giá. Sales/Finance chỉ lập báo giá sau khi xác nhận phạm vi, điều kiện và chính sách được duyệt. <em>[Nguồn: CODE_00; CODE_02]</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. AI AGENT BLOCK SECTION -->
+  <section id="ai-agent" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">TRỢ LÝ AI TƯƠNG TÁC</span>
+        <h2 class="section-title">Trợ Lý Thông Tin S0302</h2>
+        <p class="section-subtitle">Tra cứu thông tin tự động về phạm vi, Level, đầu ra và điều kiện triển khai của S0302.</p>
+      </div>
+
+      <div class="ai-agent-container glass-card max-w-900 animate-fade-up">
+        <div class="agent-header">
+          <div class="agent-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="13" r="1.5" fill="#00d4ff"/><circle cx="15" cy="13" r="1.5" fill="#00d4ff"/><path d="M9 17h6"/></svg>
+          </div>
+          <div class="agent-info">
+            <h4 class="agent-name">Trợ lý thông tin S0302</h4>
+            <span class="agent-status"><span class="status-dot"></span> Sẵn sàng trực tuyến • Nguồn thông tin đã duyệt</span>
+          </div>
+        </div>
+
+        <div class="agent-chat-box" id="chat-box">
+          <!-- Initial bot welcome message -->
+          <div class="chat-message bot-message">
+            <div class="msg-content">
+              Xin chào! Tôi là Trợ lý thông tin S0302. Tôi có thể giải thích phạm vi, Level, đầu ra và điều kiện triển khai của S0302 từ nguồn đã phê duyệt. Bạn muốn tìm hiểu nội dung nào?
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Question Chips -->
+        <div class="quick-chips">
+          <button class="chip-btn" data-question="Level 1, Level 2 và Level 3 khác nhau như thế nào?">Khác biệt Level 1, 2, 3</button>
+          <button class="chip-btn" data-question="Khách hàng có thể nhận những deliverable nào theo từng phạm vi?">Sản phẩm bàn giao Deliverables</button>
+          <button class="chip-btn" data-question="Dịch vụ cần những điều kiện pháp lý, HSE và dữ liệu đầu vào nào?">Điều kiện pháp lý & HSE</button>
+          <button class="chip-btn" data-question="Dữ liệu UAV có thay thế CEMS hoặc hồ sơ kiểm kê chính thức không?">Có thay thế CEMS không?</button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form class="chat-input-form" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Nhập thắc mắc của bạn về dịch vụ S0302..." autocomplete="off">
+          <button type="submit" class="btn btn-primary btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <div class="agent-escalation text-center">
+          <span>Cần xác nhận phạm vi chi tiết hoặc báo giá?</span>
+          <a href="#contact" class="btn btn-secondary btn-sm">Kết nối chuyên viên tư vấn GASCOLAE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. LEAD FORM SECTION -->
+  <section id="contact" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">ĐĂNG KÝ TƯ VẤN</span>
+        <h2 class="section-title">Yêu Cầu Tư Vấn Phạm Vi S0302</h2>
+        <p class="section-subtitle">Trao đổi nhu cầu giám sát KNK và phạm vi khảo sát phù hợp tại khu công nghiệp.</p>
+      </div>
+
+      <div class="contact-wrapper glass-card max-w-800 animate-fade-up">
+        <form class="contact-form" id="contact-form">
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="fullname">Họ và tên *</label>
+              <input type="text" id="fullname" name="fullname" required placeholder="Nguyễn Văn A">
+              <span class="error-msg">Vui lòng nhập họ và tên</span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email công tác *</label>
+              <input type="email" id="email" name="email" required placeholder="name@company.com.vn">
+              <span class="error-msg">Vui lòng nhập email hợp lệ</span>
+            </div>
+          </div>
+
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="phone">Số điện thoại công việc *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="0901234567">
+              <span class="error-msg">Vui lòng nhập số điện thoại</span>
+            </div>
+            <div class="form-group">
+              <label for="organization">Tên Đơn vị / Tổ chức *</label>
+              <input type="text" id="organization" name="organization" required placeholder="Ban Quản lý KCN / Tên Nhà máy">
+              <span class="error-msg">Vui lòng nhập tên đơn vị</span>
+            </div>
+          </div>
+
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="role">Vai trò / Chức danh</label>
+              <input type="text" id="role" name="role" placeholder="Cán bộ Môi trường / HSE / O&M">
+            </div>
+            <div class="form-group">
+              <label for="province">Tỉnh / Thành phố</label>
+              <input type="text" id="province" name="province" placeholder="Bình Dương / Đồng Nai / Bà Rịa - Vũng Tàu...">
+            </div>
+          </div>
+
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="demand-group">Nhóm nhu cầu khảo sát</label>
+              <select id="demand-group" name="demand-group">
+                <option value="screening">Sàng lọc CH4 điểm bất thường</option>
+                <option value="multigas">Giám sát đa khí & MRV cơ bản</option>
+                <option value="inventory">Dữ liệu bổ trợ kiểm kê KNK</option>
+                <option value="custom">Tư vấn phạm vi tùy chỉnh</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timeframe">Thời điểm mong muốn</label>
+              <input type="text" id="timeframe" name="timeframe" placeholder="Trong tháng tới / Quý tới...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mô tả nhu cầu chung</label>
+            <textarea id="message" name="message" rows="3" placeholder="Mô tả bối cảnh KCN hoặc loại tài sản cần khảo sát (Lưu ý: Không nhập tọa độ chi tiết, sơ đồ nhà máy hay dữ liệu nhạy cảm)..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-full glow-btn">
+            <span>Gửi Yêu Cầu Tư Vấn Phạm Vi</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <div class="contact-badges grid grid-3-cols">
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Bảo mật thông tin dự án</span>
+          </div>
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Phản hồi tư vấn nhanh</span>
+          </div>
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Đội ngũ kỹ thuật hỗ trợ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container grid grid-4-cols">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-brand">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="brand-name">GASCOLAE</span>
+        </a>
+        <p class="footer-tagline">
+          Hệ thống UAV đa cảm biến lập bản đồ & giám sát khí nhà kính tại khu công nghiệp.
+        </p>
+        <span class="service-id-pill">Service ID: S0302</span>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Liên Kết Nhanh</h4>
+        <ul>
+          <li><a href="#problems">Thách thức bối cảnh</a></li>
+          <li><a href="#solution">Giải pháp công nghệ</a></li>
+          <li><a href="#capabilities">Năng lực cốt lõi</a></li>
+          <li><a href="#how-it-works">SOP Quy trình</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Gói Dịch Vụ & GIS</h4>
+        <ul>
+          <li><a href="#levels">Level 1 - Sàng lọc CH4</a></li>
+          <li><a href="#levels">Level 2 - Giám sát Đa Khí</a></li>
+          <li><a href="#levels">Level 3 - Conditional Flux</a></li>
+          <li><a href="#deliverables">Sản phẩm bàn giao GIS</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-seo">
+        <h4 class="footer-title">Từ Khóa Dịch Vụ</h4>
+        <div class="seo-tags">
+          <span>UAV KNK</span>
+          <span>Bản đồ CH4</span>
+          <span>Cảm biến CO2</span>
+          <span>TDLAS Laser</span>
+          <span>Báo cáo MRV</span>
+          <span>QĐ 13/2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom text-center">
+      <div class="container">
+        <p>© 2026 GASCOLAE Platform. Tất cả các quyền được bảo lưu. Dịch vụ S0302 UAV Giám Sát Khí Nhà Kính KCN.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 15. LIGHTBOX MEDIA MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-overlay" id="lightbox-overlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close">&times;</button>
+      <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
+        <!-- Dynamic content injected by JS -->
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="src/script.js"></script>
+</body>
+</html>

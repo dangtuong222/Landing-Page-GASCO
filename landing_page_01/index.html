@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UAV Dự Báo & Khắc Phục Lũ Lụt | GASCOLAE S0296</title>
+  <meta name="description" content="Dịch vụ UAV thu thập LiDAR, Thermal & RGB xuyên mây mô phỏng lũ lụt 3D, hỗ trợ tìm kiếm cứu nạn khẩn cấp và đánh giá bồi thường bảo hiểm chuẩn d-MRV.">
+  <meta name="keywords" content="UAV dự đoán lũ lụt, LiDAR quét vùng ngập, camera nhiệt cứu hộ, d-MRV carbon thảm họa, bảo hiểm nông nghiệp UAV, Digital Twin ngập lụt, S0296">
+  <meta name="author" content="GASCOLAE Platform">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="src/style.css">
+
+  <!-- Three.js CDN r128 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+<body>
+
+  <!-- 1. NAVBAR -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="brand-name">GASCOLAE</span>
+        <span class="service-tag">S0296</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link active">Trang chủ</a></li>
+        <li><a href="#problems" class="nav-link">Bối cảnh</a></li>
+        <li><a href="#solution" class="nav-link">Giải pháp</a></li>
+        <li><a href="#capabilities" class="nav-link">Năng lực</a></li>
+        <li><a href="#how-it-works" class="nav-link">Quy trình</a></li>
+        <li><a href="#levels" class="nav-link">Gói dịch vụ</a></li>
+        <li><a href="#deliverables" class="nav-link">Bàn giao</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#ai-agent" class="nav-link highlight">AI Agent</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-nav">
+          <span>Yêu cầu tư vấn</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. HERO SECTION -->
+  <section id="hero" class="hero-section">
+    <!-- 3D Canvas Background -->
+    <div class="hero-canvas-container">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+
+    <div class="container hero-content-wrapper">
+      <div class="hero-text-col animate-fade-up">
+        <div class="badge-pill">
+          <span class="pulse-dot"></span>
+          <span>GASCOLAE PLATFORM • SERVICE S0296</span>
+        </div>
+
+        <h1 class="hero-title">
+          UAV Dự Đoán & Khắc Phục <br>
+          <span class="gradient-text">Hậu Quả Lũ Lụt</span>
+        </h1>
+
+        <p class="hero-subhead">
+          Thu thập dữ liệu RGB, Radiometric Thermal và LiDAR xuyên mây để mô phỏng ngập lụt 3D, hỗ trợ tìm kiếm cứu nạn khẩn cấp và đánh giá thiệt hại tự động theo chuẩn d-MRV quốc tế.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-primary btn-lg glow-btn">
+            <span>Yêu cầu tư vấn khẩn cấp</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#solution" class="btn btn-secondary btn-lg">
+            <span>Xem phạm vi dịch vụ</span>
+          </a>
+        </div>
+
+        <!-- HUD Badges -->
+        <div class="hud-badges">
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+            <span>LiDAR Point Cloud 3D</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Radiometric Thermal</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+            <span>Edge AI Processing</span>
+          </div>
+          <div class="hud-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>d-MRV Standard</span>
+          </div>
+        </div>
+
+        <!-- Animated Stats Counters -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="5">&lt; 5</span><span class="unit">cm</span></div>
+            <div class="stat-label">Sai số vị trí định vị RTK / Mây điểm LiDAR</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="72">24-72</span><span class="unit">h</span></div>
+            <div class="stat-label">Dự báo kịch bản ngập lụt bằng AI Digital Twin <span class="unverified-tag" title="Thông tin từ tài liệu Asset 09">[CẦN XÁC MINH]</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span class="counter" data-target="100">100</span><span class="unit">%</span></div>
+            <div class="stat-label">Truyền dữ liệu nhiệt & hình ảnh dã chiến real-time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-visual-col animate-fade-up">
+        <div class="hero-media-wrapper glass-card lightbox-trigger" data-img="hero_main.png" data-caption="Mô phỏng dữ liệu dã chiến UAV & Digital Twin ngập lụt S0296">
+          <div class="scan-laser-line"></div>
+          <div class="media-badge">LIVE TÁC CHIẾN S0296</div>
+          <div class="visual-placeholder hero-img">
+            <img src="src/assets/hero_main.png" alt="Mô phỏng dữ liệu dã chiến UAV & Digital Twin ngập lụt S0296" class="hero-img-display">
+          </div>
+          <div class="media-footer-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Click để phóng to ảnh mô phỏng dữ liệu dã chiến UAV & Digital Twin [S0296]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CUSTOMER PROBLEMS SECTION -->
+  <section id="problems" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">THÁCH THỨC BỐI CẢNH</span>
+        <h2 class="section-title">Thách Thức Trong Tác Chiếm Ứng Phó Thiên Tai & Lũ Lụt</h2>
+        <p class="section-subtitle">Phương pháp truyền thống thất bại trước sự chia cắt địa hình và mây mù thời tiết khắc nghiệt.</p>
+      </div>
+
+      <div class="grid grid-4-cols problems-grid">
+        <!-- Problem 1 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 02, 03, 04, 06</div>
+          <h3 class="problem-title">Khó quan sát & Đánh giá toàn cảnh</h3>
+          <p class="problem-desc">
+            Địa hình bị chia cắt, đường giao thông ngập sâu, mây mù che khuất vệ tinh 100% khiến lực lượng mặt đất không nắm bắt được quy mô thảm họa thực tế.
+          </p>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 02, 03, 04, 06</div>
+          <h3 class="problem-title">Rủi ro sinh mạng lực lượng cứu hộ</h3>
+          <p class="problem-desc">
+            Khó phát hiện nạn nhân trong đêm tối, sương mù, bị kẹt dưới tán cây/đống đổ nát; tìm kiếm cứu hộ mù quáng gây nguy hiểm cho First Responders.
+          </p>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 02, 03, 04, 06</div>
+          <h3 class="problem-title">Thiếu dữ liệu địa hình đo lường thiệt hại</h3>
+          <p class="problem-desc">
+            Không thể đo lường chính xác độ sâu mực nước, khối lượng sạt lở, và tình trạng cơ sở hạ tầng bằng các phương pháp thủ công truyền thống.
+          </p>
+        </div>
+
+        <!-- Problem 4 -->
+        <div class="glass-card problem-card animate-fade-up">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="src-badge">SRC-01, 02, 03, 04, 06</div>
+          <h3 class="problem-title">Điều phối sơ tán chậm trễ</h3>
+          <p class="problem-desc">
+            Thiếu bản đồ rủi ro thực tế thời gian thực, không thể đưa ra phương án sơ tán tối ưu và kịp thời trước khi mực nước lũ dâng cao.
+          </p>
+        </div>
+      </div>
+
+      <!-- Problem Highlight Box -->
+      <div class="problem-highlight-box glass-card animate-fade-up">
+        <div class="highlight-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff4d4d" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <div class="highlight-content">
+          <h4>Nút Thắt Cần Giải Quyết Ngay</h4>
+          <p>
+            "Ứng phó thụ động làm gia tăng đến <strong>40% thiệt hại về người và tài sản</strong> trong các đợt bão lũ. Dịch vụ UAV S0296 giải quyết triệt để nút thắt dữ liệu thời gian thực và mô phỏng ngập lụt chủ động."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SOLUTION OVERVIEW & TECH TABS -->
+  <section id="solution" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">GIẢI PHÁP S0296</span>
+        <h2 class="section-title">Hệ Thống UAV Dã Chiến & AI Mô Phỏng Thủy Văn 3D</h2>
+        <p class="section-subtitle">
+          GASCOLAE cung cấp giải pháp UAV toàn diện tích hợp cảm biến đa dạng (RGB, Radiometric Thermal, LiDAR) hoạt động xuyên mây mù. Tự động chuyển hóa dữ liệu dã chiến thành bản đồ 3D Digital Twin, truyền tọa độ cứu nạn real-time và lập báo cáo bồi thường bảo hiểm & d-MRV Carbon.
+        </p>
+      </div>
+
+      <div class="solution-grid grid-2-cols">
+        <!-- Left: Dynamic Tech Tabs -->
+        <div class="tech-tabs-container glass-card animate-fade-up">
+          <h3 class="tabs-heading">Công Nghệ Cốt Lõi Chi Tiết</h3>
+          
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab="lidar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span>LiDAR & RTK</span>
+            </button>
+            <button class="tab-btn" data-tab="thermal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+              <span>Thermal Sensor</span>
+            </button>
+            <button class="tab-btn" data-tab="digitaltwin">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+              <span>AI Twin</span>
+            </button>
+            <button class="tab-btn" data-tab="edge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>Edge AI</span>
+            </button>
+          </div>
+
+          <div class="tabs-body">
+            <!-- Tab 1: LiDAR & RTK -->
+            <div class="tab-content active" id="tab-lidar">
+              <div class="tab-card-header">
+                <h4>LiDAR & Định Vị Siêu Cao RTK</h4>
+                <span class="status-verified">Đã kiểm chứng</span>
+              </div>
+              <p class="tab-desc">Quét mây điểm 3D xuyên qua tán cây và thời tiết mây mù mùa bão lũ, kết hợp định vị RTK đảm bảo sai số vị trí &lt; 5cm.</p>
+              <ul class="checklist-items">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Tạo mô hình độ cao số DEM/DTM siêu chính xác.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Xây dựng bản đồ độ sâu mực nước ngập lụt.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Tính toán khối lượng sạt lở đất đá tự động.</li>
+              </ul>
+            </div>
+
+            <!-- Tab 2: Thermal Sensor -->
+            <div class="tab-content" id="tab-thermal">
+              <div class="tab-card-header">
+                <h4>Camera Bức Xạ Nhiệt Radiometric Thermal</h4>
+                <span class="status-verified">Đã kiểm chứng</span>
+              </div>
+              <p class="tab-desc">Cảm biến bức xạ nhiệt định vị thân nhiệt con người và động vật trong điều kiện đêm tối, sương mù, bị che phủ bởi cây cối/đổ nát.</p>
+              <ul class="checklist-items">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Nhận diện điểm nhiệt (Hotspot) nạn nhân tự động.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Tác chiến cứu nạn 24/7 xuyên đêm mưa bão.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Định vị nguồn chập cháy điện, nguy cơ rò rỉ nhiệt.</li>
+              </ul>
+            </div>
+
+            <!-- Tab 3: AI Twin -->
+            <div class="tab-content" id="tab-digitaltwin">
+              <div class="tab-card-header">
+                <h4>AI Digital Twin & Mô Phỏng Thủy Văn</h4>
+                <span class="status-unverified">[CẦN XÁC MINH]</span>
+              </div>
+              <p class="tab-desc">Nạp bản đồ 3D vào siêu máy tính AI để chạy mô hình thủy văn, dự báo kịch bản ngập lụt chi tiết trong 24–72 giờ tới.</p>
+              <ul class="checklist-items">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Mô phỏng kịch bản xả lũ và dâng nước bão.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Phân luồng sơ tán tối ưu theo độ sâu ngập.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Cảnh báo vùng nguy cơ sạt lở sớm.</li>
+              </ul>
+            </div>
+
+            <!-- Tab 4: Edge AI -->
+            <div class="tab-content" id="tab-edge">
+              <div class="tab-card-header">
+                <h4>Edge Computing Dã Chiến Tại Chỗ</h4>
+                <span class="status-verified">Đã kiểm chứng</span>
+              </div>
+              <p class="tab-desc">Trạm xử lý dữ liệu tại chỗ giúp dựng bản đồ và phân tích AI tức thì mà không phụ thuộc hạ tầng mạng Internet vùng lũ bị sự cố.</p>
+              <ul class="checklist-items">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Livestream hình ảnh/nhiệt không độ trễ.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Xử lý mây điểm LiDAR dã chiến tại chỗ.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Xuất tọa độ cứu hộ trực tiếp cho trạm chỉ huy.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 4 Key Benefits -->
+        <div class="benefits-container grid grid-2-cols">
+          <div class="glass-card benefit-card animate-fade-up">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Tối Ưu Cứu Hộ Khẩn Cấp</h4>
+            <p>Truyền livestream và camera nhiệt real-time giúp chủ động điều hướng, phát hiện định vị nạn nhân an toàn.</p>
+          </div>
+
+          <div class="glass-card benefit-card animate-fade-up">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>Rút Ngắn Thời Gian Đánh Giá</h4>
+            <p>Cung cấp bản đồ phân vùng thiệt hại độ phân giải cao giúp ngành bảo hiểm duyệt bồi thường nhanh chóng.</p>
+          </div>
+
+          <div class="glass-card benefit-card animate-fade-up">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <h4>Cảnh Báo Ngập Chủ Động</h4>
+            <p>Lập kịch bản ngập lụt 3D giúp chính quyền chủ động sơ tán, phân luồng giao thông và gia cố đê điều trước lũ.</p>
+          </div>
+
+          <div class="glass-card benefit-card animate-fade-up">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4>Chuẩn Hóa d-MRV Quốc Tế</h4>
+            <p>Dữ liệu viễn thám kết hợp đo mẫu mặt đất tuân thủ tiêu chuẩn Verra VM0042/VT0005 về phát thải Carbon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. KEY CAPABILITIES SECTION -->
+  <section id="capabilities" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">NĂNG LỰC CỐT LÕI</span>
+        <h2 class="section-title">5 Năng Lực Công Nghệ Dã Chiến Vượt Trội</h2>
+        <p class="section-subtitle">Tối ưu hóa khả năng thu thập và phân tích dữ liệu trong mọi điều kiện thiên tai khắc nghiệt nhất.</p>
+      </div>
+
+      <div class="grid grid-3-cols cap-grid">
+        <!-- Cap 1 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up lightbox-trigger" data-img="tech_cap1.png" data-caption="Năng lực 01: Hoạt Động Xuyên Mây & Dã Chiến">
+          <div class="cap-header">
+            <span class="cap-num">01</span>
+            <span class="status-verified">Đã kiểm chứng</span>
+          </div>
+          <div class="cap-media-box">
+            <img src="src/assets/tech_cap1.png" alt="Hoạt Động Xuyên Mây & Dã Chiến" class="cap-img" />
+            <div class="cap-media-overlay">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Phóng to</span>
+            </div>
+          </div>
+          <h3 class="cap-title">Hoạt Động Xuyên Mây & Dã Chiến</h3>
+          <p class="cap-desc">Thu thập dữ liệu dã chiến linh hoạt dưới tầng mây, không bị hạn chế bởi mây mù mưa bão như các hệ thống ảnh vệ tinh.</p>
+          <div class="cap-tags">
+            <span>#MưaBão</span><span>#BayThấp</span><span>#AllWeather</span>
+          </div>
+        </div>
+
+        <!-- Cap 2 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up lightbox-trigger" data-img="tech_cap2.png" data-caption="Năng lực 02: Radiometric Thermal Camera">
+          <div class="cap-header">
+            <span class="cap-num">02</span>
+            <span class="status-verified">Đã kiểm chứng</span>
+          </div>
+          <div class="cap-media-box">
+            <img src="src/assets/tech_cap2.png" alt="Radiometric Thermal Camera" class="cap-img" />
+            <div class="cap-media-overlay">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Phóng to</span>
+            </div>
+          </div>
+          <h3 class="cap-title">Radiometric Thermal Camera</h3>
+          <p class="cap-desc">Nhận diện bức xạ nhiệt cơ thể người, hỗ trợ tác chiến tìm kiếm cứu nạn trong đêm tối, sương mù và bị che phủ.</p>
+          <div class="cap-tags">
+            <span>#CameraNhiệt</span><span>#HotspotSAR</span><span>#CứuHộĐêm</span>
+          </div>
+        </div>
+
+        <!-- Cap 3 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up lightbox-trigger" data-img="tech_cap3.png" data-caption="Năng lực 03: LiDAR & Định Vị RTK < 5cm">
+          <div class="cap-header">
+            <span class="cap-num">03</span>
+            <span class="status-verified">Đã kiểm chứng</span>
+          </div>
+          <div class="cap-media-box">
+            <img src="src/assets/tech_cap3.png" alt="LiDAR & Định Vị RTK < 5cm" class="cap-img" />
+            <div class="cap-media-overlay">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Phóng to</span>
+            </div>
+          </div>
+          <h3 class="cap-title">LiDAR & Định Vị RTK &lt; 5cm</h3>
+          <p class="cap-desc">Quét mây điểm 3D xuyên tán cây, kết hợp định vị chuẩn RTK tạo mô hình độ cao DEM/DTM chính xác cao.</p>
+          <div class="cap-tags">
+            <span>#LiDAR3D</span><span>#Pointcloud</span><span>#RTKGPS</span>
+          </div>
+        </div>
+
+        <!-- Cap 4 -->
+        <div class="glass-card cap-card hover-tilt animate-fade-up lightbox-trigger" data-img="tech_cap4.png" data-caption="Năng lực 04: Trạm Xử Lý AI Edge Computing">
+          <div class="cap-header">
+            <span class="cap-num">04</span>
+            <span class="status-verified">Đã kiểm chứng</span>
+          </div>
+          <div class="cap-media-box">
+            <img src="src/assets/tech_cap4.png" alt="Trạm Xử Lý AI Edge Computing" class="cap-img" />
+            <div class="cap-media-overlay">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Phóng to</span>
+            </div>
+          </div>
+          <h3 class="cap-title">Trạm Xử Lý AI Edge Computing</h3>
+          <p class="cap-desc">Xử lý dữ liệu ngay tại hiện trường dã chiến, tránh rủi ro gián đoạn khi nghẽn mạng băng thông vùng lũ.</p>
+          <div class="cap-tags">
+            <span>#EdgeAI</span><span>#OffGrid</span><span>#RealtimeProcessing</span>
+          </div>
+        </div>
+
+        <!-- Cap 5 (WIDE CARD #05) -->
+        <div class="glass-card cap-card cap-card-wide hover-tilt animate-fade-up lightbox-trigger" data-img="tech_cap5.png" data-caption="Năng lực 05: AI Digital Twin & Mô Phỏng Kịch Bản Thủy Văn (24–72h)">
+          <div class="cap-header">
+            <span class="cap-num">05</span>
+            <span class="status-unverified">[CẦN XÁC MINH]</span>
+          </div>
+          <div class="cap-wide-wrapper">
+            <div class="cap-media-box cap-wide-media">
+              <img src="src/assets/tech_cap5.png" alt="AI Digital Twin & Mô Phỏng Kịch Bản Thủy Văn" class="cap-img" />
+              <div class="cap-media-overlay">
+                <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Phóng to</span>
+              </div>
+            </div>
+            <div class="cap-wide-content">
+              <h3 class="cap-title">AI Digital Twin & Mô Phỏng Kịch Bản Thủy Văn (24–72h)</h3>
+              <p class="cap-desc">
+                Nạp bản đồ địa hình 3D vào hệ thống AI để chạy mô hình mô phỏng dòng chảy ngập lụt, dự báo các vị trí nguy cơ sạt lở và phân vùng ngập úng chủ động trước 24 đến 72 giờ. Giúp ban chỉ huy ứng phó thiên tai đưa ra quyết định sơ tán và điều phối nguồn lực chính xác.
+              </p>
+              <div class="cap-tags">
+                <span>#DigitalTwin</span><span>#Hydrodynamics</span><span>#DựBáoNgập3D</span><span>#SimulationAI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. HOW IT WORKS / SOP SECTION -->
+  <section id="how-it-works" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">QUY TRÌNH TRIỂN KHAI</span>
+        <h2 class="section-title">5 Bước Thi Công Dã Chiến Chuẩn SOP</h2>
+        <p class="section-subtitle">Quy trình chuẩn hóa từ khâu tiếp nhận thông tin khẩn cấp đến bàn giao dữ liệu GIS có giá trị pháp lý.</p>
+      </div>
+
+      <div class="timeline-steps">
+        <!-- Step 1 -->
+        <div class="timeline-step animate-fade-up">
+          <div class="step-num">01</div>
+          <div class="glass-card step-content">
+            <h4>Xác Nhận Scope & Ranh Giới Khảo Sát</h4>
+            <p>Tiếp nhận tọa độ ranh giới vùng cần khảo sát từ ban chỉ huy thiên tai và chốt mục tiêu kỹ thuật dịch vụ.</p>
+            <span class="step-badge">SOP Phase 1</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-step animate-fade-up">
+          <div class="step-num">02</div>
+          <div class="glass-card step-content">
+            <h4>Chuẩn Bị & Xin Cấp Phép Bay Khẩn Cấp</h4>
+            <p>Phối hợp xin cấp phép bay ưu tiên khẩn cấp (Cục Tác chiến - BTTM) tuân thủ Nghị định 36/2008/NĐ-CP và kiểm tra an toàn HSE.</p>
+            <span class="step-badge">Pháp lý NĐ 36/2008</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-step animate-fade-up">
+          <div class="step-num">03</div>
+          <div class="glass-card step-content">
+            <h4>Bay Thu Thập Dữ Liệu Dã Chiến</h4>
+            <p>Thiết lập trạm mặt đất, kiểm tra thời tiết (gió &lt; 10-12m/s) và cất cánh triển khai các luồng bay quét RGB/Thermal/LiDAR.</p>
+            <span class="step-badge">Tác chiến dã chiến</span>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step animate-fade-up">
+          <div class="step-num">04</div>
+          <div class="glass-card step-content">
+            <h4>Xử Lý AI Edge & Mô Phỏng Thủy Văn</h4>
+            <p>Đồng bộ dữ liệu dã chiến về trạm Edge Computing, bóc tách tọa độ nhiệt Hotspots và chạy kịch bản ngập 3D.</p>
+            <span class="step-badge">AI Edge Processing</span>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-step animate-fade-up">
+          <div class="step-num">05</div>
+          <div class="glass-card step-content">
+            <h4>QA/QC, Kiểm Định d-MRV & Bàn Giao</h4>
+            <p>Kiểm định chất lượng dữ liệu, hiệu chỉnh mẫu thực địa (d-MRV Carbon) và xuất báo cáo GIS chuẩn (.GeoTIFF, .LAS, .PDF).</p>
+            <span class="step-badge">Bàn giao GIS & Verra</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SERVICE LEVELS / PACKAGES SECTION -->
+  <section id="levels" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">CẤP ĐỘ DỊCH VỤ</span>
+        <h2 class="section-title">Các Gói Triển Khai Linh Hoạt (Service Levels)</h2>
+        <p class="section-subtitle">Lựa chọn cấp độ phù hợp với nhu cầu từ giám sát ban ngày đến tác chiến cứu nạn khẩn cấp & d-MRV.</p>
+      </div>
+
+      <div class="grid grid-3-cols pricing-grid">
+        <!-- Level 1 -->
+        <div class="glass-card price-card animate-fade-up">
+          <div class="price-header">
+            <span class="level-badge">LEVEL 1</span>
+            <h3 class="level-title">Visual RGB Only</h3>
+            <p class="level-sub">Lập bản đồ nhanh & Giám sát trực quan ban ngày</p>
+          </div>
+          <div class="price-display">Liên hệ tư vấn</div>
+          <ul class="level-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> UAV Camera RGB độ phân giải cao</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Livestream hình ảnh hiện trường ban ngày</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bản đồ 2D khoanh vùng ngập lụt cơ bản</li>
+            <li class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Camera nhiệt cứu hộ đêm khẩn cấp</li>
+            <li class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Mô hình thủy văn 3D & d-MRV Carbon</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary btn-full">Chọn Level 1</a>
+        </div>
+
+        <!-- Level 2 (FEATURED CARD) -->
+        <div class="glass-card price-card featured-card animate-fade-up">
+          <div class="featured-ribbon">KHUYẾN NGHỊ DÃ CHIẾN</div>
+          <div class="price-header">
+            <span class="level-badge highlight">LEVEL 2</span>
+            <h3 class="level-title">Thermal SAR + LiDAR</h3>
+            <p class="level-sub">Tác chiến khẩn cấp, Tìm kiếm cứu nạn & Quét 3D địa hình</p>
+          </div>
+          <div class="price-display">Liên hệ tư vấn</div>
+          <ul class="level-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> UAV tích hợp RGB + Radiometric Thermal + LiDAR</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Tác chiến cứu hộ đêm & sương mù (SAR)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bóc tách tọa độ Hotspot nạn nhân thời gian thực</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Mô hình độ cao số (DEM/DTM) sai số &lt; 5cm</li>
+            <li class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Báo cáo kiểm toán KNK chuẩn Verra</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-full glow-btn">Chọn Level 2 (Hot)</a>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="glass-card price-card animate-fade-up">
+          <div class="price-header">
+            <span class="level-badge">LEVEL 3</span>
+            <h3 class="level-title">AI Digital Twin & d-MRV</h3>
+            <p class="level-sub">Phân tích nâng cao, Mô phỏng 3D & Báo cáo Carbon</p>
+          </div>
+          <div class="price-display">Liên hệ tư vấn</div>
+          <ul class="level-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Toàn bộ tính năng Level 1 & Level 2</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bản sao số 3D Digital Twin ngập lụt</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Kịch bản dự báo ngập 24–72h bằng AI</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Báo cáo d-MRV Carbon Verra (VM0042/VT0005)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Hồ sơ pháp lý chứng minh bồi thường bảo hiểm</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary btn-full">Chọn Level 3</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. DELIVERABLES SECTION -->
+  <section id="deliverables" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">KẾT QUẢ BÀN GIAO</span>
+        <h2 class="section-title">4 Kết Quả Bàn Giao Chuẩn GIS & Kiểm Toán</h2>
+        <p class="section-subtitle">Dữ liệu có độ tin cậy tuyệt đối, tích hợp trực tiếp vào hệ thống chỉ huy và hồ sơ pháp lý bồi thường.</p>
+      </div>
+
+      <div class="grid grid-4-cols deliverables-grid">
+        <!-- Deliverable 1 -->
+        <div class="glass-card del-card animate-fade-up">
+          <div class="del-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3 class="del-title">Bản Đồ 3D & Kịch Bản Ngập</h3>
+          <p class="del-desc">Mô hình độ cao số DEM/DTM và mây điểm LiDAR mô phỏng các kịch bản mực nước dâng.</p>
+          <div class="del-formats">
+            <span>.GeoTIFF</span><span>.LAS</span><span>.SHP</span>
+          </div>
+        </div>
+
+        <!-- Deliverable 2 -->
+        <div class="glass-card del-card animate-fade-up">
+          <div class="del-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="del-title">Báo Cáo Bồi Thường Bảo Hiểm</h3>
+          <p class="del-desc">Bản đồ chỉ số thực vật NDVI/NDRE xác định diện tích nông nghiệp suy thoái chi trả bồi thường.</p>
+          <div class="del-formats">
+            <span>.PDF</span><span>.GeoTIFF</span><span>.XLSX</span>
+          </div>
+        </div>
+
+        <!-- Deliverable 3 -->
+        <div class="glass-card del-card animate-fade-up">
+          <div class="del-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="del-title">Báo Cáo d-MRV Carbon Verra</h3>
+          <p class="del-desc">Báo cáo kiểm kê suy thoái sinh khối rừng và nguy cơ phát thải KNK (CH4/CO2) do lũ lụt.</p>
+          <div class="del-formats">
+            <span>.PDF</span><span>.SHP</span><span>.XLSX</span>
+          </div>
+        </div>
+
+        <!-- Deliverable 4 -->
+        <div class="glass-card del-card animate-fade-up">
+          <div class="del-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+          </div>
+          <h3 class="del-title">Livestream Tọa Độ Cứu Hộ SAR</h3>
+          <p class="del-desc">Danh sách tọa độ Hotspots nạn nhân kết nối trực tiếp về trạm chỉ huy dã chiến real-time.</p>
+          <div class="del-formats">
+            <span>.JSON</span><span>.KML</span><span>Live Stream</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. USE CASES SECTION -->
+  <section id="usecases" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">TÌNH HUỐNG THỰC TẾ</span>
+        <h2 class="section-title">3 Ứng Dụng Thực Địa Điển Hình</h2>
+        <p class="section-subtitle">Giải pháp đã được chứng minh hiệu quả trong các kịch bản thiên tai khẩn cấp.</p>
+      </div>
+
+      <div class="grid grid-3-cols usecase-grid">
+        <!-- Use Case 1 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <div class="usecase-badge">TÌNH HUỐNG 01</div>
+          <h3 class="usecase-title">Tìm Kiếm Cứu Nạn (SAR) & Định Vị Mất Tích</h3>
+          <p class="usecase-scenario">
+            <strong>Bối cảnh:</strong> Lực lượng cứu hộ cần phát hiện vị trí nạn nhân mắc kẹt trong đêm tối, sương mù dày đặc hoặc mưa bão kéo dài.
+          </p>
+          <div class="usecase-output">
+            <strong>Kết quả bàn giao:</strong> Tọa độ điểm nhiệt Hotspot + Video Livestream nhiệt kép RGB/Thermal.
+          </div>
+        </div>
+
+        <!-- Use Case 2 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <div class="usecase-badge">TÌNH HUỐNG 02</div>
+          <h3 class="usecase-title">Xác Minh Bồi Thường Bảo Hiểm Nông Nghiệp</h3>
+          <p class="usecase-scenario">
+            <strong>Bối cảnh:</strong> Công ty bảo hiểm/ngân hàng cần dữ liệu minh bạch để duyệt chi trả bồi thường tổn thất tài sản và cây trồng sau lũ.
+          </p>
+          <div class="usecase-output">
+            <strong>Kết quả bàn giao:</strong> Bản đồ phân vùng chỉ số NDVI/NDRE chuẩn cm + Báo cáo diện tích thiệt hại (.GeoTIFF, .PDF).
+          </div>
+        </div>
+
+        <!-- Use Case 3 -->
+        <div class="glass-card usecase-card animate-fade-up">
+          <div class="usecase-badge">TÌNH HUỐNG 03</div>
+          <h3 class="usecase-title">Mô Phỏng 3D & Cảnh Báo Ngập Lụt Sớm</h3>
+          <p class="usecase-scenario">
+            <strong>Bối cảnh:</strong> Chính quyền địa phương cần diễn tập và chuẩn bị phương án sơ tán dân cư trước đợt xả lũ đập thủy điện/bão lớn.
+          </p>
+          <div class="usecase-output">
+            <strong>Kết quả bàn giao:</strong> Bản đồ 3D Digital Twin + Kịch bản dự báo ngập lụt 24–72h.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ SECTION -->
+  <section id="faq" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">GIẢI ĐÁP THẮC MẮC</span>
+        <h2 class="section-title">Câu Hỏi Thường Gặp Về Dịch Vụ S0296</h2>
+        <p class="section-subtitle">Thông tin phản hồi chính thức được trích xuất từ Knowledge Base dịch vụ.</p>
+      </div>
+
+      <div class="faq-accordion-container max-w-800 animate-fade-up">
+        <!-- FAQ 1 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>1. UAV có thể bay trong lúc trời đang mưa to và gió bão không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hầu hết UAV dã chiến chuyên dụng chịu được mưa nhẹ/vừa và tốc độ gió dưới 10–12m/s. Trong trường hợp bão cực lớn, kíp bay dã chiến sẽ chờ cửa sổ thời tiết safe-window để cất cánh an toàn. <em>[Nguồn: Asset 09 - KB SRC-08]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>2. Tại sao không dùng ảnh vệ tinh cho rẻ mà phải dùng dịch vụ UAV S0296?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Mùa lũ mây mù che khuất ảnh vệ tinh 100%, độ phân giải vệ tinh thấp và chu kỳ chụp chậm không phục vụ cứu hộ real-time được. UAV S0296 bay dưới tầng mây, cho độ phân giải centimet và livestream dữ liệu tức thì. <em>[Nguồn: Asset 09 - KB SRC-01]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>3. Dữ liệu UAV có đủ tính pháp lý để bảo hiểm chi trả bồi thường không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Có. Dữ liệu gắn tọa độ GPS/RTK chuẩn centimet, dấu vết thời gian (Timestamp) và ảnh đa phổ chứng minh hư hại thực tế, giúp hồ sơ bồi thường đạt độ minh bạch tuyệt đối trước đơn vị kiểm toán. <em>[Nguồn: Asset 09 - KB SRC-10, SRC-11]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>4. Thủ tục xin cấp phép bay cho UAV vùng lũ lụt được thực hiện thế nào?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hoạt động bay tuân thủ Nghị định 36/2008/NĐ-CP. GASCOLAE hỗ trợ thủ tục xin phép bay ưu tiên khẩn cấp qua Cục Tác chiến – Bộ Tổng Tham mưu để triển khai dã chiến trong thời gian ngắn nhất. <em>[Nguồn: Asset 09 - KB SRC-05]</em></p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item glass-card">
+          <button class="faq-question" aria-expanded="false">
+            <span>5. Báo cáo kiểm kê Carbon d-MRV từ dịch vụ tuân theo tiêu chuẩn quốc tế nào?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Dữ liệu viễn thám UAV kết hợp đo đạc sinh khối mẫu mặt đất của GASCOLAE tuân thủ chặt chẽ tiêu chuẩn Verra VM0042/VT0005 phục vụ kiểm toán tổn thất sinh khối và phát thải KNK. <em>[Nguồn: Asset 09 - KB SRC-09]</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. AI AGENT BLOCK SECTION -->
+  <section id="ai-agent" class="section-padding dark-bg">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">TRỢ LÝ AI TƯƠNG TÁC</span>
+        <h2 class="section-title">Flood Mitigation AI Assistant</h2>
+        <p class="section-subtitle">Đặt câu hỏi trực tiếp để nhận thông tin tư vấn tự động về dịch vụ UAV S0296.</p>
+      </div>
+
+      <div class="ai-agent-container glass-card max-w-900 animate-fade-up">
+        <div class="agent-header">
+          <div class="agent-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="13" r="1.5" fill="#00d4ff"/><circle cx="15" cy="13" r="1.5" fill="#00d4ff"/><path d="M9 17h6"/></svg>
+          </div>
+          <div class="agent-info">
+            <h4 class="agent-name">Flood Mitigation AI Assistant</h4>
+            <span class="agent-status"><span class="status-dot"></span> Sẵn sàng trực tuyến • S0296 Agent</span>
+          </div>
+        </div>
+
+        <div class="agent-chat-box" id="chat-box">
+          <!-- Initial bot welcome message -->
+          <div class="chat-message bot-message">
+            <div class="msg-content">
+              Xin chào! Tôi là Trợ lý AI hỗ trợ hệ thống UAV S0296. Bạn muốn tìm hiểu về quy trình cứu hộ, lập bản đồ 3D, báo cáo bồi thường bảo hiểm hay d-MRV Carbon?
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Question Chips -->
+        <div class="quick-chips">
+          <button class="chip-btn" data-question="Dịch vụ UAV Lũ lụt phù hợp với những tổ chức nào?">Dịch vụ phù hợp với ai?</button>
+          <button class="chip-btn" data-question="Khác biệt giữa Level 2 (Tìm kiếm cứu nạn) và Level 3 (Digital Twin)?">So sánh Level 2 vs Level 3</button>
+          <button class="chip-btn" data-question="Sau khi khảo sát, tôi nhận được những báo cáo gì cho Bảo hiểm/Carbon?">Báo cáo bồi thường & Carbon</button>
+          <button class="chip-btn" data-question="Điều kiện thời tiết và pháp lý nào cần chú ý trước khi bay?">Thời tiết & Pháp lý bay</button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form class="chat-input-form" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Nhập thắc mắc của bạn về dịch vụ S0296..." autocomplete="off">
+          <button type="submit" class="btn btn-primary btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <div class="agent-escalation text-center">
+          <span>Không tìm thấy thông tin bạn cần?</span>
+          <a href="#contact" class="btn btn-secondary btn-sm">Trao đổi trực tiếp với Chuyên gia GASCOLAE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. CONTACT FORM SECTION -->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center animate-fade-up">
+        <span class="section-tag">ĐĂNG KÝ TƯ VẤN</span>
+        <h2 class="section-title">Yêu Cầu Tư Vấn Khẩn Cấp Dịch Vụ S0296</h2>
+        <p class="section-subtitle">Đội ngũ kỹ thuật dã chiến của GASCOLAE sẵn sàng phản hồi trong 15 phút.</p>
+      </div>
+
+      <div class="contact-wrapper glass-card max-w-800 animate-fade-up">
+        <form class="contact-form" id="contact-form">
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="fullname">Họ và tên *</label>
+              <input type="text" id="fullname" name="fullname" required placeholder="Nguyễn Văn A">
+              <span class="error-msg">Vui lòng nhập họ và tên</span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email công tác *</label>
+              <input type="email" id="email" name="email" required placeholder="name@organization.gov.vn">
+              <span class="error-msg">Vui lòng nhập email hợp lệ</span>
+            </div>
+          </div>
+
+          <div class="form-row grid grid-2-cols">
+            <div class="form-group">
+              <label for="phone">Số điện thoại khẩn cấp *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="0901234567">
+              <span class="error-msg">Vui lòng nhập số điện thoại</span>
+            </div>
+            <div class="form-group">
+              <label for="organization">Tên Đơn vị / Tổ chức *</label>
+              <input type="text" id="organization" name="organization" required placeholder="Ban chỉ đạo PCTT / Cty Bảo hiểm">
+              <span class="error-msg">Vui lòng nhập tên đơn vị</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="service-level">Nhu cầu Cấp độ Dịch vụ</label>
+            <select id="service-level" name="service-level">
+              <option value="level2">Level 2 – Thermal SAR + LiDAR (Khuyên dùng khẩn cấp)</option>
+              <option value="level1">Level 1 – Visual RGB Only (Giám sát trực quan)</option>
+              <option value="level3">Level 3 – AI Digital Twin & d-MRV Carbon</option>
+              <option value="custom">Tư vấn cấu hình dã chiến theo yêu cầu</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Nội dung yêu cầu / Tọa độ khu vực khảo sát</label>
+            <textarea id="message" name="message" rows="4" placeholder="Mô tả bối cảnh địa bàn, thời gian triển khai dự kiến hoặc tọa độ..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-full glow-btn">
+            <span>Gửi Yêu Cầu Tư Vấn Khẩn Cấp</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <div class="contact-badges grid grid-3-cols">
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Bảo mật ISO 27001</span>
+          </div>
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Phản hồi SLA 15 phút</span>
+          </div>
+          <div class="c-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Tư vấn kỹ thuật 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container grid grid-4-cols">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-brand">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="brand-name">GASCOLAE</span>
+        </a>
+        <p class="footer-tagline">
+          Hệ thống UAV dự đoán và khắc phục hậu quả lũ lụt tiên phong tại Việt Nam.
+        </p>
+        <span class="service-id-pill">Service ID: S0296</span>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Liên Kết Nhanh</h4>
+        <ul>
+          <li><a href="#problems">Thách thức bối cảnh</a></li>
+          <li><a href="#solution">Giải pháp công nghệ</a></li>
+          <li><a href="#capabilities">Năng lực cốt lõi</a></li>
+          <li><a href="#how-it-works">SOP Triển khai</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Gói Dịch Vụ & GIS</h4>
+        <ul>
+          <li><a href="#levels">Level 1 - RGB Visual</a></li>
+          <li><a href="#levels">Level 2 - Thermal SAR & LiDAR</a></li>
+          <li><a href="#levels">Level 3 - AI Digital Twin & d-MRV</a></li>
+          <li><a href="#deliverables">Sản phẩm bàn giao GIS</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-seo">
+        <h4 class="footer-title">Từ Khóa Dịch Vụ</h4>
+        <div class="seo-tags">
+          <span>UAV ngập lụt</span>
+          <span>LiDAR 3D</span>
+          <span>Camera nhiệt SAR</span>
+          <span>d-MRV Carbon</span>
+          <span>Digital Twin</span>
+          <span>Nghị định 36/2008</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom text-center">
+      <div class="container">
+        <p>© 2026 GASCOLAE Platform. Tất cả các quyền được bảo lưu. Dịch vụ S0296 UAV Dự đoán & Khắc phục hậu quả lũ lụt.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 14. LIGHTBOX MEDIA MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-overlay" id="lightbox-overlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close">&times;</button>
+      <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
+        <!-- Dynamic content injected by JS -->
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="src/script.js"></script>
+</body>
+</html>

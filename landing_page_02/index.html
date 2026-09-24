@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giám Sát Sạt Lở Taluy Đường Đèo Núi – UAV &amp; IoT | GASCOLAE S0297</title>
+  <meta name="description"
+    content="Giải pháp giám sát thông minh kết hợp UAV/LiDAR, cảm biến IoT và AI để cảnh báo sớm sạt lở taluy đường đèo núi. Bảo vệ tính mạng và tài sản 24/7." />
+  <meta name="keywords"
+    content="giám sát sạt lở, taluy đường đèo, UAV LiDAR, IoT cảm biến, AI cảnh báo sớm, S0297, GASCOLAE" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Three.js for 3D Interactive WebGL Background & Terrain Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="src/style.css" />
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo" id="logo-link">
+        <span class="logo-badge">GASCOLAE</span>
+        <span class="logo-service">S0297 &middot; 3D Monitoring</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#problems">Vấn đề</a></li>
+        <li><a href="#solution">Giải pháp 3D</a></li>
+        <li><a href="#capabilities">Công nghệ</a></li>
+        <li><a href="#how-it-works">Quy trình</a></li>
+        <li><a href="#levels">Gói dịch vụ</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn btn-nav" id="cta-nav">Liên hệ tư vấn</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION WITH 3D CANVAS BACKGROUND & IMAGE SHOWCASE -->
+  <section class="hero" id="hero">
+    <!-- 3D Interactive WebGL Canvas -->
+    <canvas id="hero-3d-canvas" class="hero-canvas"></canvas>
+
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-text-content">
+        <div class="hero-badge animate-fade-up">
+          <span class="pulse-dot"></span>
+          <span>Hệ Thống Quan Trắc 3D IoT &amp; UAV &mdash; Hoạt Động 24/7</span>
+        </div>
+
+        <h1 class="hero-title animate-fade-up delay-1">
+          Giám Sát Sạt Lở<br>
+          <span class="gradient-text">Taluy Đường Đèo Núi</span><br>
+          Bằng UAV 3D &amp; Cảm Biến IoT
+        </h1>
+
+        <p class="hero-sub animate-fade-up delay-2">
+          Giải pháp quan trắc thông minh tích hợp <strong>UAV/LiDAR 3D</strong>, ảnh vệ tinh <strong>InSAR</strong>,
+          cảm biến ngầm lòng đất và <strong>AI Deep Learning</strong> phát hiện dịch chuyển dốc trước nhiều giờ,
+          chủ động bảo vệ hạ tầng giao thông miền núi.
+        </p>
+
+        <div class="hero-stats animate-fade-up delay-3">
+          <div class="stat-item">
+            <span class="stat-num" data-target="3">0</span>
+            <span class="stat-label">Cấp độ giám sát</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-suffix="/7">24</span>
+            <span class="stat-label">Theo dõi thời gian thực</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="5" data-suffix="+">0</span>
+            <span class="stat-label">Công nghệ cốt lõi</span>
+          </div>
+        </div>
+
+        <div class="hero-ctas animate-fade-up delay-4">
+          <a href="#contact" class="btn btn-primary" id="hero-cta-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            Liên hệ tư vấn ngay
+          </a>
+          <a href="#solution" class="btn btn-outline" id="hero-cta-secondary">
+            <span>Khám phá Mô hình 3D</span>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- HERO MEDIA 3D SHOWCASE CARD -->
+      <div class="hero-media-wrapper animate-fade-up delay-3">
+        <div class="hero-media-card glass-card">
+          <div class="media-header-bar">
+            <div class="status-indicator">
+              <span class="status-dot green"></span>
+              <span class="status-text">LIVE 3D POINT CLOUD STREAM</span>
+            </div>
+            <div class="media-tag">UAV LiDAR LiDAR-3D</div>
+          </div>
+
+          <div class="image-container">
+            <img src="src/assets/uav_lidar_3d_scan.png" alt="UAV LiDAR 3D Scan Live Stream" class="hero-img" />
+
+            <!-- Laser Scanning Effect Overlay -->
+            <div class="laser-scanner"></div>
+
+            <!-- Live HUD Telemetry Widgets -->
+            <div class="hud-overlay">
+              <div class="hud-badge top-left">
+                <span class="label">Elevation Rate:</span>
+                <span class="value cyan">840m MSL</span>
+              </div>
+              <div class="hud-badge top-right">
+                <span class="label">Tilt Angle:</span>
+                <span class="value green">&Delta; 0.02 mm/h</span>
+              </div>
+              <div class="hud-badge bottom-left">
+                <span class="label">Safety Factor (Fs):</span>
+                <span class="value glow-green">1.48 (An toàn)</span>
+              </div>
+              <!-- <button class="hud-play-btn" id="open-hero-modal" title="Phóng to 3D Preview"> -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <span>Xem Demo 3D Full HD</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="media-footer-info">
+            <div class="mf-item">
+              <span class="mf-title">Độ phân giải Quét:</span>
+              <span class="mf-val">&lt; 2cm / pixel</span>
+            </div>
+            <div class="mf-item">
+              <span class="mf-title">Bán kính quét:</span>
+              <span class="mf-val">Toàn tuyến 15 km</span>
+            </div>
+            <div class="mf-item">
+              <span class="mf-title">Truyền dữ liệu:</span>
+              <span class="mf-val">LPWAN &amp; Satellite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Cuộn để khám phá thêm</span>
+    </div>
+  </section>
+
+  <!-- PROBLEMS SECTION -->
+  <section class="problems section" id="problems">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Vấn đề thực tế</div>
+        <h2 class="section-title">Thách thức hạ tầng giao thông đèo núi Việt Nam</h2>
+        <p class="section-sub">Đường đèo dốc đối mặt nguy cơ sạt lở nghiêm trọng mỗi mùa mưa bão &mdash; đe dọa tính
+          mạng con người và thiệt hại tài sản hàng trăm tỷ đồng.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card media-card" id="problem-1">
+          <div class="card-bg-img" style="background-image: url('src/assets/mountain_landslide_risk.png');"></div>
+          <div class="card-glass-overlay"></div>
+          <div class="card-content">
+            <div class="problem-icon-wrapper danger">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <h3>Sạt lở bất ngờ chia cắt giao thông</h3>
+            <p>Mưa lớn kéo dài làm bão hòa nước trong mái dốc. Sạt trượt mái taluy xảy ra cực nhanh, gây tắc nghẽn giao
+              thông đèo núi và rủi ro tai nạn tử vong.</p>
+            <span class="problem-tag">Nguồn tài liệu: SRC-02, SRC-05</span>
+          </div>
+        </div>
+
+        <div class="problem-card media-card" id="problem-2">
+          <div class="card-bg-img" style="background-image: url('src/assets/iot_slope_sensors.png');"></div>
+          <div class="card-glass-overlay"></div>
+          <div class="card-content">
+            <div class="problem-icon-wrapper warning">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3>Khắc phục thụ động cực kỳ tốn kém</h3>
+            <p>Sửa chữa công trình sau khi khối trượt đã sập lở tiêu tốn ngân sách gấp 5–10 lần so với việc gia cố chủ
+              động từ khi xuất hiện dịch chuyển ban đầu.</p>
+            <span class="problem-tag">Nguồn tài liệu: SRC-06</span>
+          </div>
+        </div>
+
+        <div class="problem-card media-card" id="problem-3">
+          <div class="card-bg-img" style="background-image: url('src/assets/gis_3d_dashboard.png');"></div>
+          <div class="card-glass-overlay"></div>
+          <div class="card-content">
+            <div class="problem-icon-wrapper accent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3>Mắt thường không phát hiện dịch chuyển ngầm</h3>
+            <p>Tuần đường thủ công chỉ thấy được khi vết nứt đã xé toạc mặt đường. Không thể đo lường độ nghiêng ngầm và
+              áp lực nước lỗ rỗng sâu trong lòng đất.</p>
+            <span class="problem-tag">Nguồn tài liệu: SRC-15</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-highlight glass-card glow-border">
+        <div class="ph-icon-box">&#9889;</div>
+        <div class="ph-content">
+          <strong>Biến đổi khí hậu gia tăng áp lực:</strong> Các đợt mưa lũ cực đoan tại Tây Bắc, Tây Nguyên, Duyên hải
+          Trung Bộ đòi hỏi chuyển đổi sang mô hình <strong>giám sát thông minh 24/7 chủ động cảnh báo sớm</strong>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNAMIC SOLUTION SHOWCASE SECTION -->
+  <section class="solution section" id="solution">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Giải pháp S0297</div>
+        <h2 class="section-title">Hệ Thống Quan Trắc Đa Nguồn 3D &amp; Cảnh Báo Sớm</h2>
+        <p class="section-sub">Kết hợp hoàn hảo giữa Khảo sát diện rộng bằng Không gian/Mặt đất và Đo đạc chuyên sâu
+          ngầm lòng đất.</p>
+      </div>
+
+      <div class="solution-layout">
+        <!-- Interactive 3D Technology Tabs Showcase -->
+        <div class="solution-visual glass-card">
+          <div class="tech-tabs">
+            <button class="tech-tab active" data-target="tab-lidar">
+              <span>🛸</span> UAV LiDAR 3D
+            </button>
+            <button class="tech-tab" data-target="tab-insar">
+              <span>🛰️</span> InSAR Vệ Tinh
+            </button>
+            <button class="tech-tab" data-target="tab-iot">
+              <span>📡</span> Cảm Biến IoT
+            </button>
+            <button class="tech-tab" data-target="tab-ai">
+              <span>🤖</span> AI GIS Dashboard
+            </button>
+          </div>
+
+          <div class="tab-content-container">
+            <!-- TAB 1: UAV LIDAR -->
+            <div class="tab-pane active" id="tab-lidar">
+              <div class="pane-media">
+                <img src="src/assets/uav_lidar_3d_scan.png" alt="UAV LiDAR 3D Scan" class="pane-img" />
+                <div class="media-overlay-badge">Quét 3D Điểm Lớp &lt;2cm</div>
+              </div>
+              <div class="pane-details">
+                <h3>Bay Chụp UAV &amp; Quét LiDAR 3D Bề Mặt</h3>
+                <p>Khảo sát tự động toàn bộ tuyến đèo, dựng mô hình số địa hình 3D (DEM/DTM) với triệu điểm laser mỗi
+                  giây. Nhận diện các điểm sụt trượt diện rộng.</p>
+                <ul class="pane-checklist">
+                  <li>✔ Quét đám mây điểm 3D mật độ cao</li>
+                  <li>✔ Phát hiện sạt lở và xói mòn mái dốc</li>
+                  <li>✔ Tích hợp ảnh hàng không nét cao 4K</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- TAB 2: INSAR -->
+            <div class="tab-pane" id="tab-insar">
+              <div class="pane-media">
+                <img src="src/assets/insar_satellite_radar.png" alt="InSAR Satellite Radar" class="pane-img" />
+                <div class="media-overlay-badge">Giám Sát Vệ Tinh Radar</div>
+              </div>
+              <div class="pane-details">
+                <h3>Vệ Tinh Radar InSAR Xuyên Mây Mưa</h3>
+                <p>Theo dõi dịch chuyển bề mặt với độ chính xác milimét từ quỹ đạo Trái Đất. Hoạt động liên tục cả ngày
+                  lẫn đêm, xuyên qua sương mù và mây bão.</p>
+                <ul class="pane-checklist">
+                  <li>✔ Đo lường biến dạng chuỗi thời gian</li>
+                  <li>✔ Bao phủ toàn bộ khu vực đèo núi rộng lớn</li>
+                  <li>✔ Không bị gián đoạn bởi thời tiết khắc nghiệt</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- TAB 3: IOT -->
+            <div class="tab-pane" id="tab-iot">
+              <div class="pane-media">
+                <img src="src/assets/iot_slope_sensors.png" alt="IoT Slope Sensors" class="pane-img" />
+                <div class="media-overlay-badge">Cảm Biến Ngầm Lòng Đất</div>
+              </div>
+              <div class="pane-details">
+                <h3>Hệ Thống Cảm Biến IoT Địa Kỹ Thuật Ngầm</h3>
+                <p>Khoan chôn trực tiếp Inclinometer (đo độ nghiêng trượt), Piezometer (đo áp lực nước lỗ rỗng) và Crack
+                  meter tại các vị trí nguy cơ sạt lở cao.</p>
+                <ul class="pane-checklist">
+                  <li>✔ Tần suất gửi dữ liệu theo thời gian thực (Real-time)</li>
+                  <li>✔ Truyền qua mạng công suất thấp LPWAN / Satellite</li>
+                  <li>✔ Nguồn pin sạc Năng lượng mặt trời tự vận hành</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- TAB 4: AI DASHBOARD -->
+            <div class="tab-pane" id="tab-ai">
+              <div class="pane-media">
+                <img src="src/assets/gis_3d_dashboard.png" alt="AI GIS Dashboard" class="pane-img" />
+                <div class="media-overlay-badge">Dự Báo AI Deep Learning</div>
+              </div>
+              <div class="pane-details">
+                <h3>Phân Tích AI Deep Learning &amp; Cảnh Báo Tức Thì</h3>
+                <p>Mô hình CNN và LSTM xử lý dữ liệu cảm biến đa nguồn, tính toán Hệ số An toàn Fs và tự động gửi cảnh
+                  báo khẩn cấp qua SMS/Email khi vượt ngưỡng rủi ro.</p>
+                <ul class="pane-checklist">
+                  <li>✔ Cảnh báo sớm trước 6 &mdash; 48 giờ</li>
+                  <li>✔ Bản đồ nhiệt GIS 3D phân vùng nguy cơ</li>
+                  <li>✔ Truy cập trực tiếp qua Web &amp; Mobile app</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUTION BENEFITS SUMMARY -->
+        <div class="solution-text">
+          <div class="solution-benefits-list">
+            <div class="benefit-item glass-card" id="benefit-1">
+              <div class="benefit-icon">&#128269;</div>
+              <div>
+                <strong>Chủ Động Phòng Ngừa 24/7</strong>
+                <span>Dự báo sự cố trước nhiều giờ/ngày, loại bỏ hoàn toàn thế bị động ứng phó.</span>
+              </div>
+            </div>
+
+            <div class="benefit-item glass-card" id="benefit-2">
+              <div class="benefit-icon">&#127758;</div>
+              <div>
+                <strong>Tích Hợp 3 Chiều (3D Dynamic Twin)</strong>
+                <span>Kết hợp Không gian (InSAR), Bề mặt (UAV LiDAR) và Lòng đất (IoT Sensors).</span>
+              </div>
+            </div>
+
+            <div class="benefit-item glass-card" id="benefit-3">
+              <div class="benefit-icon">&#128176;</div>
+              <div>
+                <strong>Tối Ưu Chi Phí Bảo Trì</strong>
+                <span>Xử lý cục bộ từ vết nứt nhỏ, giảm 80% chi phí sửa chữa khắc phục sự cố sập đèo.</span>
+              </div>
+            </div>
+
+            <div class="benefit-item glass-card" id="benefit-4">
+              <div class="benefit-icon">&#128202;</div>
+              <div>
+                <strong>Số Hóa Tài Sản &amp; Hỗ Trợ Quyết Định</strong>
+                <span>Bản đồ trực quan 3D GIS hỗ trợ lực lượng chức năng phân luồng giao thông kịp thời.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE CAPABILITIES SECTION (5 CÔNG NGHỆ) WITH MEDIA & MODALS -->
+  <section class="capabilities section" id="capabilities">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Công nghệ cốt lõi</div>
+        <h2 class="section-title">5 Lớp Công Nghệ Tích Hợp Đồng Bộ</h2>
+        <p class="section-sub">Mang lại bức tranh toàn cảnh và chính xác đến từng milimét cho các tuyến đèo núi hiểm
+          trở.</p>
+      </div>
+
+      <div class="cap-grid">
+        <!-- CAP 1 -->
+        <div class="cap-card glass-card hover-tilt" id="cap-uav" data-media="src/assets/uav_lidar_3d_scan.png"
+          data-title="UAV & LiDAR 3D Survey">
+          <div class="cap-media-header">
+            <img src="src/assets/uav_lidar_3d_scan.png" alt="UAV LiDAR" class="cap-img" />
+            <div class="cap-number">01</div>
+            <div class="cap-badge">UAV LiDAR 3D</div>
+          </div>
+          <div class="cap-body">
+            <h3>Bay Chụp UAV &amp; LiDAR 3D</h3>
+            <p>Tạo mô hình 3D địa hình, rà soát xói mòn và biến dạng mái dốc diện rộng với tần suất linh hoạt.</p>
+            <div class="cap-tags">
+              <span>Đám mây điểm 3D</span>
+              <span>Độ phân giải &lt;2cm</span>
+            </div>
+            <div class="cap-footer">
+              <span class="cap-status verified">&#10003; Đã kiểm chứng</span>
+              <button class="btn-demo-modal">Xem Demo 3D &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP 2 -->
+        <div class="cap-card glass-card hover-tilt" id="cap-iot" data-media="src/assets/iot_slope_sensors.png"
+          data-title="IoT Geotechnical Sensors">
+          <div class="cap-media-header">
+            <img src="src/assets/iot_slope_sensors.png" alt="IoT Sensors" class="cap-img" />
+            <div class="cap-number">02</div>
+            <div class="cap-badge">Cảm Biến IoT Ngầm</div>
+          </div>
+          <div class="cap-body">
+            <h3>Cảm Biến IoT Địa Kỹ Thuật</h3>
+            <p>Đo dịch chuyển mặt trượt ngầm (Inclinometer), áp lực nước (Piezometer) và độ mở vết nứt (Crack meter).
+            </p>
+            <div class="cap-tags">
+              <span>Inclinometer</span>
+              <span>Piezometer</span>
+              <span>Crack meter</span>
+            </div>
+            <div class="cap-footer">
+              <span class="cap-status verified">&#10003; Đã kiểm chứng</span>
+              <button class="btn-demo-modal">Xem Demo 3D &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP 3 -->
+        <div class="cap-card glass-card hover-tilt" id="cap-lpwan" data-media="src/assets/gis_3d_dashboard.png"
+          data-title="LPWAN & Satellite Transmission" data-type="image">
+          <div class="cap-media-header">
+            <img src="src/assets/gis_3d_dashboard.png" alt="LPWAN Transmission Data" class="cap-img" />
+            <div class="cap-number">03</div>
+            <div class="cap-badge">Truyền Dẫn LPWAN</div>
+          </div>
+          <div class="cap-body">
+            <h3>Mạng Truyền Dẫn LPWAN &amp; Satellite</h3>
+            <p>Vận hành độc lập tại các vùng núi không có sóng di động, sử dụng nguồn điện pin mặt trời 24/7.</p>
+            <div class="cap-tags">
+              <span>LPWAN / LoRa</span>
+              <span>Pin mặt trời</span>
+              <span>Vệ tinh IoT</span>
+            </div>
+            <div class="cap-footer">
+              <span class="cap-status verified">&#10003; Đã kiểm chứng</span>
+              <button class="btn-demo-modal">Xem Ảnh &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP 4 -->
+        <div class="cap-card glass-card hover-tilt" id="cap-ai" data-media="src/assets/gis_3d_dashboard.png"
+          data-title="AI Machine Learning Model">
+          <div class="cap-media-header">
+            <img src="src/assets/gis_3d_dashboard.png" alt="AI Model" class="cap-img" />
+            <div class="cap-number">04</div>
+            <div class="cap-badge">AI / Deep Learning</div>
+          </div>
+          <div class="cap-body">
+            <h3>Thuật Toán AI Machine Learning</h3>
+            <p>Thuật toán CNN &amp; LSTM phân tích chuỗi dữ liệu thủy văn &mdash; địa chất phi tuyến tính để dự báo sạt
+              lở.</p>
+            <div class="cap-tags">
+              <span>CNN / LSTM</span>
+              <span>Dự báo Fs</span>
+              <span>Cảnh báo tự động</span>
+            </div>
+            <div class="cap-footer">
+              <span class="cap-status verified">&#10003; Đã kiểm chứng</span>
+              <button class="btn-demo-modal">Xem Demo 3D &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP 5 (WIDE) -->
+        <div class="cap-card cap-card-wide glass-card hover-tilt" id="cap-insar"
+          data-media="src/assets/insar_satellite_radar.png" data-title="InSAR Satellite Radar Monitoring">
+          <div class="cap-media-header">
+            <img src="src/assets/insar_satellite_radar.png" alt="InSAR Satellite" class="cap-img" />
+            <div class="cap-number">05</div>
+            <div class="cap-badge">Ảnh Vệ Tinh InSAR</div>
+          </div>
+          <div class="cap-body">
+            <h3>Radar Vi Sóng InSAR Vệ Tinh Quan Trắc Diện Rộng</h3>
+            <p>Giám sát độ lún và sạt trượt bề mặt với độ chính xác vài mm trên diện tích hàng ngàn km². Đâm xuyên mây
+              mưa bão, hoạt động liên tục bất kể ngày đêm.</p>
+            <div class="cap-tags">
+              <span>PS-InSAR / SBAS</span>
+              <span>Đo độ lún mm</span>
+              <span>Xuyên mây sương</span>
+              <span>Quét diện rộng</span>
+            </div>
+            <div class="cap-footer">
+              <span class="cap-status verified">&#10003; Đã kiểm chứng</span>
+              <button class="btn-demo-modal">Xem Demo 3D &rarr;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (QUY TRÌNH 5 BƯỚC) -->
+  <section class="how-it-works section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Quy trình triển khai</div>
+        <h2 class="section-title">5 Bước Chuẩn Hóa Triển Khai Tại Hiện Trường</h2>
+        <p class="section-sub">Được thiết kế chuyên biệt cho địa hình đường đèo núi phức tạp và khắc nghiệt.</p>
+      </div>
+
+      <!-- Hàng 1: 3 bước đầu -->
+      <div class="steps-row steps-row-top">
+        <div class="step glass-card" id="step-1">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Khảo Sát Hiện Trường &amp; Lập Kế Hoạch</h3>
+            <p>Khảo sát chất lượng sóng (4G/LPWAN/Vệ tinh), đo đạc địa hình, khoanh vùng điểm xung yếu và xin giấy phép bay UAV theo đúng pháp luật Việt Nam.</p>
+          </div>
+        </div>
+
+        <div class="step glass-card" id="step-2">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Bay Quét UAV/LiDAR &amp; Xử Lý InSAR</h3>
+            <p>Quét LiDAR toàn tuyến tạo mô hình số 3D DEM, kết hợp tích hợp dữ liệu vệ tinh Radar InSAR rà soát độ biến dạng tổng thể.</p>
+          </div>
+        </div>
+
+        <div class="step glass-card" id="step-3">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Khoan Chôn Cảm Biến IoT &amp; Lắp Trạm Gateway</h3>
+            <p>Chôn sâu cảm biến Inclinometer, Piezometer tại lòng dốc. Lắp đặt trạm thu phát Gateway dùng năng lượng mặt trời.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector arrow giữa 2 hàng -->
+      <div class="steps-connector">
+        <div class="connector-line"></div>
+        <span class="connector-arrow">↓</span>
+      </div>
+
+      <!-- Hàng 2: 2 bước cuối căn giữa -->
+      <div class="steps-row steps-row-bottom">
+        <div class="step glass-card" id="step-4">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Tích Hợp Cloud GIS &amp; Cấu Hình AI</h3>
+            <p>Đưa toàn bộ luồng dữ liệu vào Dashboard GIS 3D. Huấn luyện mô hình AI (CNN/LSTM) theo dõi biến dạng và tính toán ngưỡng an toàn.</p>
+          </div>
+        </div>
+
+        <div class="step glass-card step-final" id="step-5">
+          <div class="step-number">05</div>
+          <div class="step-content">
+            <h3>Vận Hành Quan Trắc 24/7 &amp; Cảnh Báo Tự Động</h3>
+            <p>Hệ thống tự động theo dõi, kích hoạt SMS/Email khẩn cấp cho cơ quan quản lý khi có dấu hiệu trượt mái taluy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE LEVELS (GÓI DỊCH VỤ) -->
+  <section class="levels section" id="levels">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Gói dịch vụ linh hoạt</div>
+        <h2 class="section-title">3 Cấp Độ Quan Trắc Phù Hợp Mọi Nhu Cầu</h2>
+        <p class="section-sub">Từ rà soát diện rộng định kỳ đến hệ thống quan trắc thời gian thực 24/7 khẩn cấp.</p>
+      </div>
+
+      <div class="levels-grid">
+        <!-- LEVEL 1 -->
+        <div class="level-card glass-card" id="level-1">
+          <div class="level-badge">Level 1</div>
+          <h3>Đánh Giá Tổng Quan 3D</h3>
+          <p class="level-desc">Đánh giá bề mặt diện rộng bằng viễn thám cho toàn tuyến đèo dài.</p>
+          <div class="level-tech-list">
+            <div class="level-tech-header">Công nghệ tích hợp:</div>
+            <ul>
+              <li>✔ Ảnh vệ tinh InSAR định kỳ</li>
+              <li>✔ Bay quét UAV LiDAR 2 lần/năm</li>
+              <li>✔ Mô hình 3D địa hình DEM</li>
+            </ul>
+          </div>
+          <div class="level-output">
+            <strong>Đầu ra bàn giao:</strong>
+            <p>Bản đồ địa hình 3D và báo cáo biến dạng bề mặt định kỳ.</p>
+          </div>
+          <a href="#contact" class="btn btn-level" id="level-1-cta">Đăng ký Tư vấn</a>
+        </div>
+
+        <!-- LEVEL 2 (FEATURED) -->
+        <div class="level-card level-featured glass-card glow-border" id="level-2">
+          <div class="level-popular">Khuyên Dùng</div>
+          <div class="level-badge-featured">Level 2</div>
+          <h3>Quan Trắc Kết Hợp IoT Bề Mặt</h3>
+          <p class="level-desc">Giám sát bề mặt kết hợp trạm đo mưa và cảm biến GNSS định vị mm.</p>
+          <div class="level-tech-list">
+            <div class="level-tech-header">Công nghệ tích hợp:</div>
+            <ul>
+              <li>✔ InSAR + Bay quét UAV 4 lần/năm</li>
+              <li>✔ Cảm biến IoT bề mặt (Mưa, GNSS)</li>
+              <li>✔ Dashboard chuỗi thời gian trực tuyến</li>
+            </ul>
+          </div>
+          <div class="level-output">
+            <strong>Đầu ra bàn giao:</strong>
+            <p>Dashboard cảnh báo chuyển vị bề mặt tự động và báo cáo xu hướng.</p>
+          </div>
+          <a href="#contact" class="btn btn-primary btn-full" id="level-2-cta">Nhận Báo Giá Level 2</a>
+        </div>
+
+        <!-- LEVEL 3 -->
+        <div class="level-card glass-card" id="level-3">
+          <div class="level-badge level-badge-premium">Level 3</div>
+          <h3>Quan Trắc Thời Gian Thực 24/7</h3>
+          <p class="level-desc">Giám sát chuyên sâu ngầm lòng đất bằng AI cảnh báo sớm khẩn cấp.</p>
+          <div class="level-tech-list">
+            <div class="level-tech-header">Công nghệ tích hợp:</div>
+            <ul>
+              <li>✔ Toàn bộ tính năng Level 2</li>
+              <li>✔ Cảm biến ngầm (Inclinometer, Piezometer)</li>
+              <li>✔ AI tính toán Hệ số An toàn Fs 24/7</li>
+            </ul>
+          </div>
+          <div class="level-output">
+            <strong>Đầu ra bàn giao:</strong>
+            <p>Hệ thống cảnh báo tức thời SMS/Email và hỗ trợ phân luồng giao thông khẩn cấp.</p>
+          </div>
+          <a href="#contact" class="btn btn-level" id="level-3-cta">Đăng ký Tư vấn Level 3</a>
+        </div>
+      </div>
+
+      <p class="pricing-note">* Chi phí thực tế phụ thuộc vào chiều dài tuyến đèo, địa hình và số lượng điểm xung yếu
+        cần lắp cảm biến ngầm.</p>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES (KẾT QUẢ BÀN GIAO) WITH VISUAL PREVIEWS -->
+  <section class="deliverables section" id="deliverables">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Kết quả bàn giao</div>
+        <h2 class="section-title">Sản Phẩm &amp; Dữ Liệu Khách Hàng Nhận Được</h2>
+      </div>
+
+      <div class="deliverables-grid">
+        <div class="deliv-card glass-card hover-tilt" id="deliv-1">
+          <div class="deliv-media">
+            <img src="src/assets/uav_lidar_3d_scan.png" alt="3D Model Deliverable" class="deliv-img" />
+          </div>
+          <div class="deliv-body">
+            <div class="deliv-icon">&#128506;</div>
+            <h4>Mô Hình 3D Địa Hình Số (DEM)</h4>
+            <p>Dữ liệu bề mặt trực quan phục vụ đánh giá tổng quan, kết hợp hình ảnh UAV nét cao và mô hình 3D.</p>
+          </div>
+        </div>
+
+        <div class="deliv-card glass-card hover-tilt" id="deliv-2">
+          <div class="deliv-media">
+            <img src="src/assets/gis_3d_dashboard.png" alt="IoT Dashboard Deliverable" class="deliv-img" />
+          </div>
+          <div class="deliv-body">
+            <div class="deliv-icon">&#128241;</div>
+            <h4>Dashboard Web &amp; App GIS 3D Real-time</h4>
+            <p>Giao diện theo dõi thông số độ nghiêng, áp lực nước 24/7, tự động gửi cảnh báo khẩn cấp qua SMS/Email.
+            </p>
+          </div>
+        </div>
+
+        <div class="deliv-card glass-card hover-tilt" id="deliv-3">
+          <div class="deliv-media">
+            <img src="src/assets/iot_slope_sensors.png" alt="Technical Report" class="deliv-img" />
+          </div>
+          <div class="deliv-body">
+            <div class="deliv-icon">&#128203;</div>
+            <h4>Báo Cáo Kỹ Thuật Đánh Giá Ổn Định</h4>
+            <p>Hồ sơ kỹ thuật địa kỹ thuật chuyên sâu, phân tích rủi ro sạt trượt theo tiêu chuẩn Bộ GTVT.</p>
+          </div>
+        </div>
+
+        <div class="deliv-card glass-card hover-tilt" id="deliv-4">
+          <div class="deliv-media">
+            <img src="src/assets/insar_satellite_radar.png" alt="AI Risk Heatmap" class="deliv-img" />
+          </div>
+          <div class="deliv-body">
+            <div class="deliv-icon">&#128308;</div>
+            <h4>Bản Đồ Phân Vùng Nguy Cơ Sạt Lở AI</h4>
+            <p>Bản đồ nhiệt khoanh vùng các điểm nóng có nguy cơ sập lở cao trong tương lai gần để chủ động gia cố.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES SECTION -->
+  <section class="usecases section" id="usecases">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Ứng dụng thực tế</div>
+        <h2 class="section-title">Giải Quyết Các Tình Huống Phức Tạp Hiện Trường</h2>
+      </div>
+
+      <div class="usecase-grid">
+        <div class="usecase-card glass-card" id="uc-1">
+          <div class="uc-icon">&#9889;</div>
+          <div class="uc-content">
+            <h4>Báo Động Khẩn Cấp Mùa Mưa Bão Cực Đoan</h4>
+            <p>Cảm biến IoT (lượng mưa, độ nghiêng, áp lực nước) cập nhật dữ liệu liên tục; AI dự báo nguy cơ vỡ dốc
+              trước khi trượt sụt xảy ra.</p>
+            <div class="uc-output">
+              <strong>Kết quả:</strong> Cảnh báo trước 6–24 tiếng giúp cấm đường an toàn.
+            </div>
+          </div>
+        </div>
+
+        <div class="usecase-card glass-card" id="uc-2">
+          <div class="uc-icon">&#128225;</div>
+          <div class="uc-content">
+            <h4>Quan Trắc Điểm Xung Yếu Đèo Cao Hẻo Lánh</h4>
+            <p>Truyền dữ liệu bằng mạng công suất thấp LPWAN và Vệ tinh IoT tại các vị trí không có sóng điện thoại
+              4G/5G.</p>
+            <div class="uc-output">
+              <strong>Kết quả:</strong> Đảm bảo tín hiệu liên tục không đứt gãy 24/7.
+            </div>
+          </div>
+        </div>
+
+        <div class="usecase-card glass-card" id="uc-3">
+          <div class="uc-icon">&#129302;</div>
+          <div class="uc-content">
+            <h4>Tối Ưu Ngân Sách Cho Đơn Vị Quản Lý Hạ Tầng</h4>
+            <p>Chủ động phát hiện chuyển vị nhỏ để gia cố neo/lưới thép trước khi khối đất đá sạt lở hoàn toàn.</p>
+            <div class="uc-output">
+              <strong>Kết quả:</strong> Tiết kiệm tới 80% chi phí sửa chữa khắc phục.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION WITH SEARCH FILTER -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Giải đáp thắc mắc</div>
+        <h2 class="section-title">Câu Hỏi Thường Gặp Về Dịch Vụ S0297</h2>
+      </div>
+
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item glass-card" id="faq-1">
+          <button class="faq-q" aria-expanded="false">
+            <span>Dịch vụ này khác gì so với cán bộ tuần đường thủ công?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Tuần đường thủ công chỉ quan sát bằng mắt thường khi vết nứt đã lộ trên bề mặt và không thể làm việc 24/7
+              trong mưa bão. S0297 kết hợp <strong>UAV 3D, InSAR vệ tinh và cảm biến IoT ngầm</strong> đo chính xác từng
+              mm biến dạng dưới lòng đất 24/7 và cảnh báo trước khi sạt lở xảy ra.</p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-card" id="faq-2">
+          <button class="faq-q" aria-expanded="false">
+            <span>Tín hiệu cảm biến ở núi cao không có sóng 4G truyền về như thế nào?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Hệ thống dùng mạng diện rộng công suất thấp <strong>LPWAN / LoRa</strong> tập trung về trạm Gateway, sau
+              đó truyền tải qua <strong>Vệ tinh IoT</strong>. Thiết kế lai (Hybrid) đảm bảo thông suốt ngay cả tại đèo
+              heo hút nhất.</p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-card" id="faq-3">
+          <button class="faq-q" aria-expanded="false">
+            <span>Cảm biến ngoài trời lấy nguồn điện từ đâu để hoạt động 24/7?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Tất cả trạm cảm biến và Gateway hiện trường đều tích hợp hệ thống <strong>Pin Lithium công nghiệp kèm Tấm
+                pin Năng lượng Mặt trời</strong>, tự cấp nguồn bền vững không cần điện lưới.</p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-card" id="faq-4">
+          <button class="faq-q" aria-expanded="false">
+            <span>Ảnh vệ tinh InSAR có bị ảnh hưởng bởi sương mù và mây bão không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>Công nghệ Radar vi sóng InSAR có khả năng <strong>xuyên thấu mây bão, mây mù và bóng tối</strong>, hoạt
+              động 24/7 trong cả điều kiện thời tiết khắc nghiệt nhất.</p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-card" id="faq-5">
+          <button class="faq-q" aria-expanded="false">
+            <span>Xin giấy phép bay UAV quét 3D địa hình có khó khăn không?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>GASCOLAE chịu <strong>hoàn toàn trách nhiệm làm việc với Cục Tác chiến - Bộ Quốc phòng</strong> để xin
+              giấy phép bay UAV hợp pháp cho dự án của khách hàng.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE AI AGENT SIMULATOR SECTION -->
+  <section class="ai-agent section" id="ai-agent">
+    <div class="container">
+      <div class="agent-wrapper glass-card glow-border">
+        <div class="agent-info">
+          <div class="section-tag">AI Agent Trợ Lý Thông Minh</div>
+          <h2 class="section-title">Trải Nghiệm Hỏi Đáp 3D AI Agent S0297</h2>
+          <p>Trợ lý AI được huấn luyện sâu về giải pháp quan trắc sạt lở taluy, tư vấn quy trình, báo giá và thông số kỹ
+            thuật tức thì.</p>
+
+          <div class="agent-suggested">
+            <p class="agent-suggested-label">Gợi ý câu hỏi nhanh:</p>
+            <div class="chip-group">
+              <button class="agent-chip" data-question="Dịch vụ S0297 phù hợp với loại công trình đèo núi nào?">📍 Phù
+                hợp với loại đèo nào?</button>
+              <button class="agent-chip" data-question="Thời gian triển khai lắp đặt hệ thống mất bao lâu?">⏱️ Thời gian
+                triển khai?</button>
+              <button class="agent-chip" data-question="Chi phí ước tính cho 10km đường đèo là bao nhiêu?">💰 Chi phí
+                ước tính 10km?</button>
+              <button class="agent-chip" data-question="Hệ thống hoạt động như thế nào trong mưa bão bão số 3?">⛈️ Hoạt
+                động khi mưa bão?</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FUNCTIONAL INTERACTIVE CHAT UI -->
+        <div class="agent-chat-box">
+          <div class="chat-header">
+            <div class="chat-bot-avatar">🤖</div>
+            <div class="chat-bot-details">
+              <h4>GASCOLAE AI Assistant</h4>
+              <span class="chat-status"><span class="pulse-dot"></span> Sẵn sàng tư vấn (Live AI)</span>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+              <div class="msg-bubble">
+                Xin chào! Tôi là Trợ lý AI của <strong>GASCOLAE S0297</strong>. Bạn có thắc mắc gì về giải pháp quan
+                trắc sạt lở bằng UAV 3D &amp; IoT không? Vui lòng chọn câu hỏi gợi ý hoặc nhập thắc mắc bên dưới!
+              </div>
+            </div>
+          </div>
+
+          <form class="chat-input-area" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Nhập câu hỏi của bạn tại đây..." autocomplete="off" />
+            <button type="submit" class="btn-send-chat" aria-label="Gửi">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM SECTION -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-wrapper glass-card">
+        <div class="contact-info">
+          <div class="section-tag">Liên hệ tư vấn</div>
+          <h2 class="section-title">Bắt Đầu Bảo Vệ Tuyến Đèo Của Bạn</h2>
+          <p>Điền thông tin để đội ngũ chuyên gia kỹ thuật địa chất &amp; UAV của GASCOLAE khảo sát và gửi giải pháp tối
+            ưu.</p>
+
+          <div class="contact-badges">
+            <div class="contact-badge"><span>⚡</span> Phản hồi trong 24 giờ</div>
+            <div class="contact-badge"><span>🔒</span> Bảo mật dữ liệu dự án</div>
+            <div class="contact-badge"><span>🤝</span> Khảo sát hiện trường miễn phí</div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Họ và tên *</label>
+              <input type="text" id="f-name" name="name" placeholder="Nguyễn Văn A" required />
+            </div>
+            <div class="form-group">
+              <label for="f-org">Đơn vị / Ban QLDA *</label>
+              <input type="text" id="f-org" name="org" placeholder="Cục ĐBVN / Ban QLDA 2..." required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-phone">Số điện thoại *</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="0901 234 567" required />
+            </div>
+            <div class="form-group">
+              <label for="f-email">Email công việc</label>
+              <input type="email" id="f-email" name="email" placeholder="kythuat@duan.gov.vn" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-level">Gói dịch vụ quan tâm</label>
+            <select id="f-level" name="level">
+              <option value="">-- Chọn gói quan trắc --</option>
+              <option value="level1">Level 1 – Đánh giá tổng quan 3D</option>
+              <option value="level2">Level 2 – Quan trắc kết hợp IoT bề mặt</option>
+              <option value="level3">Level 3 – Quan trắc thời gian thực 24/7 khẩn cấp</option>
+              <option value="consult">Cần khảo sát tư vấn thêm</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="f-message">Mô tả vị trí tuyến đèo / Yêu cầu</label>
+            <textarea id="f-message" name="message" rows="4"
+              placeholder="Vị trí đèo, chiều dài tuyến đèo cần giám sát, hiện trạng vết nứt (nếu có)..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="form-submit">
+            Gửi yêu cầu khảo sát &amp; Báo giá
+          </button>
+          <p class="form-disclaimer">* Thông tin của bạn được cam kết bảo mật 100% theo tiêu chuẩn dự án hạ tầng giao
+            thông.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-badge">GASCOLAE</span>
+          <p>Nền tảng dịch vụ kỹ thuật &amp; công nghệ môi trường thông minh cho hạ tầng giao thông Việt Nam.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Dịch vụ S0297</h5>
+            <a href="#problems">Vấn đề giải quyết</a>
+            <a href="#solution">Giải pháp 3D</a>
+            <a href="#capabilities">Công nghệ cốt lõi</a>
+            <a href="#levels">Gói dịch vụ</a>
+          </div>
+          <div class="footer-col">
+            <h5>Thông tin</h5>
+            <a href="#how-it-works">Quy trình 5 bước</a>
+            <a href="#deliverables">Kết quả bàn giao</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Liên hệ</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 GASCOLAE Platform &middot; Service ID: S0297 &middot; Landslide 3D UAV &amp; IoT Monitoring
+          Platform</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX 3D DEMO MEDIA MODAL -->
+  <div class="media-modal" id="media-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-box glass-card">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <h3 id="modal-title">3D Point Cloud LiDAR Visualizer</h3>
+        <span class="modal-badge">Interactive Preview</span>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- High Res 3D Image inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="src/script.js"></script>
+
+</body>
+
+</html>

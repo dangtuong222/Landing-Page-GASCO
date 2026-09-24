@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan trắc ô nhiễm bụi mịn 3D đô thị bằng UAV | S0298 - GASCOLAE</title>
+    <meta name="description" content="Dịch vụ quan trắc bụi mịn PM2,5/PM10 và khí bổ trợ NO2/SO2/CO/O3 đô thị 3D bằng UAV. Bản đồ 2D/3D, hồ sơ theo cao độ, điểm nóng hotspot và đối chiếu QCVN 05:2023/WHO 2021.">
+    <meta name="keywords" content="bụi mịn PM2.5, PM10, quan trắc không khí UAV, QCVN 05:2023, WHO 2021, profile 3D, hotspot bụi, GASCOLAE S0298">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+<body class="dark-theme">
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="container announcement-content">
+            <span class="badge badge-warning"><i class="fa-solid fa-triangle-exclamation"></i> Quy Chuẩn Mới</span>
+            <span>Từ 01/01/2026, QCVN 05:2023/BTNMT chính thức giảm giới hạn PM2,5 trung bình 24h từ 50 xuống <strong>45 µg/Nm³</strong>.</span>
+            <a href="#compliance-tool" class="announcement-link">Kiểm tra ngưỡng so chuẩn <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">GASCOLAE <span class="service-tag">S0298</span></span>
+                    <span class="brand-sub">Urban 3D Fine Dust Profiling</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#overview" class="nav-link">Tổng quan</a>
+                <a href="#problems" class="nav-link">Vấn đề</a>
+                <a href="#capabilities" class="nav-link">Năng lực 3D</a>
+                <a href="#simulator" class="nav-link">Mô phỏng 3D</a>
+                <a href="#use-cases" class="nav-link">Ứng dụng</a>
+                <a href="#process" class="nav-link">Quy trình</a>
+                <a href="#packages" class="nav-link">Gói dịch vụ</a>
+                <a href="#deliverables" class="nav-link">Đầu ra</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="themeToggleBtn" title="Đổi giao diện">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="btn btn-primary glow-effect" onclick="openConsultModal()">
+                    <i class="fa-solid fa-paper-plane"></i> Đăng ký tư vấn
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-grid">
+            <div class="hero-text-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span> Quan trắc Môi trường Đô thị Cấp tiến (UAV)
+                </div>
+                <h1 class="hero-title">
+                    Bụi mịn đô thị: nhìn thấy theo <span class="gradient-text">không gian</span> và theo <span class="gradient-text-alt">cao độ</span>
+                </h1>
+                <p class="hero-description">
+                    Giải pháp khảo sát PM2,5/PM10 bằng UAV đa rotor công nghiệp, kết hợp cảm biến NO2/SO2/CO/O3 bổ trợ. Xây dựng bản đồ phân bố 2D/3D, xác định điểm nóng (hotspot) và đối chiếu trực tiếp với QCVN 05:2023/BTNMT cùng Hướng dẫn WHO 2021.
+                </p>
+                
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg glow-effect" onclick="openConsultModal()">
+                        <i class="fa-solid fa-calendar-check"></i> Nhận tư vấn đợt khảo sát
+                    </button>
+                    <a href="#simulator" class="btn btn-glass btn-lg">
+                        <i class="fa-solid fa-chart-area"></i> Thử mô phỏng cột bụi 3D
+                    </a>
+                </div>
+
+                <!-- Hero Key Metrics -->
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <div class="metric-value">0 – 500m</div>
+                        <div class="metric-label">Khảo sát theo bậc cao độ</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">1 Hz</div>
+                        <div class="metric-label">Tần số ghi nhận dữ liệu liên tục</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">QCVN / WHO</div>
+                        <div class="metric-label">Đối chiếu 2 hệ quy chuẩn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual-container">
+                <div class="glass-card hero-image-card">
+                    <div class="image-wrapper">
+                        <img src="src/assets/hero_uav_3d_dust.png" alt="UAV Quan trắc bụi mịn 3D" class="hero-img">
+                        <div class="image-overlay-hud">
+                            <div class="hud-tag top-left">
+                                <i class="fa-solid fa-crosshairs"></i> Flight Altitude: <span id="hudAltitude">240m</span>
+                            </div>
+                            <div class="hud-tag top-right">
+                                <i class="fa-solid fa-satellite-dish"></i> OPC-N3: <span class="text-success">Active</span>
+                            </div>
+                            <div class="hud-tag bottom-left">
+                                <i class="fa-solid fa-wind"></i> Downwash Suppression: ≥10s
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-card-caption">
+                        <i class="fa-solid fa-drone-front"></i> UAV mang payload cảm biến tán xạ ánh sáng (OPC-N3 / SPS30) &amp; cell điện hóa gắn hông giảm nhiễu luồng gió.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Customer Problems -->
+    <section class="section-padding bg-surface" id="problems">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Vấn Đề Khách Hàng</span>
+                <h2 class="section-title">Tại sao trạm quan trắc mặt đất cố định là chưa đủ?</h2>
+                <p class="section-desc">Những thách thức lớn mà các cơ quan quản lý đô thị, ban quản lý KCN và chủ đầu tư công trình đang gặp phải.</p>
+            </div>
+
+            <div class="grid grid-3 gap-lg">
+                <div class="glass-card problem-card">
+                    <div class="card-icon icon-danger">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3>Thiếu dữ liệu theo không gian &amp; cao độ</h3>
+                    <p>Các trạm quan trắc mặt đất chỉ đo tại điểm cố định, không thể cho biết bụi mịn tích tụ ở độ cao nào (tầng 10, tầng 30) hay khoanh vùng chính xác khu vực phát tán ô nhiễm.</p>
+                    <div class="card-footer-info">
+                        <i class="fa-solid fa-book-bookmark"></i> Tham chiếu: ISPRS 2018 (SRC-12)
+                    </div>
+                </div>
+
+                <div class="glass-card problem-card">
+                    <div class="card-icon icon-warning">
+                        <i class="fa-solid fa-smog"></i>
+                    </div>
+                    <h3>Ô nhiễm PM2,5 mức cao kéo dài</h3>
+                    <p>Năm 2024, nồng độ PM2,5 trung bình Việt Nam là 28,7 µg/m³. Riêng Hà Nội đạt 45,4 µg/m³ (gấp ~9 lần khuyến nghị WHO), gây tổn thất khoảng 4% GDP toàn quốc.</p>
+                    <div class="card-footer-info">
+                        <i class="fa-solid fa-chart-line"></i> Nguồn: IQAir / World Bank 2024 (SRC-24)
+                    </div>
+                </div>
+
+                <div class="glass-card problem-card">
+                    <div class="card-icon icon-info">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3>Siết chặt chuẩn QCVN 05:2023</h3>
+                    <p>Từ ngày 01/01/2026, QCVN 05:2023/BTNMT giảm giới hạn PM2,5 trung bình 24h từ 50 xuống 45 µg/Nm³, gia tăng áp lực báo cáo và kiểm soát bụi công trường/đô thị.</p>
+                    <div class="card-footer-info">
+                        <i class="fa-solid fa-gavel"></i> Văn bản: TT 01/2023/TT-BTNMT (SRC-01)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem Graphic Feature -->
+            <div class="problem-visual-box glass-card margin-top-xl">
+                <div class="grid grid-2 align-center">
+                    <div class="visual-text">
+                        <span class="badge badge-accent">Phân tích nghịch lý ô nhiễm</span>
+                        <h3>Bụi mịn không đứng yên ở mặt đất</h3>
+                        <p>Hiện tượng nghịch nhiệt bức xạ làm các lớp bụi mịn lơ lửng bị bẫy ở cao độ 150m – 350m trong các đô thị lớn. Nếu chỉ dùng trạm mặt đất, quản lý môi trường sẽ hoàn toàn bị "mù" ở các tầng không khí phía trên.</p>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check-circle"></i> UAV đo quét diện rộng theo đường bay định sẵn</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Xác định hiện tượng bẫy nhiệt và phân tầng ô nhiễm</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Định vị nguồn phát thải và hành lang lan truyền</li>
+                        </ul>
+                    </div>
+                    <div class="visual-image">
+                        <img src="src/assets/problem_dust_pollution.png" alt="Lớp bụi mịn nghịch nhiệt đô thị" class="rounded-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Solution & Key Capabilities -->
+    <section class="section-padding" id="capabilities">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Giải Pháp &amp; Năng Lực Cốt Lõi</span>
+                <h2 class="section-title">Hệ thống quan trắc ô nhiễm bụi 3D S0298</h2>
+                <p class="section-desc">Sự kết hợp hoàn hảo giữa thiết bị UAV công nghiệp, cảm biến tán xạ ánh sáng và tế bào điện hóa đa thông số.</p>
+            </div>
+
+            <div class="grid grid-2 gap-lg align-center margin-bottom-xl">
+                <div class="capability-image-box">
+                    <img src="src/assets/solution_payload_sensors.png" alt="Payload cảm biến UAV S0298" class="glass-img">
+                </div>
+                <div class="capability-details">
+                    <span class="badge badge-primary">Payload Tích Hợp Đa Thông Số</span>
+                    <h3>Cảm biến tán xạ quang học &amp; Điện hóa</h3>
+                    <p>Payload trang bị cảm biến OPC-N3 (Alphasense) / SPS30 (Sensirion) đo khối lượng bụi hạt từ 0,35 đến 40 µm với chu kỳ 1 Hz. Kết hợp các tế bào điện hóa NO2, SO2, CO, O3 ở mức chỉ dẫn.</p>
+                    
+                    <div class="feature-mini-cards">
+                        <div class="mini-card">
+                            <div class="mini-icon"><i class="fa-solid fa-microchip"></i></div>
+                            <div>
+                                <h4>OPC-N3 / SPS30 / DustTrak II</h4>
+                                <p>Đo PM1, PM2,5, PM10 dải nồng độ tới 2.000 µg/m³</p>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <div class="mini-icon"><i class="fa-solid fa-vial-circle-check"></i></div>
+                            <div>
+                                <h4>NO2 / SO2 / CO / O3 Bổ Trợ</h4>
+                                <p>Đo khí vết phục vụ định hướng vùng phát thải</p>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <div class="mini-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h4>Quy Trình QA/QC Nghiêm Ngặt</h4>
+                                <p>Gắn cảm biến hông UAV, trung bình ≥10s khử downwash cánh quạt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 Key Capabilities Grid -->
+            <div class="grid grid-3 gap-md">
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h4>Bản đồ bụi mịn 2D</h4>
+                    <p>Bay tuyến/lưới ở 1–3 cao độ cố định, nội suy không gian bằng GIS xuất file GeoTIFF, KMZ, SHP.</p>
+                </div>
+
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-chart-line-up"></i></div>
+                    <h4>Hồ sơ phân tầng 3D</h4>
+                    <p>Bay leo xoắn hoặc theo bậc cao độ đến 350m - 500m (tốc độ leo 1m/s), vẽ biểu đồ cột dọc nồng độ.</p>
+                </div>
+
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    <h4>Phát hiện Hotspot</h4>
+                    <p>Khoanh vùng chính xác các tâm ô nhiễm nồng độ cao trong phạm vi khảo sát theo đợt.</p>
+                </div>
+
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-file-contract"></i></div>
+                    <h4>Đối chiếu QCVN &amp; WHO</h4>
+                    <p>So sánh số liệu thực đo với Bảng 1 QCVN 05:2023/BTNMT và Hướng dẫn WHO AQG 2021.</p>
+                </div>
+
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h4>Hiệu chỉnh Co-location</h4>
+                    <p>Đặt so trại cảm biến cạnh trạm tham chiếu mặt đất trước/sau đợt bay để tạo hàm hiệu chỉnh.</p>
+                </div>
+
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-plane-lock"></i></div>
+                    <h4>Tuân thủ NĐ 288/2025</h4>
+                    <p>Đảm bảo giấy phép bay Bộ Quốc phòng, phi công có bằng lái Hạng A/B, nộp hồ sơ trước ≥7 ngày.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Interactive 3D Altitude Simulator -->
+    <section class="section-padding bg-surface" id="simulator">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Công Cụ Tương Tác Kỹ Thuật</span>
+                <h2 class="section-title">Mô phỏng Phân tầng Nồng độ Bụi Mịn 3D theo Cao độ</h2>
+                <p class="section-desc">Kéo thanh trượt cao độ để khám phá cách nồng độ PM2,5 thay đổi từ mặt đất tới 500m.</p>
+            </div>
+
+            <div class="glass-card simulator-container">
+                <div class="grid grid-2 gap-lg align-center">
+                    <div class="sim-controls">
+                        <div class="sim-input-group">
+                            <label for="altitudeRange"><strong>Cao độ khảo sát (Altitude):</strong> <span id="altDisplay" class="gradient-text">200 m</span></label>
+                            <input type="range" id="altitudeRange" min="0" max="500" step="10" value="200" class="custom-range">
+                            <div class="range-labels">
+                                <span>0m (Mặt đất)</span>
+                                <span>250m</span>
+                                <span>500m (Trần khảo sát)</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-input-group margin-top-md">
+                            <label for="scenarioSelect"><strong>Kịch bản môi trường khảo sát:</strong></label>
+                            <select id="scenarioSelect" class="custom-select">
+                                <option value="construction">Công trình xây dựng cao tầng (Bụi tầng cao)</option>
+                                <option value="inversion">Nghịch nhiệt bức xạ mùa đông (Tích tụ 150m-250m)</option>
+                                <option value="industrial">Hành lang khu công nghiệp &amp; Giao thông</option>
+                            </select>
+                        </div>
+
+                        <div class="sim-readouts grid grid-2 gap-md margin-top-lg">
+                            <div class="readout-box">
+                                <span class="readout-title">PM2,5 Dự kiến</span>
+                                <span class="readout-value" id="pm25Val">48.5 µg/m³</span>
+                                <span class="readout-status status-alert" id="qcvnStatus">Vượt QCVN 24h (45 µg/m³)</span>
+                            </div>
+                            <div class="readout-box">
+                                <span class="readout-title">Mức Tương Quan WHO</span>
+                                <span class="readout-value text-danger" id="whoVal">3.2 x WHO</span>
+                                <span class="readout-status" id="whoStatus">AQG 24h = 15 µg/m³</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-info-note margin-top-md">
+                            <i class="fa-solid fa-circle-info"></i> Ghi chú QA: Dữ liệu được tính trung bình 10 giây/bậc cao độ để triệt tiêu ảnh hưởng downwash của cánh quạt UAV (SRC-20).
+                        </div>
+                    </div>
+
+                    <div class="sim-graphic">
+                        <div class="svg-wrapper">
+                            <img src="src/assets/vertical_3d_profile.svg" alt="Vertical 3D Profile Model" class="sim-svg-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Use Cases -->
+    <section class="section-padding" id="use-cases">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Trường Hợp Sử Dụng (Use Cases)</span>
+                <h2 class="section-title">Ứng dụng thực tế cho từng phân khúc khách hàng</h2>
+                <p class="section-desc">Dịch vụ S0298 được thiết kế linh hoạt đáp ứng các mục tiêu quản lý và giám sát khác nhau.</p>
+            </div>
+
+            <!-- Use Case Tabs -->
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="uc1">
+                    <i class="fa-solid fa-building-user"></i> 01. Giám sát công trình xây dựng
+                </button>
+                <button class="tab-btn" data-tab="uc2">
+                    <i class="fa-solid fa-city"></i> 02. Bản đồ bụi mịn Quận / Đô thị
+                </button>
+                <button class="tab-btn" data-tab="uc3">
+                    <i class="fa-solid fa-industry"></i> 03. Quan trắc KCN &amp; Vành đai
+                </button>
+            </div>
+
+            <div class="tabs-body">
+                <!-- UC1 -->
+                <div class="tab-content active" id="uc1">
+                    <div class="grid grid-2 align-center gap-lg glass-card p-lg">
+                        <div class="tab-text">
+                            <span class="badge badge-primary">Chủ đầu tư &amp; Nhà thầu hạ tầng</span>
+                            <h3>Giám sát bụi công trình xây dựng cao tầng</h3>
+                            <p>Bụi mịn phát sinh trong quá trình thi công cao ốc thường lan truyền ở các tầng cao (tầng 15–30) tác động trực tiếp đến cư dân xung quanh.</p>
+                            <div class="usecase-specs">
+                                <div><strong>Phương pháp:</strong> Bay lưới 2D &amp; Profile dọc theo đợt</div>
+                                <div><strong>Kết quả:</strong> Bản đồ 2D/3D, profile cao độ, vị trí Hotspot phát thải bụi</div>
+                                <div><strong>Ý nghĩa:</strong> Bằng chứng dữ liệu minh bạch phục vụ báo cáo ĐTM &amp; giám sát thi công</div>
+                            </div>
+                        </div>
+                        <div class="tab-img">
+                            <img src="src/assets/usecase_construction.svg" alt="Giám sát bụi công trình xây dựng" class="rounded-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UC2 -->
+                <div class="tab-content" id="uc2">
+                    <div class="grid grid-2 align-center gap-lg glass-card p-lg">
+                        <div class="tab-text">
+                            <span class="badge badge-success">Sở TNMT &amp; Cơ quan quản lý đô thị</span>
+                            <h3>Lập bản đồ bụi mịn diện rộng Quận / Đô thị</h3>
+                            <p>Cung cấp bức tranh phân bố không gian PM2,5/PM10 trên toàn địa bàn quận/huyện nhằm phục vụ công tác quy hoạch, cảnh báo cộng đồng và điều phối trắc định kỳ.</p>
+                            <div class="usecase-specs">
+                                <div><strong>Phương pháp:</strong> Bay tuyến/lưới tại 1–3 cao độ diện tích rộng</div>
+                                <div><strong>Kết quả:</strong> Bản đồ 2D GeoTIFF/KMZ khoanh vùng ô nhiễm trọng điểm</div>
+                                <div><strong>Ý nghĩa:</strong> Bổ sung dữ liệu không gian cho mạng lưới trạm cố định mặt đất</div>
+                            </div>
+                        </div>
+                        <div class="tab-img">
+                            <img src="src/assets/usecase_urban_district.svg" alt="Bản đồ bụi mịn đô thị" class="rounded-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UC3 -->
+                <div class="tab-content" id="uc3">
+                    <div class="grid grid-2 align-center gap-lg glass-card p-lg">
+                        <div class="tab-text">
+                            <span class="badge badge-warning">Ban Quản lý KCN &amp; Cụm Công nghiệp</span>
+                            <h3>Quan trắc tác động KCN &amp; Hành lang giao thông</h3>
+                            <p>Đo đạc nồng độ bụi và khí phụ trợ (NO2, SO2, CO, O3) tại vùng hạ lưu gió của các khu công nghiệp hoặc tuyến vành đai ô tô mật độ cao.</p>
+                            <div class="usecase-specs">
+                                <div><strong>Phương pháp:</strong> Bay dọc hành lang &amp; đo mức chỉ dẫn theo luồng phát thải</div>
+                                <div><strong>Kết quả:</strong> Hồ sơ theo tuyến, vệt lan truyền nồng độ cao</div>
+                                <div><strong>Ý nghĩa:</strong> Sàng lọc nguy cơ ảnh hưởng khu dân cư lân cận</div>
+                            </div>
+                        </div>
+                        <div class="tab-img">
+                            <img src="src/assets/usecase_industrial_park.svg" alt="Quan trắc khu công nghiệp" class="rounded-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: How It Works / 6 Steps Process -->
+    <section class="section-padding bg-surface" id="process">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Quy Trình Triển Khai SOP</span>
+                <h2 class="section-title">6 Bước thực hiện đợt quan trắc chuẩn hóa</h2>
+                <p class="section-desc">Tuân thủ nghiêm ngặt quy trình SOP Asset 04 và Nghị định 288/2025/NĐ-CP về quản lý tàu bay không người lái.</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content glass-card">
+                        <h4>Tiếp nhận &amp; Xác định mục tiêu</h4>
+                        <p>Tiếp nhận ranh giới khu vực, băng diện tích (ha), cao độ mục tiêu và yêu cầu so chuẩn pháp lý.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content glass-card">
+                        <h4>Thiết kế Mission &amp; Phép Bay NĐ 288/2025</h4>
+                        <p>Lập kế hoạch bay lưới/profile. Nộp hồ sơ phép bay Bộ Quốc phòng tối thiểu 7 ngày trước ngày bay.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content glass-card">
+                        <h4>Hiệu chuẩn Co-location Trạm Mặt Đất</h4>
+                        <p>Đặt so trại payload cạnh trạm tham chiếu mặt đất trước/sau đợt bay để xây dựng hàm hiệu chỉnh.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content glass-card">
+                        <h4>Thực hiện Bay Đo Đạc</h4>
+                        <p>UAV ghi dữ liệu 1 Hz, cảm biến gắn hông khử downwash, lấy trung bình tối thiểu 10 giây/điểm đo.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content glass-card">
+                        <h4>Kiểm soát QA &amp; Nội suy GIS</h4>
+                        <p>Lọc nhiễu dữ liệu, áp dụng hàm hiệu chỉnh, nội suy không gian 2D/3D và khoanh vùng Hotspot.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">06</div>
+                    <div class="step-content glass-card">
+                        <h4>Báo cáo So Chuẩn &amp; Bàn Giao</h4>
+                        <p>Xuất báo cáo đối chiếu QCVN 05:2023 &amp; WHO 2021, bàn giao file GeoTIFF/KMZ/SHP/CSV cho khách hàng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Service Levels / Packages -->
+    <section class="section-padding" id="packages">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Gói Dịch Vụ / Service Levels</span>
+                <h2 class="section-title">Lựa chọn cấu hình phù hợp nhu cầu</h2>
+                <p class="section-desc">Cung cấp các gói dịch vụ đáp ứng từ khảo sát nhanh 2D đến giám sát 3D chuyên sâu và chu kỳ dài hạn.</p>
+            </div>
+
+            <div class="grid grid-3 gap-lg">
+                <!-- Level 1 -->
+                <div class="glass-card package-card">
+                    <div class="package-header">
+                        <span class="package-level">LEVEL 1</span>
+                        <h3>Bản đồ Bụi mịn 2D Cơ bản</h3>
+                        <p class="package-tagline">Đo nhanh theo đợt</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check text-success"></i> Đo PM2,5 &amp; PM10 tại 1–3 cao độ cố định</li>
+                            <li><i class="fa-solid fa-check text-success"></i> 01 đợt bay khảo sát băng diện tích</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Bản đồ phân bố 2D (GeoTIFF / KMZ)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Báo cáo đối chiếu QCVN 05:2023</li>
+                            <li class="text-muted"><i class="fa-solid fa-xmark"></i> Không có Profile cột dọc 3D</li>
+                            <li class="text-muted"><i class="fa-solid fa-xmark"></i> Không đo khí bổ trợ NO2/SO2/CO/O3</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-outline btn-block" onclick="openConsultModal('Level 1 - Bản đồ 2D')">Liên hệ tư vấn Gói L1</button>
+                    </div>
+                </div>
+
+                <!-- Level 2 (Featured) -->
+                <div class="glass-card package-card featured">
+                    <div class="featured-badge">GÓI ĐỀ XUẤT CHÍNH</div>
+                    <div class="package-header">
+                        <span class="package-level text-accent">LEVEL 2</span>
+                        <h3>Profile 3D &amp; Khí Bổ Trợ</h3>
+                        <p class="package-tagline">Giám sát chuyên sâu theo đợt</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check text-success"></i> Toàn bộ tính năng Level 1</li>
+                            <li><i class="fa-solid fa-check text-success"></i> <strong>Profile cột dọc 3D nhiều cao độ</strong> (tới 500m)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> <strong>Đo khí bổ trợ NO2, SO2, CO, O3</strong> (mức chỉ dẫn)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Khoanh vùng vị trí Hotspot nồng độ cao</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Báo cáo đối chiếu <strong>QCVN 05:2023 &amp; WHO 2021</strong></li>
+                            <li><i class="fa-solid fa-check text-success"></i> Bộ dữ liệu CSV thô &amp; đã hiệu chỉnh QA</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-primary btn-block glow-effect" onclick="openConsultModal('Level 2 - Profile 3D & Khí')">Đăng ký tư vấn Gói L2</button>
+                    </div>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="glass-card package-card">
+                    <div class="package-header">
+                        <span class="package-level">LEVEL 3</span>
+                        <h3>Giám sát Chu kỳ &amp; Phân tích</h3>
+                        <p class="package-tagline">Theo dõi dài hạn &amp; Dashboard</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check text-success"></i> Toàn bộ tính năng Level 2</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Khảo sát lặp nhiều đợt theo chu kỳ (Tháng/Quý)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Phân tích chuỗi thời gian &amp; Xu hướng ô nhiễm</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Mô hình hiệu chỉnh ML theo trạm mặt đất</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Dashboard lưu trữ &amp; Phân quyền GIS</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-outline btn-block" onclick="openConsultModal('Level 3 - Giám sát chu kỳ')">Liên hệ tư vấn Gói L3</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Rule Notice -->
+            <div class="pricing-notice-box margin-top-lg">
+                <i class="fa-solid fa-lock"></i> <strong>Quy tắc bảo mật giá GASCOLAE:</strong> Giá dịch vụ được tính toán dựa trên băng diện tích (≤50 ha, 51–200 ha, >200 ha) và số đợt khảo sát. Bộ phận Sales/Finance GASCOLAE sẽ trực tiếp phát hành báo giá chính thức sau khi chốt phạm vi dự án.
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Key Deliverables -->
+    <section class="section-padding bg-surface" id="deliverables">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Đầu Ra Bàn Giao</span>
+                <h2 class="section-title">Khách hàng sẽ nhận được gì sau đợt khảo sát?</h2>
+                <p class="section-desc">Bộ sản phẩm bàn giao đầy đủ định dạng chuẩn GIS và báo cáo kỹ thuật minh bạch.</p>
+            </div>
+
+            <div class="grid grid-3 gap-lg">
+                <div class="glass-card deliverable-card">
+                    <div class="deliverable-img">
+                        <img src="src/assets/deliverable_2d3d_map.svg" alt="Bản đồ bụi mịn 2D/3D">
+                    </div>
+                    <h4>Bản đồ phân bố bụi 2D/3D</h4>
+                    <p>Bản đồ thể hiện nồng độ bụi mịn PM2,5/PM10 theo diện tích và cao độ. Định dạng GeoTIFF, KMZ, SHP dễ dàng tích hợp vào phần mềm GIS.</p>
+                </div>
+
+                <div class="glass-card deliverable-card">
+                    <div class="deliverable-img">
+                        <img src="src/assets/deliverable_profile_chart.svg" alt="Hồ sơ cột dọc cao độ">
+                    </div>
+                    <h4>Hồ sơ cột dọc theo cao độ</h4>
+                    <p>Chuỗi số liệu nồng độ theo từng bậc cao độ kèm đồ thị trực quan dạng PNG/PDF và dữ liệu thô/đã hiệu chỉnh dạng CSV.</p>
+                </div>
+
+                <div class="glass-card deliverable-card">
+                    <div class="deliverable-img">
+                        <img src="src/assets/deliverable_hotspot_report.svg" alt="Báo cáo đối chiếu & Hotspot">
+                    </div>
+                    <h4>Báo cáo so chuẩn &amp; Hotspot</h4>
+                    <p>Báo cáo kỹ thuật tổng hợp đối chiếu QCVN 05:2023/BTNMT và WHO 2021, danh sách tọa độ Hotspot và khuyến nghị xử lý.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Interactive QCVN & WHO Compliance Threshold Checker -->
+    <section class="section-padding" id="compliance-tool">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">Công Cụ Tra Cứu Nhanh</span>
+                <h2 class="section-title">Tra cứu Ngưỡng Giới Hạn QCVN 05:2023 &amp; WHO 2021</h2>
+                <p class="section-desc">Nhập thông số đo đạc để đối chiếu trực tiếp với quy chuẩn Việt Nam và hướng dẫn WHO.</p>
+            </div>
+
+            <div class="glass-card compliance-checker-box">
+                <div class="grid grid-3 gap-md align-center">
+                    <div class="checker-input">
+                        <label for="paramSelect">Chọn Thông Số Quan Trắc:</label>
+                        <select id="paramSelect" class="custom-select">
+                            <option value="pm25">Bụi mịn PM2,5 (µg/Nm³)</option>
+                            <option value="pm10">Bụi PM10 (µg/Nm³)</option>
+                            <option value="no2">Nitơ dioxide NO2 (µg/Nm³)</option>
+                            <option value="so2">Lưu huỳnh dioxide SO2 (µg/Nm³)</option>
+                            <option value="co">Carbon monoxide CO (µg/Nm³)</option>
+                            <option value="o3">Ozone O3 (µg/Nm³)</option>
+                        </select>
+                    </div>
+
+                    <div class="checker-input">
+                        <label for="valInput">Nhập Nồng Độ Thực Đo:</label>
+                        <input type="number" id="valInput" value="48" min="0" step="0.1" class="custom-input">
+                    </div>
+
+                    <div class="checker-input">
+                        <button class="btn btn-primary btn-block" onclick="checkCompliance()">
+                            <i class="fa-solid fa-magnifying-glass font-icon"></i> Kiểm Tra Ngưỡng
+                        </button>
+                    </div>
+                </div>
+
+                <div class="compliance-results margin-top-lg" id="complianceResults">
+                    <div class="grid grid-2 gap-md">
+                        <div class="res-card glass-card">
+                            <div class="res-title">Đối chiếu QCVN 05:2023/BTNMT (24 giờ)</div>
+                            <div class="res-value" id="qcvnResVal">Giới hạn: 50 µg/m³ (Hiện tại) &rarr; 45 µg/m³ (Từ 2026)</div>
+                            <div class="res-badge badge-warning" id="qcvnBadge">Cảnh báo: Vượt giới hạn áp dụng từ 2026!</div>
+                        </div>
+                        <div class="res-card glass-card">
+                            <div class="res-title">Đối chiếu Hướng dẫn WHO AQG 2021 (24 giờ)</div>
+                            <div class="res-value" id="whoResVal">Ngưỡng sức khỏe: 15 µg/m³</div>
+                            <div class="res-badge badge-danger" id="whoBadge">Gấp 3.2 lần ngưỡng WHO 2021!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: FAQ Accordion -->
+    <section class="section-padding bg-surface" id="faq">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">FAQ - Câu Hỏi Thường Gặp</span>
+                <h2 class="section-title">Giải đáp thắc mắc về Dịch vụ Quan trắc Bụi 3D</h2>
+                <p class="section-desc">Tổng hợp các thắc mắc phổ biến từ khách hàng và kỹ sư môi trường.</p>
+            </div>
+
+            <div class="faq-accordion-container">
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>Dịch vụ S0298 quan trắc được những thông số nào?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Thông số chính gồm Bụi mịn <strong>PM2,5 và PM10</strong> đo bằng cảm biến tán xạ ánh sáng (OPC-N3 / SPS30). Các khí bổ trợ gồm <strong>NO2, SO2, CO, O3</strong> đo bằng tế bào điện hóa ở mức chỉ dẫn. Dịch vụ không đo khí nhà kính (CH4/CO2) phục vụ tín chỉ carbon.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>UAV có thể đo theo cao độ đến bao nhiêu mét?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Các nghiên cứu quốc tế tham chiếu đã thực hiện đo profile cột dọc lên đến <strong>350m - 500m</strong> với bước cao độ 40m. Cao độ khảo sát thực tế phụ thuộc vào giới hạn vùng trời ghi trên Giấy phép bay Bộ Quốc phòng cấp cho từng dự án.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>Cần chuẩn bị thủ tục pháp lý gì trước khi triển khai bay?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Theo Nghị định 288/2025/NĐ-CP, hoạt động bay UAV cần có Giấy phép bay do Bộ Quốc phòng cấp. Hồ sơ cần gửi trước ngày bay tối thiểu <strong>7 ngày làm việc</strong>. Nếu bay từ 50m trở lên cần gửi kế hoạch báo bay cho trung tâm quản lý vùng trời trước 24h.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>Độ chính xác của cảm biến bụi trên UAV thế nào?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nghiên cứu công bố ghi nhận sau khi so trại (co-location) với trạm chuẩn (BAM-1020/GRIMM), hệ số tương quan R² đạt <strong>0,81 – 0,94</strong> đối với PM2,5. Số liệu được xử lý lọc downwash bằng cách lấy trung bình tối thiểu 10s tại mỗi điểm dừng.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>Khí bổ trợ NO2, SO2, CO, O3 có dùng để kết luận vi phạm pháp luật được không?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Không. Cảm biến khí điện hóa low-cost có độ nhạy chéo và sai số cao (đặc biệt SO2 và O3 có R² thấp), nên số liệu khí <strong>chỉ mang tính chất chỉ dẫn và định hướng vùng phát thải</strong>, không sử dụng để kết luận tuân thủ pháp lý thay thế phương pháp chuẩn.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card">
+                    <div class="faq-question">
+                        <span>Giá dịch vụ quan trắc bụi 3D được tính như thế nào?</span>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Giá dịch vụ tính theo VNĐ/đợt khảo sát dựa trên ma trận băng diện tích (≤50 ha, 51–200 ha, >200 ha) và Level đăng ký. Vì giá thuộc danh mục dữ liệu Restricted, bộ phận Sales/Finance GASCOLAE sẽ phát hành báo giá chính thức sau khi làm việc trực tiếp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: AI Agent Integration Placeholder Section -->
+    <section class="section-padding" id="ai-agent-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-heading">AI Assistant / Chăm Sóc Khách Hàng</span>
+                <h2 class="section-title">Trợ Lý AI Tư Vấn Quan Trắc Bụi Mịn 3D (S0298)</h2>
+                <p class="section-desc">Khu vực nhúng AI Agent tự động giải đáp thắc mắc và gợi ý gói khảo sát.</p>
+            </div>
+
+            <!-- Agent Container Placeholder -->
+            <div class="glass-card ai-agent-placeholder-box">
+                <div class="agent-placeholder-header">
+                    <div class="agent-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h4>Trợ lý AI Bụi mịn 3D Đô thị (Agent S0298)</h4>
+                        <span class="agent-status"><span class="pulse-dot"></span> Sẵn sàng kết nối AI Framework</span>
+                    </div>
+                    <span class="badge badge-warning agent-embed-tag">
+                        <i class="fa-solid fa-code"></i> Phần AI Agent sẽ được nhúng tại đây
+                    </span>
+                </div>
+
+                <div class="agent-placeholder-body">
+                    <div class="chat-sample-msg bot-msg">
+                        <p>👋 <strong>Xin chào!</strong> Tôi là trợ lý AI S0298. Tôi có thể giải thích phạm vi khảo sát PM2,5/PM10, khí bổ trợ chỉ dẫn, các Level, deliverables và điều kiện cấp phép bay NĐ 288/2025. <em>(Lưu ý: AI không tự báo giá hoặc thay thế tư vấn pháp lý/kỹ thuật)</em>.</p>
+                    </div>
+
+                    <div class="suggested-questions-list">
+                        <span class="qs-label">Câu hỏi gợi ý:</span>
+                        <button class="qs-btn">Dịch vụ đo thông số nào?</button>
+                        <button class="qs-btn">Dữ liệu UAV khác gì trạm mặt đất?</button>
+                        <button class="qs-btn">Giới hạn độ chính xác là gì?</button>
+                        <button class="qs-btn">Cần chuẩn bị hồ sơ phép bay nào?</button>
+                    </div>
+                </div>
+
+                <div class="agent-placeholder-footer">
+                    <input type="text" placeholder="Nhập câu hỏi của bạn cho Trợ lý AI S0298..." disabled class="chat-disabled-input">
+                    <button class="btn btn-primary" disabled><i class="fa-solid fa-paper-plane"></i> Gửi</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Call to Action / Lead Form -->
+    <section class="section-padding bg-gradient-cta" id="cta-form">
+        <div class="container">
+            <div class="grid grid-2 align-center gap-xl">
+                <div class="cta-text">
+                    <span class="badge badge-accent">Đăng Ký Tư Vấn Đợt Khảo Sát</span>
+                    <h2 class="cta-title">Nhận tư vấn phương án quan trắc bụi mịn 3D cho khu vực của bạn</h2>
+                    <p class="cta-desc">Hãy để lại thông tin ranh giới khu vực và mục tiêu khảo sát. Đội ngũ chuyên gia kỹ thuật và bộ phận Sales/Finance GASCOLAE sẽ phản hồi trong thời gian sớm nhất.</p>
+                    
+                    <div class="cta-contacts margin-top-md">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-building-shield"></i>
+                            <div>
+                                <strong>Tuân thủ Pháp lý:</strong>
+                                <span>Giấy phép bay NĐ 288/2025/NĐ-CP &amp; QCVN 05:2023/BTNMT</span>
+                            </div>
+                        </div>
+                        <div class="contact-item margin-top-sm">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <strong>Email liên hệ:</strong>
+                                <span>s0298.support@gascolae.vn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Form Card -->
+                <div class="glass-card lead-form-card">
+                    <h3>Biểu mẫu Đăng ký Tư vấn</h3>
+                    <form id="leadConsultForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="fullName">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" id="fullName" required placeholder="Nguyễn Văn A" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orgName">Tổ chức / Công ty <span class="text-danger">*</span></label>
+                            <input type="text" id="orgName" required placeholder="Sở TNMT / Công ty ABC / Ban QLKCN..." class="form-control">
+                        </div>
+
+                        <div class="grid grid-2 gap-sm">
+                            <div class="form-group">
+                                <label for="emailAddr">Email <span class="text-danger">*</span></label>
+                                <input type="email" id="emailAddr" required placeholder="name@company.com" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNum">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" id="phoneNum" required placeholder="0901234567" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2 gap-sm">
+                            <div class="form-group">
+                                <label for="areaTier">Băng diện tích dự kiến</label>
+                                <select id="areaTier" class="form-control">
+                                    <option value="<=50ha">Băng ≤ 50 ha</option>
+                                    <option value="51-200ha">Băng 51 – 200 ha</option>
+                                    <option value=">200ha">Băng > 200 ha</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="levelOpt">Level mong muốn</label>
+                                <select id="levelOpt" class="form-control">
+                                    <option value="Level 1">Level 1 - Bản đồ 2D Cơ bản</option>
+                                    <option value="Level 2" selected>Level 2 - Profile 3D &amp; Khí bổ trợ</option>
+                                    <option value="Level 3">Level 3 - Giám sát Chu kỳ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="noteMsg">Nhu cầu / Mô tả khu vực khảo sát</label>
+                            <textarea id="noteMsg" rows="3" placeholder="Mô tả công trình cao tầng, KCN, quận đô thị hoặc mục tiêu nghiên cứu..." class="form-control"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg glow-effect margin-top-sm">
+                            <i class="fa-solid fa-paper-plane"></i> Gửi Yêu Cầu Tư Vấn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="grid grid-4 gap-lg">
+                <div class="footer-brand">
+                    <div class="brand-logo margin-bottom-sm">
+                        <i class="fa-solid fa-cube logo-icon-sm"></i>
+                        <span class="brand-name">GASCOLAE PLATFORM</span>
+                    </div>
+                    <p>S0298 – Quan trắc ô nhiễm bụi mịn 3D đô thị (Urban 3D Fine Dust &amp; Air Quality Profiling).</p>
+                    <p class="copyright">&copy; 2026 GASCOLAE Platform. All rights reserved.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Căn Cứ Tiêu Chuẩn</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> QCVN 05:2023/BTNMT</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> WHO Global AQG 2021</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> NĐ 288/2025/NĐ-CP (UAV)</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Luật BVMT 2020 (Điều 103)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Danh Mục Assets</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Asset 01: Knowledge Base</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Asset 02: Service Profile</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Asset 04: Operating SOP</a></li>
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Asset 07: Pricing Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Bảo Mật &amp; Miễn Trừ</h4>
+                    <p class="footer-disclaimer">
+                        Số liệu khí phụ trợ NO2/SO2/CO/O3 từ cảm biến low-cost chỉ mang tính chỉ dẫn. Kết quả UAV theo đợt không thay thế quan trắc tuân thủ cố định. Giá bán là dữ liệu Restricted chỉ phát hành bởi Sales/Finance GASCOLAE.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div class="modal-backdrop" id="consultModal">
+        <div class="modal-card glass-card">
+            <button class="modal-close" onclick="closeConsultModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h3>Đăng Ký Tư Vấn Khảo Sát S0298</h3>
+                <p>Điền thông tin để nhận tư vấn phương án kỹ thuật và báo giá chính thức.</p>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleModalSubmit(event)">
+                    <div class="form-group">
+                        <label>Gói dịch vụ quan tâm:</label>
+                        <input type="text" id="modalPackageName" value="Level 2 - Profile 3D & Khí bổ trợ" readonly class="form-control readonly-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Họ tên:</label>
+                        <input type="text" required placeholder="Nguyễn Văn A" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại / Email:</label>
+                        <input type="text" required placeholder="090xxxxxxx hoặc email@org.vn" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block glow-effect">Xác Nhận Đăng Ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="src/script.js"></script>
+</body>
+</html>

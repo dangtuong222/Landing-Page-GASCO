@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#071512" />
+    <title>Không tìm thấy trang | GASCOLAE</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 80% 15%, rgba(57,216,204,.16), transparent 32%),
+          radial-gradient(circle at 12% 90%, rgba(169,239,124,.1), transparent 32%),
+          #071512;
+        color: #dce8e4;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
+      body::before {
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(rgba(190,230,216,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(190,230,216,.05) 1px, transparent 1px);
+        background-size: 60px 60px;
+        content: "";
+        mask-image: radial-gradient(circle, black, transparent 72%);
+      }
+      main { position: relative; width: min(100% - 36px, 640px); text-align: center; }
+      .mark {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        margin: 0 auto 28px;
+        place-items: center;
+        border: 1px solid rgba(169,239,124,.35);
+        border-radius: 17px;
+        color: #a9ef7c;
+        font-size: 24px;
+        box-shadow: 0 0 35px rgba(57,216,204,.12);
+      }
+      .code { margin: 0; color: #a9ef7c; font-size: 12px; font-weight: 700; letter-spacing: .2em; }
+      h1 { margin: 16px 0 0; color: #fff; font-size: clamp(40px, 8vw, 70px); letter-spacing: -.05em; line-height: 1.05; }
+      p:not(.code) { max-width: 500px; margin: 22px auto 0; color: #92a7a1; line-height: 1.75; }
+      .actions { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+      a, button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        border: 1px solid rgba(211,238,229,.16);
+        border-radius: 999px;
+        background: transparent;
+        color: #dce8e4;
+        cursor: pointer;
+        font: 700 12px Inter, "Segoe UI", sans-serif;
+        text-decoration: none;
+      }
+      a { border-color: #a9ef7c; background: #a9ef7c; color: #071512; }
+      @media (max-width: 460px) { .actions { align-items: stretch; flex-direction: column; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="mark" aria-hidden="true">◇</span>
+      <p class="code">ERROR 404</p>
+      <h1>Không tìm thấy trang</h1>
+      <p>Đường dẫn này không tồn tại hoặc đã được thay đổi. Bạn có thể quay lại trung tâm để tiếp tục khám phá 12 giải pháp UAV.</p>
+      <div class="actions">
+        <a data-home-link href="./">Về trung tâm dịch vụ</a>
+        <button type="button" onclick="history.back()">Quay lại trang trước</button>
+      </div>
+    </main>
+    <script>
+      (() => {
+        const link = document.querySelector("[data-home-link]");
+        const suffix = location.pathname.endsWith("/") ? "../" : "./";
+        link.href = new URL(suffix, location.href).href;
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020817"/>
+      <stop offset="100%" stop-color="#0b172a"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="plumeGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(0, 242, 254, 0.5)"/>
+      <stop offset="60%" stop-color="rgba(167, 139, 250, 0.3)"/>
+      <stop offset="100%" stop-color="rgba(0, 242, 254, 0)"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+
+  
+  <rect x="50" y="50" width="1100" height="700" rx="16" fill="rgba(15,23,42,0.9)" stroke="#00f2fe" stroke-width="2"/>
+  <text x="80" y="110" fill="#00f2fe" font-family="Space Grotesk" font-size="28" font-weight="bold">CAPABILITY 03: LANDFILL CH₄ PLUME DISPERSION HEATMAP &amp; HOTSPOTS</text>
+  <text x="80" y="145" fill="#94a3b8" font-family="Inter" font-size="16">Lập bản đồ trực quan đường đo, tín hiệu nồng độ CH₄ tích phân, nền môi trường &amp; vùng phát tán</text>
+
+  <!-- Heatmap circles & contours -->
+  <circle cx="450" cy="400" r="180" fill="rgba(239, 68, 68, 0.25)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="450" cy="400" r="110" fill="rgba(239, 68, 68, 0.4)" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="450" cy="400" r="45" fill="#ef4444"/>
+  <text x="450" y="406" fill="#ffffff" font-family="Space Grotesk" font-size="14" text-anchor="middle" font-weight="bold">HOTSPOT A</text>
+
+  <path d="M 450 400 Q 650 300, 950 250 L 980 480 Q 650 500, 450 400 Z" fill="url(#plumeGrad)"/>
+  <text x="750" y="360" fill="#00f2fe" font-family="Space Grotesk" font-size="18" font-weight="bold">CH₄ Downwind Plume Contour</text>
+
+  <!-- Status Box -->
+  <rect x="80" y="650" width="1040" height="60" rx="8" fill="#020817" stroke="#10b981" stroke-width="1.5"/>
+  <text x="110" y="687" fill="#10b981" font-family="Space Grotesk" font-size="15" font-weight="bold">TRẠNG THÁI: Sẵn Sàng Khảo Sát Dã Chiến | Khoanh vùng chính xác điểm nóng &amp; vệt hạ lưu</text>
+
+</svg>

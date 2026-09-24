@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="350" rx="16" fill="url(#bgGrad3)"/>
+
+  <!-- Official Compliance Document Card -->
+  <g transform="translate(150, 30)">
+    <rect x="0" y="0" width="300" height="290" rx="14" fill="#0B1120" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5"/>
+    
+    <!-- Top Header Ribbon -->
+    <rect x="0" y="0" width="300" height="50" rx="14" fill="#1E293B"/>
+    <text x="150" y="32" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="700" text-anchor="middle">HỒ SƠ PHÊ DUYỆT BÁO NGHỆ</text>
+
+    <!-- Content checklist inside document -->
+    <g transform="translate(25, 75)" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">
+      <rect x="0" y="0" width="250" height="36" rx="6" fill="#1E293B"/>
+      <text x="15" y="22" fill="#10B981" font-weight="700">✓ NĐ 288/2025/NĐ-CP &amp; Luật 49/2024</text>
+
+      <rect x="0" y="48" width="250" height="36" rx="6" fill="#1E293B"/>
+      <text x="15" y="70" fill="#10B981" font-weight="700">✓ OEM Manual (Trina/FirstSolar)</text>
+
+      <rect x="0" y="96" width="250" height="36" rx="6" fill="#1E293B"/>
+      <text x="15" y="118" fill="#10B981" font-weight="700">✓ EHS Cô Lập An Toàn Điện</text>
+
+      <rect x="0" y="144" width="250" height="36" rx="6" fill="#1E293B"/>
+      <text x="15" y="166" fill="#10B981" font-weight="700">✓ BOM Dung Dịch/Nước Tiêu Chuẩn</text>
+    </g>
+
+    <!-- Official Seal Badge -->
+    <g transform="translate(225, 225)">
+      <circle r="36" fill="url(#goldGrad)"/>
+      <circle r="30" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="0" y="-4" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="800" text-anchor="middle">APPROVED</text>
+      <text x="0" y="12" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="9" font-weight="600" text-anchor="middle">GASCOLAE</text>
+    </g>
+  </g>
+
+  <!-- Side Decorative Flight Permit Badge -->
+  <g transform="translate(30, 90)">
+    <rect x="0" y="0" width="100" height="170" rx="10" fill="#1E293B" stroke="rgba(6, 182, 212, 0.3)" stroke-width="1"/>
+    <circle cx="50" cy="45" r="22" fill="#06B6D4" opacity="0.2"/>
+    <path d="M 40 45 L 60 45 M 50 35 L 50 55" stroke="#06B6D4" stroke-width="2"/>
+    <text x="50" y="90" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" text-anchor="middle">FLIGHT PERMIT</text>
+    <text x="50" y="110" fill="#10B981" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">PASSED</text>
+  </g>
+</svg>

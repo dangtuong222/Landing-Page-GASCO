@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="buildingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.8"/>
+    </linearGradient>
+    <radialGradient id="hotspotGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bgGrad2)" rx="12"/>
+
+  <!-- High-Rise Construction Silhouette -->
+  <rect x="180" y="80" width="140" height="280" fill="url(#buildingGrad)" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <rect x="340" y="140" width="120" height="220" fill="url(#buildingGrad)" stroke="#60a5fa" stroke-width="1.5"/>
+
+  <!-- Scaffolding Lines -->
+  <line x1="180" y1="140" x2="320" y2="140" stroke="#93c5fd" stroke-opacity="0.3"/>
+  <line x1="180" y1="200" x2="320" y2="200" stroke="#93c5fd" stroke-opacity="0.3"/>
+  <line x1="180" y1="260" x2="320" y2="260" stroke="#93c5fd" stroke-opacity="0.3"/>
+  <line x1="340" y1="200" x2="460" y2="200" stroke="#93c5fd" stroke-opacity="0.3"/>
+
+  <!-- Hotspot Cloud on top levels -->
+  <circle cx="250" cy="130" r="50" fill="url(#hotspotGlow)"/>
+  <circle cx="250" cy="130" r="18" fill="#ef4444" fill-opacity="0.6"/>
+
+  <!-- Altitude Scan Markers -->
+  <line x1="100" y1="120" x2="500" y2="120" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="105" y="115" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="bold">Tầng 30 (100m) - PM2.5: 68 µg/m³ [Vượt QCVN]</text>
+
+  <line x1="100" y1="220" x2="500" y2="220" stroke="#f59e0b" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="105" y="215" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="bold">Tầng 15 (50m) - PM2.5: 42 µg/m³</text>
+
+  <!-- UAV Icon -->
+  <circle cx="140" cy="120" r="8" fill="#38bdf8"/>
+  <polygon points="140,108 144,116 136,116" fill="#0284c7"/>
+
+  <!-- Card Overlay -->
+  <rect x="20" y="320" width="560" height="60" rx="8" fill="#0f172a" fill-opacity="0.9" stroke="#334155"/>
+  <text x="35" y="345" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="bold">Giám sát Bụi Công Trình Cao Tầng</text>
+  <text x="35" y="365" fill="#94a3b8" font-family="sans-serif" font-size="12">Bay lưới 2D &amp; Profile dọc theo đợt | Xác định Hotspot từng tầng phát sinh bụi</text>
+</svg>

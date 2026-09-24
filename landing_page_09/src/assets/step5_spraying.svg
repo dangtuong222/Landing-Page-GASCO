@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="sprayCone" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0D9488" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="350" rx="16" fill="url(#bgGrad5)"/>
+
+  <!-- Flight Path Line (GNSS RTK) -->
+  <path d="M 50 120 Q 200 60 350 100 T 550 90" fill="none" stroke="#06B6D4" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+  <!-- Drone in Action Spraying -->
+  <g transform="translate(350, 100)">
+    <ellipse cx="0" cy="0" rx="30" ry="12" fill="#1E293B" stroke="#06B6D4" stroke-width="2"/>
+    <circle cx="0" cy="0" r="7" fill="#06B6D4"/>
+    <ellipse cx="-45" cy="0" rx="16" ry="5" fill="rgba(6,182,212,0.5)"/>
+    <ellipse cx="45" cy="0" rx="16" ry="5" fill="rgba(6,182,212,0.5)"/>
+    
+    <!-- Electrostatic Mist Spray Cone -->
+    <polygon points="0,10 -70,140 70,140" fill="url(#sprayCone)"/>
+    
+    <!-- Droplet particles -->
+    <circle cx="-20" cy="70" r="2" fill="#06B6D4"/>
+    <circle cx="15" cy="90" r="2.5" fill="#38BDF8"/>
+    <circle cx="-35" cy="110" r="2" fill="#06B6D4"/>
+    <circle cx="30" cy="120" r="3" fill="#38BDF8"/>
+  </g>
+
+  <!-- Ground PV Panel Array Cleaned -->
+  <g transform="translate(150, 240)">
+    <polygon points="0,0 300,0 260,50 -40,50" fill="#0B1120" stroke="#06B6D4" stroke-width="1.5"/>
+    <line x1="80" y1="0" x2="40" y2="50" stroke="#06B6D4" stroke-width="1"/>
+    <line x1="160" y1="0" x2="120" y2="50" stroke="#06B6D4" stroke-width="1"/>
+    <line x1="240" y1="0" x2="200" y2="50" stroke="#06B6D4" stroke-width="1"/>
+  </g>
+
+  <!-- Realtime Telemetry Overlay Card -->
+  <g transform="translate(40, 40)">
+    <rect x="0" y="0" width="160" height="100" rx="10" fill="#0B1120" opacity="0.9" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+    <text x="15" y="25" fill="#06B6D4" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">TELEMETRY DATA</text>
+    <text x="15" y="48" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10">RTK Status: <tspan fill="#10B981" font-weight="700">FIX (cm)</tspan></text>
+    <text x="15" y="68" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10">Flow Rate: <tspan fill="#38BDF8" font-weight="700">1.8 L/min</tspan></text>
+    <text x="15" y="88" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10">Coverage: <tspan fill="#F59E0B" font-weight="700">98.5%</tspan></text>
+  </g>
+</svg>

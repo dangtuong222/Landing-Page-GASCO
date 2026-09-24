@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <radialGradient id="heat1" cx="40%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#f59e0b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="heat2" cx="70%" cy="60%" r="35%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bgGrad3)" rx="12"/>
+
+  <!-- District Map Grid Lines -->
+  <path d="M 50 100 Q 200 120 350 80 T 550 130" fill="none" stroke="#059669" stroke-width="2"/>
+  <path d="M 80 280 Q 250 240 400 300 T 520 220" fill="none" stroke="#059669" stroke-width="2"/>
+
+  <!-- 2D Spatial Heatmap Overlay -->
+  <rect x="50" y="50" width="500" height="280" rx="8" fill="#047857" fill-opacity="0.15" stroke="#10b981" stroke-dasharray="4 4"/>
+  <circle cx="220" cy="170" r="110" fill="url(#heat1)"/>
+  <circle cx="410" cy="220" r="90" fill="url(#heat2)"/>
+
+  <!-- Map Markers -->
+  <circle cx="220" cy="170" r="6" fill="#ffffff"/>
+  <text x="232" y="175" fill="#fecaca" font-family="sans-serif" font-size="12" font-weight="bold">Hotspot A: 54.2 µg/m³</text>
+
+  <circle cx="410" cy="220" r="6" fill="#ffffff"/>
+  <text x="422" y="225" fill="#fef3c7" font-family="sans-serif" font-size="12" font-weight="bold">Khu B: 41.8 µg/m³</text>
+
+  <!-- Card Overlay -->
+  <rect x="20" y="320" width="560" height="60" rx="8" fill="#064e3b" fill-opacity="0.95" stroke="#059669"/>
+  <text x="35" y="345" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="bold">Lập Bản Đồ Bụi Mịn 2D Quận / Khu Đô Thị</text>
+  <text x="35" y="365" fill="#a7f3d0" font-family="sans-serif" font-size="12">Khảo sát diện tích rộng | Xuất định dạng GeoTIFF, KMZ, SHP đối chiếu QCVN 05:2023</text>
+</svg>

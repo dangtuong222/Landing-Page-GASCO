@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S0299 - Ứng Dụng UAV Phun Vi Hạt Tích Điện Giảm Bụi Mịn PM2.5 | GASCOLAE</title>
+    <meta name="description"
+        content="Dịch vụ S0299 ứng dụng UAV mang hệ phun vi hạt tích điện làm sạch bụi/soiling trên bề mặt module quang điện PV, đo soiling ratio theo tiêu chuẩn IEC 61724-1.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+
+<body>
+
+
+    <!-- Header Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">GASCOLAE <span class="service-tag">S0299</span></span>
+                    <span class="brand-sub">CleanTech & Aerospace O&M</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-link active">Giới thiệu</a>
+                <a href="#problems" class="nav-link">Vấn đề</a>
+                <a href="#solution" class="nav-link">Công nghệ</a>
+                <a href="#interactive-demo" class="nav-link">Mô Phỏng</a>
+                <a href="#use-cases" class="nav-link">Use Cases</a>
+                <a href="#process" class="nav-link">Quy trình</a>
+                <a href="#packages" class="nav-link">Gói dịch vụ</a>
+                <a href="#deliverables" class="nav-link">Đầu ra</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn btn-primary open-modal-btn" id="navCtaBtn">
+                    <i class="fa-regular fa-calendar-check"></i> Đặt Lịch Tư Vấn
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">GASCOLAE PLATFORM • SERVICE ID: S0299</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Ứng Dụng UAV Phun Vi Hạt Tích Điện <span class="gradient-text">Kiểm Soát Soiling PV</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Soiling có thể gây tổn thất năng lượng PV trung bình <strong>4–7%</strong> trên toàn cầu. Dịch
+                        vụ <strong>S0299</strong> kết hợp khảo sát ban đầu, xử lý theo phương án được phê duyệt, đánh
+                        giá trước–sau và báo cáo có truy vết chuẩn <strong>IEC 61724-1</strong>.
+                    </p>
+
+                    <div class="hero-ctas">
+                        <button class="btn btn-primary btn-lg open-modal-btn" data-action="consult">
+                            <i class="fa-solid fa-calendar-plus"></i> Đặt Lịch Tư Vấn Đánh Giá
+                        </button>
+                        <button class="btn btn-secondary btn-lg open-modal-btn" data-action="survey">
+                            <i class="fa-solid fa-clipboard-list"></i> Yêu Cầu Khảo Sát Ban Đầu
+                        </button>
+                    </div>
+
+                    <div class="hero-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">4–7%</span>
+                            <span class="metric-label">Tổn thất soiling toàn cầu (IEA PVPS)</span>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">IEC 61724-1</span>
+                            <span class="metric-label">Chuẩn giám sát Soiling Ratio</span>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">GO/NO-GO</span>
+                            <span class="metric-label">Quy trình an toàn 12 tiêu chí</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="visual-card-frame">
+                        <img src="src/assets/hero_uav_solar.png" alt="UAV Phun vi hạt tích điện làm sạch pin mặt trời"
+                            class="hero-img">
+                        <div class="overlay-glass-card top-left">
+                            <i class="fa-solid fa-crosshairs icon-cyan"></i>
+                            <div>
+                                <strong>GNSS RTK Precision</strong>
+                                <span>Định vị chính xác cỡ cm</span>
+                            </div>
+                        </div>
+                        <div class="overlay-glass-card bottom-right">
+                            <i class="fa-solid fa-bolt-lightning icon-amber"></i>
+                            <div>
+                                <strong>Electrostatic Mist</strong>
+                                <span>Phun vi hạt tĩnh điện không tiếp xúc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graphic #1: Interactive Before/After Drag Comparison Slider Section -->
+        <section class="section comparison-slider-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">TRỰC QUAN HÓA SOILING</span>
+                    <h2 class="section-title">Kéo Thanh Trượt So Sánh Trước & Sau Làm Sạch</h2>
+                    <p class="section-desc">Kéo con trỏ sang trái/phải để đối chiếu trực tiếp giữa bề mặt bị bám bụi mịn
+                        PM2.5 và bề mặt sạch sau khi làm sạch tĩnh điện.</p>
+                </div>
+
+                <div class="before-after-container" id="beforeAfterSlider">
+                    <div class="img-layer after-layer">
+                        <img src="src/assets/clean_shiny_pv.png" alt="Clean Panel Surface">
+                        <span class="slider-badge badge-after"><i class="fa-solid fa-sparkles"></i> Sau Khi Làm Sạch (SR
+                            ~98.5%)</span>
+                    </div>
+                    <div class="img-layer before-layer" id="beforeLayer">
+                        <img src="src/assets/soiling_dusty_pv.png" alt="Dusty Panel Surface">
+                        <span class="slider-badge badge-before"><i class="fa-solid fa-dust"></i> Trước Khi Xử Lý (Bụi
+                            Soiling bám)</span>
+                    </div>
+                    <div class="slider-handle" id="sliderHandle">
+                        <div class="handle-line"></div>
+                        <div class="handle-button">
+                            <i class="fa-solid fa-left-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Problems Section -->
+        <section class="section problems-section" id="problems">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">THÁCH THỨC VẬN HÀNH</span>
+                    <h2 class="section-title">Vấn Đề Soiling & Bụi Mịn Trên Hệ Thống Quang Điện</h2>
+                    <p class="section-desc">
+                        Bụi bám (soiling) và vật chất dạng hạt khí quyển làm giảm đáng kể khả năng thu nhận bức xạ của
+                        module PV nếu không có phương án đánh giá và làm sạch phù hợp.
+                    </p>
+                </div>
+
+                <div class="grid-2-cols problems-wrapper">
+                    <div class="problems-grid">
+                        <div class="problem-card">
+                            <div class="card-icon text-amber">
+                                <i class="fa-solid fa-chart-line-down"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3>Suy Giảm Năng Suất Phát Điện</h3>
+                                <p>Tổn thất do soiling trung bình toàn cầu từ 4–7%, đặc biệt ở vùng ô nhiễm nặng hoặc
+                                    mùa khô có thể làm suy giảm hiệu suất phát điện nghiêm trọng (IEA PVPS T13-21).</p>
+                                <span class="source-tag">Nguồn: SRC-10, SRC-11</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="card-icon text-cyan">
+                                <i class="fa-solid fa-smog"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3>Aerosol vs Bụi Bám Bề Mặt</h3>
+                                <p>PM2.5 trong khí quyển làm suy giảm bức xạ tới, còn soiling là bụi bám bề mặt. Hai cơ
+                                    chế khác nhau cần phương pháp đo lường và đánh giá tách biệt.</p>
+                                <span class="source-tag">Nguồn: SRC-12, SRC-13</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="card-icon text-emerald">
+                                <i class="fa-solid fa-file-shield"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3>Ràng Buộc Khắt Khe Từ Manual OEM</h3>
+                                <p>Trina, First Solar, Canadian Solar quy định nghiêm ngặt về pH (6–8), độ cứng CaCO3
+                                    (≤600mg/L), TDS (&lt;1500mg/L), áp lực (&le;4MPa/35bar) và chênh nhiệt (&le;20°C).
+                                </p>
+                                <span class="source-tag">Nguồn: SRC-32, SRC-33, SRC-34</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="card-icon text-blue">
+                                <i class="fa-solid fa-calendar-xmark"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3>Thiếu Dữ Liệu Quyết Định Chu Kỳ Vệ Sinh</h3>
+                                <p>Chưa có một chu kỳ vệ sinh tối ưu chung cho Việt Nam. Việc can thiệp cần dựa trên dữ
+                                    liệu soiling ratio thực tế theo mùa và địa bàn cụ thể.</p>
+                                <span class="source-tag">Nguồn: SRC-09, G6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="problem-visual-box">
+                        <div class="visual-img-container">
+                            <img src="src/assets/problem_soiling_impact.svg"
+                                alt="Sơ đồ phân tích 2 cơ chế soiling và aerosol" class="problem-img">
+                            <div class="img-caption">
+                                <i class="fa-solid fa-magnifying-glass"></i> Sơ đồ minh họa phân tách 2 cơ chế: Aerosol
+                                khí quyển & Bụi soiling bám bề mặt kính.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graphic #4: Interactive OEM Compliance Meters & Gauges Section -->
+        <section class="section oem-gauges-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">TUÂN THỦ HÃNG SẢN XUẤT</span>
+                    <h2 class="section-title">Bảng Thông Số Kỹ Thuật Nước & Áp Lực Theo OEM Manual</h2>
+                    <p class="section-desc">GASCOLAE cài đặt ngưỡng vận hành phun chính xác theo tài liệu chỉ dẫn kỹ
+                        thuật từng dòng tấm pin (Trina Solar, First Solar, Canadian Solar).</p>
+                </div>
+
+                <div class="grid-3-cols oem-grid">
+                    <!-- Trina Solar -->
+                    <div class="oem-card">
+                        <div class="oem-brand-header">
+                            <i class="fa-solid fa-sun icon-amber"></i>
+                            <div>
+                                <h4>Trina Solar</h4>
+                                <span>Vertex Series Manual</span>
+                            </div>
+                        </div>
+                        <div class="gauge-list">
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>pH Nước: 6.0 - 8.0</span> <strong class="text-emerald">Đạt
+                                        chuẩn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Độ cứng CaCO3: &le;600 mg/L</span> <strong
+                                        class="text-emerald">Đạt chuẩn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Áp lực tối đa: &le;4.0 MPa</span> <strong
+                                        class="text-cyan">An toàn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill meter-cyan" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- First Solar -->
+                    <div class="oem-card">
+                        <div class="oem-brand-header">
+                            <i class="fa-solid fa-solar-panel icon-cyan"></i>
+                            <div>
+                                <h4>First Solar</h4>
+                                <span>Series 4 Cleaning Note</span>
+                            </div>
+                        </div>
+                        <div class="gauge-list">
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>TDS Nước: &lt;1500 mg/L</span> <strong
+                                        class="text-emerald">Đạt chuẩn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>pH Nước: 6.5 - 8.5</span> <strong class="text-emerald">Đạt
+                                        chuẩn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Chênh nhiệt &le;20°C</span> <strong class="text-amber">Cần
+                                        kiểm soát</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill meter-amber" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canadian Solar -->
+                    <div class="oem-card">
+                        <div class="oem-brand-header">
+                            <i class="fa-solid fa-leaf icon-emerald"></i>
+                            <div>
+                                <h4>Canadian Solar</h4>
+                                <span>Standard Installation Manual</span>
+                            </div>
+                        </div>
+                        <div class="gauge-list">
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Nước ít khoáng / Trung tính</span> <strong
+                                        class="text-emerald">Đạt chuẩn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Áp lực tối đa: &le;4.0 MPa</span> <strong
+                                        class="text-cyan">An toàn</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill meter-cyan" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            <div class="gauge-item">
+                                <div class="gauge-info"><span>Vệ sinh lúc module mát</span> <strong
+                                        class="text-emerald">Khuyến nghị</strong></div>
+                                <div class="meter-bar">
+                                    <div class="meter-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution & Technology Section -->
+        <section class="section solution-section" id="solution">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">GIẢI PHÁP ĐỀ XUẤT</span>
+                    <h2 class="section-title">Công Nghệ UAV Phun Vi Hạt Tích Điện S0299</h2>
+                    <p class="section-desc">
+                        Sử dụng UAV đa rotor mang hệ phun vi hạt tĩnh điện không tiếp xúc cơ học, kết hợp khảo sát
+                        baseline và đo soiling ratio chuẩn hóa.
+                    </p>
+                </div>
+
+                <div class="grid-2-cols solution-grid">
+                    <div class="solution-media">
+                        <div class="media-frame">
+                            <img src="src/assets/electrostatic_technology.svg" alt="Đầu phun vi hạt tích điện UAV"
+                                class="solution-img">
+                            <div class="tech-badge">
+                                <i class="fa-solid fa-atom"></i> Electrostatic Droplet Charge
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="solution-details">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-drone"></i></div>
+                            <div class="feature-text">
+                                <h4>Nền Tảng UAV Hạng Nặng & GNSS RTK</h4>
+                                <p>Định vị động chính xác cỡ milimet/centimet, đảm bảo tuyến bay ổn định theo ranh giới
+                                    và layout dãy module đã được thiết kế sẵn (SRC-26).</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                            <div class="feature-text">
+                                <h4>Hệ Phun Vi Hạt Nước / Dung Dịch Tích Điện</h4>
+                                <p>Tạo các vi hạt sương được tích điện tĩnh, hỗ trợ tăng khả năng bám dính và tiếp cận
+                                    bụi mịn trên bề mặt kính mà không cần chà xát cơ học (SRC-17).</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            <div class="feature-text">
+                                <h4>Đo Soiling Ratio Theo IEC 61724-1:2021</h4>
+                                <p>Thu thập dữ liệu baseline trước–sau, tính toán tỷ số soiling (SR) minh bạch, giúp chủ
+                                    đầu tư theo dõi hiệu quả thực tế có bằng chứng (SRC-21).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gaps Notice Box -->
+                <div class="gap-notice-box">
+                    <div class="gap-header">
+                        <i class="fa-solid fa-triangle-exclamation icon-amber"></i>
+                        <h4>Minh Bạch Ranh Giới Bằng Chứng & Điều Kiện Kỹ Thuật (G1–G6)</h4>
+                    </div>
+                    <div class="gap-body">
+                        <ul>
+                            <li><strong>G1 (Giá):</strong> Bảng giá báo khách do Sales/Finance chốt; AI không tự ý báo
+                                giá cố định.</li>
+                            <li><strong>G2 (Cấu hình):</strong> BOM payload, bình/bơm/đầu phun chính thức cần Technical
+                                thử tải & nghiệm thu.</li>
+                            <li><strong>G3 (Hiệu quả):</strong> Tỷ lệ phục hồi thực tế được kiểm chứng qua thử nghiệm
+                                khu vực kiểm soát tại site.</li>
+                            <li><strong>G4 (Pháp lý):</strong> Hoạt động bay tuân thủ Luật 49/2024/QH15 & NĐ
+                                288/2025/NĐ-CP; cơ quan thẩm quyền cấp phép.</li>
+                            <li><strong>G5 (Module/AR):</strong> Chất lượng nước/áp lực đối chiếu đúng manual OEM của
+                                Trina, First Solar, Canadian Solar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Section -->
+        <section class="section interactive-demo-section" id="interactive-demo">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">MÔ PHỎNG TƯƠNG TÁC THỜI GIAN THỰC</span>
+                    <h2 class="section-title">Mô Phỏng Phun Tĩnh Điện & Đồ Thị Phục Hồi Năng Suất</h2>
+                    <p class="section-desc">Trải nghiệm tương tác mô phỏng cơ chế hạt vi tĩnh điện bám dính và biểu đồ
+                        hiệu quả Soiling Ratio theo IEC 61724-1.</p>
+                </div>
+
+                <div class="grid-2-cols demo-grid">
+                    <!-- Canvas #1: Electrostatic Mist Simulator -->
+                    <div class="demo-card">
+                        <div class="demo-card-header">
+                            <i class="fa-solid fa-atom text-cyan"></i>
+                            <h4>Mô Phỏng Vi Hạt Phun Tĩnh Điện (Canvas)</h4>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="electrostaticCanvas" width="500" height="250"></canvas>
+                            <div class="canvas-controls">
+                                <button class="btn btn-sm btn-outline" id="toggleParticleAnim">
+                                    <i class="fa-solid fa-pause"></i> Tạm Dừng / Chạy Mô Phỏng
+                                </button>
+                                <span class="canvas-badge"><i class="fa-solid fa-bolt text-amber"></i> Droplet Charge:
+                                    Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canvas #2 / SVG Graphic: Soiling Ratio Curve Chart -->
+                    <div class="demo-card">
+                        <div class="demo-card-header">
+                            <i class="fa-solid fa-chart-area text-emerald"></i>
+                            <h4>Đồ Thị Soiling Ratio (SR) Trước & Sau Xử Lý</h4>
+                        </div>
+                        <div class="chart-container-box">
+                            <svg class="interactive-chart-svg" viewBox="0 0 500 250" preserveAspectRatio="none">
+                                <!-- Grid lines -->
+                                <line x1="50" y1="30" x2="470" y2="30" stroke="rgba(255,255,255,0.08)"
+                                    stroke-dasharray="4" />
+                                <line x1="50" y1="90" x2="470" y2="90" stroke="rgba(255,255,255,0.08)"
+                                    stroke-dasharray="4" />
+                                <line x1="50" y1="150" x2="470" y2="150" stroke="rgba(255,255,255,0.08)"
+                                    stroke-dasharray="4" />
+                                <line x1="50" y1="210" x2="470" y2="210" stroke="rgba(255,255,255,0.2)" />
+
+                                <!-- Y Axis Labels -->
+                                <text x="15" y="35" fill="#94A3B8" font-size="11">100% SR</text>
+                                <text x="15" y="95" fill="#94A3B8" font-size="11">95% SR</text>
+                                <text x="15" y="155" fill="#94A3B8" font-size="11">90% SR</text>
+                                <text x="15" y="215" fill="#94A3B8" font-size="11">85% SR</text>
+
+                                <!-- Area Fill under curve -->
+                                <path d="M 50,160 Q 150,200 240,190 T 320,50 L 470,45 L 470,210 L 50,210 Z"
+                                    fill="url(#chartGradient)" opacity="0.3" />
+
+                                <!-- Curve path -->
+                                <path d="M 50,160 Q 150,200 240,190 T 320,50 L 470,45" fill="none" stroke="#06B6D4"
+                                    stroke-width="4" id="chartCurvePath" />
+
+                                <!-- Interactive Data Points -->
+                                <circle cx="50" cy="160" r="6" fill="#F59E0B">
+                                    <title>Tuần 1: 91% SR</title>
+                                </circle>
+                                <circle cx="150" cy="200" r="6" fill="#F59E0B">
+                                    <title>Bụi tích tụ: 86% SR</title>
+                                </circle>
+                                <circle cx="240" cy="190" r="6" fill="#F59E0B">
+                                    <title>Khảo sát Baseline S0299</title>
+                                </circle>
+                                <circle cx="320" cy="50" r="8" fill="#10B981" class="pulse-point">
+                                    <title>Sau khi Phun UAV: 98.2% SR</title>
+                                </circle>
+                                <circle cx="470" cy="45" r="6" fill="#10B981">
+                                    <title>Duy trì hiệu suất cao</title>
+                                </circle>
+
+                                <!-- Gradient Definition -->
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#06B6D4" />
+                                        <stop offset="100%" stop-color="transparent" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="dot amber"></span> Bụi Tích Tụ (Suy Giảm
+                                    ~14%)</span>
+                                <span class="legend-item"><span class="dot emerald"></span> Sau Khi Phun UAV S0299
+                                    (~98.2% SR)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="section usecases-section" id="use-cases">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">TRƯỜNG HỢP SỬ DỤNG</span>
+                    <h2 class="section-title">5 Use Cases Chuẩn Hóa Của Dịch Vụ S0299</h2>
+                    <p class="section-desc">Được thiết kế linh hoạt cho các giai đoạn khảo sát, xử lý theo đợt và theo
+                        dõi O&M định kỳ.</p>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="tabs-header" id="usecaseTabs">
+                    <button class="tab-btn active" data-tab="uc1">UC1: Khảo Sát Baseline</button>
+                    <button class="tab-btn" data-tab="uc2">UC2: Vệ Sinh Theo Đợt</button>
+                    <button class="tab-btn" data-tab="uc3">UC3: Sau Sự Kiện Bụi</button>
+                    <button class="tab-btn" data-tab="uc4">UC4: Theo Dõi Xu Hướng</button>
+                    <button class="tab-btn" data-tab="uc5">UC5: Đánh Giá Tài Sản</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-content-wrapper">
+                    <div class="tab-pane active" id="uc1">
+                        <div class="grid-2-cols tab-grid">
+                            <div class="tab-info">
+                                <span class="uc-badge">UC1 • Khảo sát & Baseline</span>
+                                <h3>Khảo Sát Baseline & Đánh Giá Soiling Ratio Ban Đầu</h3>
+                                <p>Thực hiện ghi nhận hiện trạng bề mặt module, thu thập chỉ số Soiling Ratio nền trước
+                                    khi quyết định can thiệp làm sạch.</p>
+                                <ul class="uc-list">
+                                    <li><strong>Input:</strong> Layout ranh giới, model module, lịch sử sản lượng nếu
+                                        có.</li>
+                                    <li><strong>Phương pháp:</strong> Quan sát và đo soiling ratio chuẩn IEC 61724-1.
+                                    </li>
+                                    <li><strong>Output:</strong> Deliverables D1, D3, D4, D7 (Báo cáo baseline & giới
+                                        hạn).</li>
+                                </ul>
+                            </div>
+                            <div class="tab-card-preview">
+                                <div class="visual-img-container">
+                                    <img src="src/assets/uav_flight_grid.svg" alt="Sơ đồ tuyến bay RTK khảo sát baseline"
+                                        class="problem-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="uc2">
+                        <div class="grid-2-cols tab-grid">
+                            <div class="tab-info">
+                                <span class="uc-badge">UC2 • Vệ sinh theo đợt</span>
+                                <h3>Vệ Sinh Theo Đợt Đã Được Phê Duyệt Cấu Hình</h3>
+                                <p>Triển khai làm sạch bằng UAV phun vi hạt tĩnh điện trên diện tích đã xác định sau khi
+                                    đạt thử nghiệm vùng kiểm soát.</p>
+                                <ul class="uc-list">
+                                    <li><strong>Input:</strong> Kế hoạch bay, nước/dung dịch được duyệt, biên bản
+                                        GO/NO-GO.</li>
+                                    <li><strong>Phương pháp:</strong> Phun theo tuyến tự động + Đo soiling trước–sau.
+                                    </li>
+                                    <li><strong>Output:</strong> Deliverables D1–D5, D7 (Nhật ký UAV & Báo cáo kết quả
+                                        đợt).</li>
+                                </ul>
+                            </div>
+                            <div class="tab-card-preview">
+                                <div class="visual-img-container">
+                                    <img src="src/assets/uav_batch_cleaning.svg"
+                                        alt="Xử lý tuyến phun có kiểm soát UAV S0299" class="problem-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="uc3">
+                        <div class="grid-2-cols tab-grid">
+                            <div class="tab-info">
+                                <span class="uc-badge">UC3 • Sự kiện đặc biệt</span>
+                                <h3>Xử Lý Sau Sự Kiện Bụi Bão Mùa Hoặc Thi Công Lân Cận</h3>
+                                <p>Can thiệp kịp thời khi bề mặt pin tích tụ lượng bụi đột biến sau các sự kiện thời
+                                    tiết hoặc công trình xây dựng xung quanh.</p>
+                                <ul class="uc-list">
+                                    <li><strong>Input:</strong> Báo cáo hiện trường sự kiện, khảo sát bề mặt nhanh.</li>
+                                    <li><strong>Phương pháp:</strong> Đánh giá rủi ro -> GO/NO-GO -> Phun khoanh vùng.
+                                    </li>
+                                    <li><strong>Output:</strong> Hồ sơ nhiệm vụ & Báo cáo kết quả khắc phục sự cố.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-card-preview">
+                                <div class="visual-img-container">
+                                    <img src="src/assets/emergency_dust_response.svg" alt="Ứng phó sự cố soiling đột biến"
+                                        class="problem-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="uc4">
+                        <div class="grid-2-cols tab-grid">
+                            <div class="tab-info">
+                                <span class="uc-badge">UC4 • O&M Định kỳ</span>
+                                <h3>Theo Dõi Xu Hướng Soiling Phục Vụ Lập Lịch O&M</h3>
+                                <p>Thu thập và phân tích chuỗi dữ liệu soiling qua nhiều kỳ nhằm tư vấn thời điểm can
+                                    thiệp kinh tế nhất cho nhà máy.</p>
+                                <ul class="uc-list">
+                                    <li><strong>Input:</strong> Dữ liệu soiling nhiều kỳ, bức xạ, thời tiết mưa/nắng.
+                                    </li>
+                                    <li><strong>Phương pháp:</strong> Phân tích xu hướng theo IEC TS 61724-3.</li>
+                                    <li><strong>Output:</strong> Deliverable D6 (Báo cáo xu hướng & Lịch O&M đề xuất).
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-card-preview">
+                                <div class="visual-img-container">
+                                    <img src="src/assets/om_trend_dashboard.svg" alt="Phân tích xu hướng soiling O&M"
+                                        class="problem-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="uc5">
+                        <div class="grid-2-cols tab-grid">
+                            <div class="tab-info">
+                                <span class="uc-badge">UC5 • Thẩm định tài sản</span>
+                                <h3>Đánh Giá Tình Trạng Soiling Phục Vụ Thẩm Định Tài Sản</h3>
+                                <p>Cung cấp báo cáo độc lập về mức độ bụi bám và tình trạng bề mặt cho nhà đầu tư, chủ
+                                    sở hữu hoặc bên kiểm toán tài sản PV.</p>
+                                <ul class="uc-list">
+                                    <li><strong>Input:</strong> Hồ sơ nhà máy, yêu cầu đánh giá độc lập.</li>
+                                    <li><strong>Phương pháp:</strong> Lập bản đồ soiling ratio trên toàn dự án.</li>
+                                    <li><strong>Output:</strong> Báo cáo thẩm định soiling ratio có truy vết minh bạch.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-card-preview">
+                                <div class="visual-img-container">
+                                    <img src="src/assets/asset_audit_report.svg" alt="Thẩm định tài sản soiling ratio"
+                                        class="problem-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Step Section -->
+        <section class="section process-section" id="process">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">QUY TRÌNH NGHIÊM NGẶT</span>
+                    <h2 class="section-title">6 Bước Triển Khai Dịch Vụ S0299</h2>
+                    <p class="section-desc">Đảm bảo an toàn tuyệt đối cho công trình, tuân thủ pháp lý và đạt chất lượng
+                        dữ liệu cao nhất.</p>
+                </div>
+
+                <div class="process-visual-grid">
+                    <!-- Step 1 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step1_intake.svg" alt="Bước 1 - Tiếp Nhận & Phạm Vi">
+                            <span class="step-number-badge">01</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-map"></i> GIS Scope</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-file-code"></i> OEM Manual</span>
+                            </div>
+                            <h3>Bước 1: Tiếp Nhận & Phạm Vi</h3>
+                            <p>Thu thập layout ranh giới dự án (.KML), model module pin, manual OEM (Trina, First Solar, Canadian Solar) và lịch sử soiling tại hiện trường.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step2_baseline.svg" alt="Bước 2 - Khảo Sát & Baseline">
+                            <span class="step-number-badge">02</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-crosshairs"></i> GNSS RTK</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-chart-simple"></i> IEC 61724-1</span>
+                            </div>
+                            <h3>Bước 2: Khảo Sát & Baseline</h3>
+                            <p>Khảo sát hiện trường, thu thập dữ liệu chỉ số Soiling Ratio nền ban đầu (Baseline) và lập thiết kế đường bay tự động theo chuẩn RTK.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step3_approval.svg" alt="Bước 3 - Duyệt Cấu Hình & Pháp Lý">
+                            <span class="step-number-badge">03</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-scale-balanced"></i> Luật 49/2024</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-shield-halved"></i> EHS Điện</span>
+                            </div>
+                            <h3>Bước 3: Duyệt Cấu Hình & Pháp Lý</h3>
+                            <p>Technical duyệt BOM dung dịch/nước, Pháp chế xác nhận hồ sơ bay (NĐ 288/2025/NĐ-CP), EHS phê duyệt phương án cô lập an toàn điện.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step4_gonogo.svg" alt="Bước 4 - GO/NO-GO & Vùng Thử">
+                            <span class="step-number-badge">04</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-clipboard-check"></i> 12 Tiêu Chí</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-vial"></i> Control Test</span>
+                            </div>
+                            <h3>Bước 4: GO/NO-GO & Vùng Thử</h3>
+                            <p>Kiểm tra 12 điều kiện GO/NO-GO khắt khe tại hiện trường (tốc độ gió, nhiệt độ, áp lực). Phun thử nghiệm vùng kiểm soát trước khi nhân rộng.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step5_spraying.svg" alt="Bước 5 - Phun Tuyến & Thu Dữ Liệu">
+                            <span class="step-number-badge">05</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-drone"></i> Phun Tự Động</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-database"></i> Telemetry D2</span>
+                            </div>
+                            <h3>Bước 5: Phun Tuyến & Thu Dữ Liệu</h3>
+                            <p>Vận hành UAV phun vi hạt tích điện theo tuyến tự động đã duyệt. Ghi nhận nhật ký nhiệm vụ telemetry D2 và đo Soiling Ratio sau can thiệp.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="process-card-visual">
+                        <div class="step-img-box">
+                            <img src="src/assets/step6_handover.svg" alt="Bước 6 - QA/QC & Bàn Giao">
+                            <span class="step-number-badge">06</span>
+                        </div>
+                        <div class="step-card-content">
+                            <div class="step-tags-row">
+                                <span class="step-tag-pill"><i class="fa-solid fa-certificate"></i> QA/QC Certified</span>
+                                <span class="step-tag-pill"><i class="fa-solid fa-box-archive"></i> Deliverables D1–D7</span>
+                            </div>
+                            <h3>Bước 6: QA/QC & Bàn Giao</h3>
+                            <p>Kiểm tra chất lượng dữ liệu, đánh giá độ không chắc chắn (Uncertainty Analysis) và chính thức bàn giao trọn bộ sản phẩm Deliverables D1–D7.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Levels / Packages Section -->
+        <section class="section packages-section" id="packages">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">GÓI DỊCH VỤ DEPLOYMENT</span>
+                    <h2 class="section-title">Lựa Chọn Cấp Độ Dịch Vụ Phù Hợp</h2>
+                    <p class="section-desc">Cung cấp theo dải diện tích ($m^2$) với cấu hình kỹ thuật và sản phẩm bàn
+                        giao rõ ràng.</p>
+                </div>
+
+                <div class="grid-3-cols packages-grid">
+                    <!-- Level 1 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <span class="lvl-badge">LEVEL 1</span>
+                            <h3>Khảo Sát & Baseline</h3>
+                            <p>Đánh giá tình trạng soiling ban đầu. Không thực hiện phun làm sạch.</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="pkg-features">
+                                <li><i class="fa-solid fa-check text-emerald"></i> Khảo sát hiện trường & bề mặt pin
+                                </li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Đo Soiling Ratio chuẩn IEC 61724-1
+                                </li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Báo cáo hiện trạng & ranh giới</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Deliverables: D1, D3, D4, D7</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <button class="btn btn-outline btn-full open-modal-btn" data-level="Level 1">
+                                <i class="fa-solid fa-calculator"></i> Nhận Báo Giá Level 1
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Level 2 (Featured) -->
+                    <div class="package-card featured">
+                        <div class="popular-tag">ĐỀ XUẤT CHÍNH</div>
+                        <div class="package-header">
+                            <span class="lvl-badge highlight">LEVEL 2</span>
+                            <h3>Vệ Sinh UAV Theo Đợt</h3>
+                            <p>Phun vi hạt tích điện theo phạm vi & cấu hình đã được phê duyệt.</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="pkg-features">
+                                <li><i class="fa-solid fa-check text-emerald"></i> Tất cả quyền lợi của Level 1</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Thử nghiệm vùng kiểm soát trước khi
+                                    phun</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> UAV phun vi hạt tích điện tuyến tự
+                                    động</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Đo Soiling Ratio Trước–Sau có truy
+                                    vết</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Deliverables: D1, D2, D3, D4, D5, D7
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <button class="btn btn-primary btn-full open-modal-btn" data-level="Level 2">
+                                <i class="fa-solid fa-paper-plane"></i> Yêu Cầu Báo Giá Level 2
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Level 3 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <span class="lvl-badge">LEVEL 3</span>
+                            <h3>Chương Trình O&M Định Kỳ</h3>
+                            <p>Theo dõi nhiều chu kỳ và phân tích xu hướng hiệu suất dài hạn.</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="pkg-features">
+                                <li><i class="fa-solid fa-check text-emerald"></i> Nhiều đợt triển khai Level 2 lặp lại
+                                </li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Phân tích xu hướng soiling qua các
+                                    mùa</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Tư vấn điều chỉnh chu kỳ vệ sinh tối
+                                    ưu</li>
+                                <li><i class="fa-solid fa-check text-emerald"></i> Full Deliverables: D1 đến D7</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <button class="btn btn-outline btn-full open-modal-btn" data-level="Level 3">
+                                <i class="fa-solid fa-calculator"></i> Nhận Báo Giá Level 3
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="pricing-disclaimer text-center">
+                    <i class="fa-solid fa-circle-info"></i> Giá chính xác do GASCOLAE Sales/Finance chốt sau khi duyệt
+                    ranh giới diện tích ($m^2$) và điều kiện khảo sát thực tế.
+                </p>
+            </div>
+        </section>
+
+        <!-- Key Deliverables Section -->
+        <section class="section deliverables-section" id="deliverables">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">SẢN PHẨM BÀN GIAO</span>
+                    <h2 class="section-title">Bộ Deliverables Bàn Giao D1 – D7</h2>
+                    <p class="section-desc">Báo cáo minh bạch, dữ liệu có truy vết đáp ứng tiêu chuẩn quản lý tài sản
+                        PV.</p>
+                </div>
+
+                <div class="deliverables-visual-grid">
+                    <!-- D1 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d1.svg" alt="Preview Deliverable D1">
+                            <span class="deliv-badge-id">D1</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-file-pdf text-amber"></i> PDF / PERMIT</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D1 • Kế Hoạch Nhiệm Vụ & Hồ Sơ Phép Bay</h4>
+                            <p>Hồ sơ hỗ trợ xin phép bay theo NĐ 288/2025/NĐ-CP và Luật 49/2024/QH15. Bao gồm bản đồ VN-2000 và quy trình khẩn cấp.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-shield-check text-emerald"></i> Pháp lý chuẩn</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D1">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D1
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D2 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d2.svg" alt="Preview Deliverable D2">
+                            <span class="deliv-badge-id">D2</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-file-csv text-cyan"></i> CSV / LOG</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D2 • Nhật Ký Hoạt Động UAV & Telemetry Payload</h4>
+                            <p>Ghi nhận chi tiết thời gian bay, tọa độ GNSS RTK, lượng dung dịch tiêu thụ và nhật ký vận hành hiện trường.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-route text-cyan"></i> RTK Precision</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D2">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D2
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D3 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d3.svg" alt="Preview Deliverable D3">
+                            <span class="deliv-badge-id">D3</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-chart-line text-emerald"></i> IEC 61724-1</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D3 • Dữ Liệu Baseline & Soiling Ratio (SR)</h4>
+                            <p>Tập dữ liệu đo đạc chỉ số Soiling Ratio thu thập tại hiện trường trước và sau khi làm sạch có truy vết minh bạch.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-circle-check text-emerald"></i> SR ~98.5%</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D3">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D3
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D4 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d4.svg" alt="Preview Deliverable D4">
+                            <span class="deliv-badge-id">D4</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-microscope text-amber"></i> QA/QC REPORT</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D4 • Báo Cáo QA/QC & Độ Bất Định Uncertainty</h4>
+                            <p>Trình bày kết quả quan sát, đánh giá độ không chắc chắn (Uncertainty Analysis) và phương pháp QA/QC minh bạch.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-chart-column text-amber"></i> u = ±1.2%</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D4">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D4
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D5 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d5.svg" alt="Preview Deliverable D5">
+                            <span class="deliv-badge-id">D5</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-calendar-days text-blue"></i> O&M SCHEDULE</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D5 • Khuyến Nghị Chu Kỳ Vệ Sinh O&M Tối Ưu</h4>
+                            <p>Bản đề xuất thời điểm làm sạch tiếp theo dựa trên dữ liệu tốc độ bám bụi thực tế và điểm hòa vốn kinh tế tại site.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-coins text-emerald"></i> Tối ưu ROI</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D5">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D5
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D6 Card -->
+                    <div class="deliv-visual-card">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d6.svg" alt="Preview Deliverable D6">
+                            <span class="deliv-badge-id">D6</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-chart-pie text-cyan"></i> LEVEL 3 TREND</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D6 • Báo Cáo Xu Hướng Hiệu Suất Nhiều Kỳ</h4>
+                            <p>Tổng hợp chuỗi biến động Soiling Ratio qua nhiều đợt theo dõi hàng năm (Level 3) giúp chủ đầu tư lập lịch O&M dài hạn.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-timeline text-cyan"></i> Multi-Cycle</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D6">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D6
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D7 Card -->
+                    <div class="deliv-visual-card full-width">
+                        <div class="deliv-thumb-box">
+                            <img src="src/assets/deliv_d7.svg" alt="Preview Deliverable D7">
+                            <span class="deliv-badge-id">D7</span>
+                            <span class="deliv-fmt-tag"><i class="fa-solid fa-clipboard-question text-amber"></i> ACTION AUDIT</span>
+                        </div>
+                        <div class="deliv-body">
+                            <h4>D7 • Khuyến Nghị Hành Động Kiểm Tra Chuyên Sâu Tiếp Theo</h4>
+                            <p>Ghi nhận các bất thường quan sát được trong phạm vi cảm biến. Cung cấp chỉ dẫn chính xác để đội kĩ thuật khảo sát Thermography chuyên sâu khi cần.</p>
+                            <div class="deliv-footer">
+                                <span class="deliv-meta"><i class="fa-solid fa-triangle-exclamation text-amber"></i> Minh bạch ranh giới</span>
+                                <button class="btn btn-sm btn-outline open-deliv-modal" data-deliv="D7">
+                                    <i class="fa-solid fa-eye"></i> Xem Mẫu D7
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section faq-section" id="faq">
+            <div class="container text-narrow">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">GIẢI ĐÁP THẮC MẮC</span>
+                    <h2 class="section-title">Câu Hỏi Thường Gặp (FAQ)</h2>
+                    <p class="section-desc">Thông tin làm rõ về mặt kỹ thuật, an toàn và quy trình triển khai S0299.</p>
+                </div>
+
+                <div class="faq-accordion" id="faqAccordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>1. Dịch vụ S0299 hoạt động như thế nào?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>S0299 ứng dụng UAV mang hệ phun vi hạt tĩnh điện theo tuyến bay được duyệt, kết hợp khảo
+                                sát baseline ban đầu, thử nghiệm khu vực kiểm soát, đánh giá Soiling Ratio trước–sau và
+                                xuất báo cáo chuẩn IEC 61724-1.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>2. Vì sao soiling lại quan trọng với năng suất pin mặt trời?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Bụi bám (soiling) làm ngăn cản bức xạ mặt trời chiếu vào tế bào quang điện. Theo IEA
+                                PVPS, tổn thất do soiling trung bình toàn cầu gây giảm 4–7% sản lượng điện năng hàng
+                                năm.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>3. Phun vi hạt tích điện có làm hại kính hoặc lớp phủ AR coating không?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Dịch vụ không tiếp xúc cơ học chà xát. Chất lượng nước, pH, độ cứng và áp lực phun đều
+                                được đối chiếu tuân thủ nghiêm ngặt manual OEM của hãng sản xuất pin (Trina, First
+                                Solar, Canadian Solar) trước khi triển khai.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>4. S0299 có cam kết chắc chắn tỷ lệ tăng sản lượng hay tiết kiệm nước không?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Không. Mức độ phục hồi thực tế phụ thuộc vào tình trạng soiling tại site và được đo đạc
+                                minh bạch qua thử nghiệm vùng kiểm soát. GASCOLAE không tự đưa ra các con số cam kết ảo
+                                khi chưa có dữ liệu pilot tại hiện trường.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>5. Hoạt động UAV có cần xin giấy phép bay không?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Có. Hoạt động bay tuân thủ Nghị định 288/2025/NĐ-CP và Luật Phòng không nhân dân
+                                49/2024/QH15. GASCOLAE chuẩn bị bộ hồ sơ kỹ thuật D1 hỗ trợ xin phép, và giấy phép bay
+                                do cơ quan quân sự/quản lý có thẩm quyền cấp.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>6. Tắt Inverter có làm chuỗi module DC hết điện không?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Không! Khi có ánh sáng chiếu vào, các chuỗi module PV vẫn sinh điện áp hở mạch (Open
+                                Circuit Voltage). Do đó, quy trình an toàn điện phải được đội EHS/Technical phê duyệt
+                                khắt khe, không coi việc ngắt inverter là đã cô lập điện hoàn toàn.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>7. Chi phí dịch vụ S0299 được tính như thế nào?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Giá dịch vụ dựa trên diện tích xử lý thực tế ($m^2$), dải công suất và Level lựa chọn.
+                                Vui lòng để lại thông tin diện tích và tỉnh/thành tại Form Đặt Lịch, chuyên viên
+                                Sales/Finance của GASCOLAE sẽ xác nhận bảng giá thương mại chính thức.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Bottom Banner -->
+        <section class="cta-banner-section">
+            <div class="container text-center">
+                <h2>Sẵn Sàng Kiểm Soát Soiling & Tối Ưu Hiệu Suất PV?</h2>
+                <p>Đặt lịch khảo sát baseline sơ bộ và nhận tư vấn chuyên sâu từ đội ngũ O&M GASCOLAE.</p>
+                <button class="btn btn-primary btn-lg open-modal-btn" data-action="bottom-cta">
+                    <i class="fa-solid fa-paper-plane"></i> Đặt Lịch Khảo Sát / Tư Vấn Ngay
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <a href="#" class="brand-logo">
+                    <div class="logo-icon"><i class="fa-solid fa-plane-up"></i></div>
+                    <span class="brand-name">GASCOLAE <span class="service-tag">S0299</span></span>
+                </a>
+                <p class="footer-desc">Nền tảng ứng dụng công nghệ UAV & Phun Vi Hạt Tích Điện kiểm soát tổn thất
+                    Soiling trên hệ thống pin năng lượng mặt trời.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Dịch Vụ S0299</h4>
+                <ul class="footer-links">
+                    <li><a href="#problems">Vấn đề soiling PV</a></li>
+                    <li><a href="#solution">Công nghệ vi hạt tích điện</a></li>
+                    <li><a href="#use-cases">5 Use Cases chuẩn hóa</a></li>
+                    <li><a href="#packages">3 Level Dịch vụ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quy Chuẩn & Bằng Chứng</h4>
+                <ul class="footer-links">
+                    <li><a href="#solution">IEC 61724-1 Monitoring</a></li>
+                    <li><a href="#solution">Luật 49/2024 & NĐ 288/2025</a></li>
+                    <li><a href="#solution">OEM Manual Compliance</a></li>
+                    <li><a href="#deliverables">Deliverables D1–D7</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liên Hệ Báo Giá</h4>
+                <p><i class="fa-solid fa-envelope"></i> contact@gascolae.com</p>
+                <p><i class="fa-solid fa-phone"></i> Hotline: 1900-XXXX-GAS</p>
+                <p><i class="fa-solid fa-location-dot"></i> Vietnam CleanTech Hub</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 GASCOLAE Platform. All rights reserved. Service Asset S0299 v1.0.</p>
+        </div>
+    </footer>
+
+    <!-- Lead Generation & Pricing Request Modal -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-paper-plane text-emerald"></i> Đặt Lịch Tư Vấn & Khảo Sát S0299</h3>
+                <p>Điền thông tin dự án để nhận tư vấn quy trình khảo sát baseline và báo giá thương mại từ
+                    Sales/Finance.</p>
+            </div>
+
+            <form id="consultationForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Họ và tên *</label>
+                        <input type="text" id="fullName" required placeholder="Nguyễn Văn A">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Đơn vị / Công ty *</label>
+                        <input type="text" id="company" required placeholder="Chủ đầu tư / Công ty EPC O&M">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại *</label>
+                        <input type="tel" id="phone" required placeholder="0901 234 567">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email liên hệ *</label>
+                        <input type="email" id="email" required placeholder="name@company.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="province">Tỉnh / Thành phố hiện trường *</label>
+                        <input type="text" id="province" required placeholder="VD: Bình Thuận, Ninh Thuận, Tây Ninh...">
+                    </div>
+                    <div class="form-group">
+                        <label for="areaSize">Diện tích dự kiến (m²) *</label>
+                        <input type="number" id="areaSize" min="100" placeholder="VD: 5000 m²">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="moduleBrand">Hãng / Model Module PV</label>
+                        <input type="text" id="moduleBrand"
+                            placeholder="VD: Trina Solar, First Solar, Canadian Solar...">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetLevel">Gói dịch vụ quan tâm</label>
+                        <select id="targetLevel">
+                            <option value="Level 1">Level 1 - Khảo sát & Baseline Soiling</option>
+                            <option value="Level 2" selected>Level 2 - Vệ sinh UAV Theo Đợt (Đề xuất chính)</option>
+                            <option value="Level 3">Level 3 - Chương trình O&M Định Kỳ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Mục tiêu & Yêu cầu cụ thể</label>
+                    <textarea id="notes" rows="3"
+                        placeholder="Mô tả bối cảnh soiling hiện tại hoặc yêu cầu thử nghiệm vùng kiểm soát..."></textarea>
+                </div>
+
+                <div class="form-disclaimer">
+                    <i class="fa-solid fa-shield-halved"></i> Thông tin dự án được cam kết bảo mật theo quy định
+                    GASCOLAE Security Filter.
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full btn-lg">
+                    <i class="fa-solid fa-paper-plane"></i> Gửi Yêu Cầu Cho Đội Ngũ GASCOLAE
+                </button>
+            </form>
+
+            <div class="form-success-msg hidden" id="formSuccessMsg">
+                <i class="fa-solid fa-circle-check text-emerald success-icon"></i>
+                <h4>Yêu Cầu Đã Được Gửi Thành Công!</h4>
+                <p>Đội ngũ Chuyên viên O&M và Sales/Finance GASCOLAE sẽ đối chiếu thông tin địa bàn và liên hệ lại với
+                    bạn trong thời gian sớm nhất.</p>
+                <button class="btn btn-secondary" id="modalDoneBtn">Đóng cửa sổ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Agent Assistant Container & Widget Slot -->
+    <div id="ai-agent-container" class="ai-agent-slot">
+        <!-- Floating Toggle Trigger -->
+        <button class="ai-agent-trigger" id="aiAgentTrigger" aria-label="Open GASCOLAE AI Agent Assistant">
+            <div class="ai-avatar-circle">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+            <span class="ai-status-pulse"></span>
+            <div class="ai-trigger-label">
+                <strong>S0299 AI Agent</strong>
+                <span>Tư Vấn 24/7</span>
+            </div>
+        </button>
+
+        <!-- AI Agent Chat Drawer / Window -->
+        <div class="ai-agent-window hidden" id="aiAgentWindow">
+            <div class="ai-window-header">
+                <div class="ai-header-info">
+                    <div class="ai-avatar-small">
+                        <i class="fa-solid fa-brain text-cyan"></i>
+                    </div>
+                    <div>
+                        <h4>GASCOLAE S0299 AI Agent</h4>
+                        <span class="ai-status-text"><i class="fa-solid fa-circle text-emerald"></i> Trực Tuyến &amp;
+                            Sẵn Sàng Trả Lời</span>
+                    </div>
+                </div>
+                <button class="ai-window-close" id="aiAgentCloseBtn" aria-label="Close AI Chat">&times;</button>
+            </div>
+
+            <div class="ai-quick-prompts">
+                <span class="prompt-chip" data-question="Soiling Ratio (SR) là gì và đo theo chuẩn nào?">⚡ Soiling Ratio
+                    là gì?</span>
+                <span class="prompt-chip" data-question="Tư vấn cấu hình và quyền lợi gói Level 2?">🚁 Tư vấn gói Level
+                    2</span>
+                <span class="prompt-chip" data-question="Quy định pháp lý xin phép bay theo NĐ 288/2025?">📄 Pháp lý NĐ
+                    288/2025</span>
+                <span class="prompt-chip" data-question="Cần cung cấp thông tin gì để nhận báo giá m²?">💰 Đặt lịch nhận
+                    báo giá</span>
+            </div>
+
+            <div class="ai-chat-messages" id="aiAgentMessages">
+                <div class="chat-bubble ai-bubble">
+                    <div class="bubble-sender"><i class="fa-solid fa-robot text-cyan"></i> AI Agent S0299</div>
+                    <div class="bubble-text">Xin chào! Tôi là <strong>GASCOLAE S0299 AI Agent</strong>. Tôi có thể hỗ
+                        trợ bạn tư vấn giải pháp UAV phun vi hạt tích điện, đo đạc Soiling Ratio chuẩn IEC 61724-1, quy
+                        trình GO/NO-GO 12 tiêu chí và bộ sản phẩm bàn giao D1–D7. Bạn muốn tìm hiểu nội dung gì?</div>
+                </div>
+            </div>
+
+            <form class="ai-chat-input-form" id="aiAgentForm">
+                <input type="text" id="aiAgentInput" placeholder="Nhập câu hỏi cho AI Agent..." autocomplete="off"
+                    required>
+                <button type="submit" class="ai-send-btn" aria-label="Send Message">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="src/script.js"></script>
+</body>
+
+</html>

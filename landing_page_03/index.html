@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bản đồ carbon footprint sử dụng UAV | GASCOLAE S0291</title>
+  <meta name="description" content="Dịch vụ đo đạc, định lượng và lập bản đồ phát thải khí nhà kính & trữ lượng carbon bằng UAV (LiDAR, OGI, TDLAS) - báo cáo chuẩn IPCC/ISO 14064 cho kiểm kê KNK, CBAM, và thị trường carbon.">
+  <meta name="keywords" content="bản đồ carbon footprint UAV, đo phát thải metan drone, kiểm kê khí nhà kính, carbon rừng LiDAR, dịch vụ UAV môi trường, GASCOLAE S0291, CBAM, ISO 14064">
+  <link rel="canonical" href="https://gascolae.vn/dich-vu/ban-do-carbon-uav-s0291">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo">
+        <span class="gradient-text">GASCOLAE</span>
+        <span class="logo-badge">S0291</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#overview" class="nav-link">Tổng quan</a>
+        <a href="#problems" class="nav-link">Vấn đề</a>
+        <a href="#tech" class="nav-link">Công nghệ</a>
+        <a href="#usecases" class="nav-link">Ứng dụng</a>
+        <a href="#roadmap" class="nav-link">Quy trình</a>
+        <a href="#packages" class="nav-link">Các gói Level</a>
+        <a href="#deliverables" class="nav-link">Đầu ra</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <a href="#lead-form" class="btn btn-primary" id="btn-header-cta">
+        Đặt lịch tư vấn
+      </a>
+
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION WITH ANIMATED HUD & SCANNER CANVAS
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content reveal-on-scroll">
+        <div class="hero-badge floating-anim">
+          <span class="pulse-dot"></span>
+          <span>Dịch vụ Carbon MRV Độc phá 2026 • Code: S0291</span>
+        </div>
+
+        <h1 class="hero-title">
+          Bản đồ carbon footprint bằng UAV: <span class="gradient-text">biết rõ bạn phát thải ở đâu, bao nhiêu</span>
+        </h1>
+
+        <p class="hero-description">
+          Đo đạc và lập bản đồ phát thải khí nhà kính (metan/CO2) cùng trữ lượng carbon bằng UAV + LiDAR + cảm biến OGI & TDLAS laser. Xuất báo cáo đối chiếu chuẩn <strong>IPCC 2006/2019</strong> và <strong>ISO 14064</strong> — sẵn sàng cho kiểm kê KNK bắt buộc, báo cáo CBAM và thị trường carbon.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#lead-form" class="btn btn-primary">
+            <span>Đặt lịch tư vấn miễn phí</span>
+            <span>➔</span>
+          </a>
+          <a href="src/assets/gascolae_dashboard_mockup.png" target="_blank" class="btn btn-secondary">
+            <span>Tải Brochure Dịch Vụ</span>
+            <span>📥</span>
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <div class="metric-val gradient-text">1 g/h</div>
+            <div class="metric-label">Ngưỡng phát hiện CH4 TDLAS</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val gradient-text" id="metric-r2">R² 0.89</div>
+            <div class="metric-label">Độ chính xác LiDAR sinh khối</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val gradient-text">IPCC & ISO</div>
+            <div class="metric-label">Báo cáo sẵn sàng thẩm định</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO VISUAL CARD WITH UNIQUE IMAGE: hero_uav_mapping.png -->
+      <div class="hero-visual reveal-on-scroll delay-2">
+        <div class="hero-image-card scanline-overlay glow-border" id="hero-img-card" onclick="openMediaModal('src/assets/hero_uav_mapping.png', 'Khảo sát UAV Lập bản đồ Carbon Footprint & Metan')">
+          <canvas id="hero-radar-canvas" class="hero-canvas"></canvas>
+          <img src="src/assets/hero_uav_mapping.png" alt="UAV Carbon Footprint Mapping Survey Flight" id="img-hero">
+          
+          <div class="hud-badge top-left">
+            <span class="pulse-dot"></span>
+            <span class="label">STATUS:</span>
+            <span class="value green">FLIGHT ACTIVE (RTK FIX)</span>
+          </div>
+
+          <div class="hud-badge top-right">
+            <span class="label">CH4:</span>
+            <span class="value cyan">1.8 ppm·m</span>
+          </div>
+
+          <div class="hud-badge bottom-left">
+            <span class="label">ALT:</span>
+            <span class="value glow-green">120m | ALTITUDE SAFE</span>
+          </div>
+
+          <button class="hud-play-btn" style="pointer-events:none;">
+            <span>🔍 Zoom Scanner 3D</span>
+          </button>
+
+          <div class="hero-overlay-badge">
+            <div class="overlay-info">
+              <h4>Bản đồ Phát thải & Carbon Sinh khối</h4>
+              <p>Tích hợp LiDAR + OGI Methane Thermal + RTK GPS Grid</p>
+            </div>
+            <span class="section-tag" style="margin-bottom:0;">Live Survey</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: CUSTOMER PROBLEMS / PAIN POINTS
+       ========================================================================== -->
+  <section class="problems-section" id="problems">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Thách thức doanh nghiệp</div>
+        <h2 class="section-title">Những nút thắt trong kiểm kê & giám sát carbon hiện nay</h2>
+        <p class="section-subtitle">
+          Quy định pháp luật và thị trường quốc tế đang buộc doanh nghiệp phải "đo được" chứ không thể dừng ở mức "ước chừng chủ quan".
+        </p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card reveal-on-scroll delay-1">
+          <div class="problem-icon">📊</div>
+          <h3>Ước tính bằng hệ số mặc định</h3>
+          <p>Bản kiểm kê KNK cấp cơ sở dựa trên số liệu hoạt động nhân hệ số mặc định, thiếu dữ liệu đo đạc theo không gian để chứng minh mức giảm thực tế.</p>
+          <span class="problem-tag">Nghị định 06/2022/NĐ-CP</span>
+        </div>
+
+        <div class="problem-card reveal-on-scroll delay-2">
+          <div class="problem-icon">⚠️</div>
+          <h3>Bỏ sót rò rỉ Metan rủi ro cao</h3>
+          <p>LDAR kiểm tra thủ công đi bộ thưa thớt dễ bỏ sót điểm rò rỉ phát sinh giữa các kỳ. Khảo sát trên không cho thấy rò rỉ thực tế cao gấp 3-5 lần tự báo cáo.</p>
+          <span class="problem-tag">OGMP 2.0 & QĐ 942/QĐ-TTg</span>
+        </div>
+
+        <div class="problem-card reveal-on-scroll delay-3">
+          <div class="problem-icon">💸</div>
+          <h3>Đo đạc mặt đất đắt và chậm</h3>
+          <p>Phương pháp đi ô mẫu sinh khối thủ công hay LDAR đi từng điểm rất tốn nhân lực, độ phủ hẹp và không tiếp cận được các vùng nguy hiểm/ngập nước.</p>
+          <span class="problem-tag">Tốn chi phí & Thời gian</span>
+        </div>
+
+        <div class="problem-card reveal-on-scroll delay-4">
+          <div class="problem-icon">🛡️</div>
+          <h3>Áp lực CBAM & Phạt tuân thủ</h3>
+          <p>EU CBAM phạt các nhà xuất khẩu thiếu dữ liệu carbon kiểm chứng (+10% đến +30% thuế). Thị trường carbon 2029 đòi hỏi minh bạch dữ liệu MRV.</p>
+          <span class="problem-tag">Áp lực CBAM 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: SOLUTION & OVERVIEW (UNIQUE IMAGE: uav_ch4_thermal_ogi.png)
+       ========================================================================== -->
+  <section class="solution-section" id="overview">
+    <div class="container">
+      <div class="solution-wrapper">
+        <div class="solution-info reveal-on-scroll">
+          <div class="section-tag">Giải pháp kỹ thuật S0291</div>
+          <h2 class="section-title">Biến "Không nhìn thấy" thành <span class="gradient-text">"Đo được & Bản đồ hóa được"</span></h2>
+          <p class="section-subtitle">
+            Dịch vụ dùng UAV mang đa cảm biến giúp đo đạc định lượng từ xa, tạo lớp bản đồ phát thải khí nhà kính (tCO2e/ha, ppm·m) và bản đồ trữ lượng carbon sinh khối theo chuẩn ISO 14064.
+          </p>
+
+          <div class="solution-features">
+            <div class="solution-feature-item">
+              <div class="feature-check">✓</div>
+              <div class="feature-info">
+                <h4>Đo nồng độ tích phân cột khí CH4 từ xa</h4>
+                <p>Cảm biến TDLAS laser đo nồng độ tích phân từ 1-99,999 ppm·m với khoảng cách tới 70m, phát hiện từ ~1 g/h.</p>
+              </div>
+            </div>
+
+            <div class="solution-feature-item">
+              <div class="feature-check">✓</div>
+              <div class="feature-info">
+                <h4>LiDAR 3D tái lập cấu trúc sinh khối rừng</h4>
+                <p>Khảo sát chiều cao tán và mật độ điểm LiDAR, kết hợp ô mẫu hiện trường và mô hình hồi quy ML (R² ~0.75 - 0.89).</p>
+              </div>
+            </div>
+
+            <div class="solution-feature-item">
+              <div class="feature-check">✓</div>
+              <div class="feature-info">
+                <h4>Mô hình định lượng Mass Balance & Plume Inversion</h4>
+                <p>Áp dụng cân bằng khối lượng và khôi phục chùm khí Gaussian loại trừ nền (background) khí xung quanh.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="solution-media reveal-on-scroll delay-2">
+          <div class="hero-image-card scanline-overlay glow-border" onclick="openMediaModal('src/assets/uav_ch4_thermal_ogi.png', 'Ảnh Cảm biến Camera Nhiệt OGI Phát hiện Khí Metan Rò rỉ')">
+            <img src="src/assets/uav_ch4_thermal_ogi.png" alt="OGI Infrared Methane Plume Detection" id="img-ogi">
+            
+            <div class="hud-badge top-left">
+              <span class="pulse-dot"></span>
+              <span class="label">OGI SPECTRUM:</span>
+              <span class="value cyan">3.2 - 3.5 µm</span>
+            </div>
+            
+            <div class="hud-badge top-right">
+              <span class="label">DETECTION:</span>
+              <span class="value glow-green">PLUME DETECTED</span>
+            </div>
+
+            <button class="hud-play-btn" style="pointer-events:none;">
+              <span>🔍 Phóng to OGI Infrared</span>
+            </button>
+
+            <div class="hero-overlay-badge">
+              <div class="overlay-info">
+                <h4>Hình ảnh Camera OGI Infrared CH4</h4>
+                <p>Hiển thị đám khí rò rỉ thời gian thực + Tọa độ RTK</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: KEY BENEFITS
+       ========================================================================== -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Lợi ích vượt trội</div>
+        <h2 class="section-title">Vì sao doanh nghiệp chọn giải pháp UAV Carbon</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-on-scroll delay-1">
+          <div class="benefit-icon">🎯</div>
+          <h3>Đo được theo không gian</h3>
+          <p>Dữ liệu bản đồ tọa độ minh bạch thay thế hệ số mặc định, phục vụ kiểm kê KNK cấp cơ sở và ESG.</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-2">
+          <div class="benefit-icon">🔍</div>
+          <h3>Phát hiện rò rỉ sớm</h3>
+          <p>Tăng khả năng phát hiện rò rỉ gấp 3-5 lần so với tự báo cáo thủ công, giảm thất thoát khí thu hồi (RNG).</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-3">
+          <div class="benefit-icon">⚡</div>
+          <h3>Tiết kiệm chi phí</h3>
+          <p>Phủ trọn diện tích bãi/rừng trong 1-2 ngày bay, tối ưu 50-100 lần chi phí so với đo thủ công từng điểm.</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-4">
+          <div class="benefit-icon">🦺</div>
+          <h3>An toàn hiện trường</h3>
+          <p>Không cần đưa người vào khu vực bãi rác hoạt động, sườn dốc nguy hiểm hay rừng ngập mặn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: TECHNOLOGY & SENSORS
+       ========================================================================== -->
+  <section class="tech-section" id="tech">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Công nghệ & Cảm biến</div>
+        <h2 class="section-title">Hệ thống Payload & Cảm biến đo đạc tiên tiến</h2>
+        <p class="section-subtitle">Tích hợp các cảm biến chuyên dụng hàng đầu trên nền tảng UAV thương mại và cánh cố định.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal-on-scroll delay-1">
+          <div class="tech-card-header">
+            <span class="tech-badge">Laser TDLAS</span>
+            <span style="font-size: 1.5rem;">📡</span>
+          </div>
+          <h3>Đầu dò Laser CH4 TDLAS</h3>
+          <p>Đo nồng độ tích phân cột khí metan từ xa bằng công nghệ hấp thụ laser bước sóng chuyên biệt.</p>
+          <ul class="tech-specs">
+            <li>Dải đo: 1 - 99,999 ppm·m</li>
+            <li>Khoảng cách đo: tới 60-70 m</li>
+            <li>Ngưỡng phát hiện: ~1 g/h (Falcon Plus / GasVision-TD1)</li>
+            <li>Laser Class 1 / 3R an toàn cho mắt</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal-on-scroll delay-2">
+          <div class="tech-card-header">
+            <span class="tech-badge">Camera OGI</span>
+            <span style="font-size: 1.5rem;">📹</span>
+          </div>
+          <h3>Optical Gas Imaging Thermal</h3>
+          <p>Camera ảnh nhiệt dải phổ 3.2 - 3.5 µm hiển thị trực quan đám khí rò rỉ VOC/CH4 theo thời gian thực.</p>
+          <ul class="tech-specs">
+            <li>Thiết bị: FLIR GF77 / GasFIR UAV-M</li>
+            <li>Độ nhạy nhiệt: NETD ≤ 15 mK</li>
+            <li>Định vị rò rỉ tự động bằng AI Plume Tracking</li>
+          </ul>
+        </div>
+
+        <div class="tech-card reveal-on-scroll delay-3">
+          <div class="tech-card-header">
+            <span class="tech-badge">Airborne LiDAR</span>
+            <span style="font-size: 1.5rem;">🌳</span>
+          </div>
+          <h3>UAV LiDAR & Đa phổ</h3>
+          <p>Quét đám mây điểm 3D chiều cao tán cây và đo chỉ số sức khỏe thực vật (NDVI) cho carbon sinh khối.</p>
+          <ul class="tech-specs">
+            <li>Đo 3D cấu trúc tán & địa hình chính xác</li>
+            <li>Tránh bão hòa tín hiệu như ảnh vệ tinh</li>
+            <li>Hồi quy sinh khối AGB/AGC với R² 0.75 - 0.89</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: USE CASES (EVERY TAB HAS ITS OWN UNIQUE IMAGE!)
+       ========================================================================== -->
+  <section class="usecases-section" id="usecases">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Trường hợp ứng dụng</div>
+        <h2 class="section-title">6 Use Cases Chuyên sâu Theo Ngành</h2>
+      </div>
+
+      <div class="usecase-tabs reveal-on-scroll delay-1">
+        <button class="tab-btn active" onclick="switchTab('landfill')">Bãi Chôn Lấp (SEM)</button>
+        <button class="tab-btn" onclick="switchTab('oilgas')">Dầu Khí (LDAR)</button>
+        <button class="tab-btn" onclick="switchTab('forest')">Carbon Rừng & Ngập Mặn</button>
+        <button class="tab-btn" onclick="switchTab('agri')">Nông Nghiệp (QĐ 942)</button>
+      </div>
+
+      <!-- TAB 1: UNIQUE IMAGE uav_landfill_sem.png -->
+      <div class="tab-content-panel active reveal-on-scroll delay-2" id="tab-landfill">
+        <div class="usecase-info">
+          <h3>01. Rà soát phát thải bề mặt Bãi chôn lấp (SEM)</h3>
+          <p>Kiểm tra phát thải CH4 bề mặt định kỳ cho bãi rác/khu xử lý chất thải, hỗ trợ tuân thủ quy chuẩn tương đương EPA OTM-51 (SnifferDRONE) và tối ưu thu hồi khí RNG.</p>
+          <div class="usecase-meta">
+            <div class="meta-row"><span class="label">Khách hàng:</span> Đơn vị vận hành bãi chôn lấp, Sở TNMT, chủ đầu tư RNG</div>
+            <div class="meta-row"><span class="label">Cách đo:</span> Bay UAV gắn TDLAS/OGI theo lưới thấp, đo nền khí</div>
+            <div class="meta-row"><span class="label">Đầu ra:</span> Bản đồ điểm phát thải bề mặt + Số liệu kg CH4/h + Khuyến nghị thu khí</div>
+          </div>
+        </div>
+        <div class="usecase-img hero-image-card scanline-overlay" onclick="openMediaModal('src/assets/uav_landfill_sem.png', 'Bãi Chôn Lấp - Rà soát phát thải Metan bề mặt SEM (EPA OTM-51)')">
+          <img src="src/assets/uav_landfill_sem.png" alt="Landfill Methane Surface Emission Survey">
+          <div class="hud-badge bottom-left">
+            <span class="label">USE CASE:</span>
+            <span class="value green">LANDFILL SEM (EPA OTM-51)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: UNIQUE IMAGE uav_oilgas_pipeline.png -->
+      <div class="tab-content-panel" id="tab-oilgas">
+        <div class="usecase-info">
+          <h3>02. Phát hiện & Định lượng Rò rỉ Metan Dầu khí</h3>
+          <p>LDAR trên không cho mỏ khí, đường ống, trạm nén, kho chứa nhằm tuân thủ OGMP 2.0 (Gold Standard) và EU Methane Regulation 2024/1787.</p>
+          <div class="usecase-meta">
+            <div class="meta-row"><span class="label">Khách hàng:</span> Công ty dầu khí, đơn vị vận hành đường ống/trạm khí</div>
+            <div class="meta-row"><span class="label">Cách đo:</span> OGI + TDLAS rà soát thiết bị, định lượng plume bằng Mass Balance</div>
+            <div class="meta-row"><span class="label">Đầu ra:</span> Danh sách điểm rò rỉ kèm tọa độ RTK + kg CH4/h + tCO2e</div>
+          </div>
+        </div>
+        <div class="usecase-img hero-image-card scanline-overlay" onclick="openMediaModal('src/assets/uav_oilgas_pipeline.png', 'Dầu khí - LDAR trên không định lượng Metan rò rỉ nhà máy/đường ống')">
+          <img src="src/assets/uav_oilgas_pipeline.png" alt="Oil and Gas Pipeline Methane Leak Detection Flight">
+          <div class="hud-badge bottom-left">
+            <span class="label">USE CASE:</span>
+            <span class="value cyan">OIL & GAS AERIAL LDAR</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: UNIQUE IMAGE lidar_forest_carbon.png -->
+      <div class="tab-content-panel" id="tab-forest">
+        <div class="usecase-info">
+          <h3>03. Lập bản đồ Carbon Sinh khối Rừng / Ngập mặn</h3>
+          <p>Ước tính chính xác trữ lượng carbon trên mặt đất (AGB/AGC) phục vụ dự án REDD+, PDD tín chỉ carbon và báo cáo kiểm kê tài nguyên rừng.</p>
+          <div class="usecase-meta">
+            <div class="meta-row"><span class="label">Khách hàng:</span> Ban quản lý rừng, chủ dự án tín chỉ carbon, tổ chức NGO</div>
+            <div class="meta-row"><span class="label">Cách đo:</span> UAV LiDAR + Đa phổ quét 3D kết hợp ô mẫu đo đạc mặt đất</div>
+            <div class="meta-row"><span class="label">Đầu ra:</span> Bản đồ trữ lượng carbon (tấn C/ha và tCO2e/ha), độ chính xác R² ~0.89</div>
+          </div>
+        </div>
+        <div class="usecase-img hero-image-card scanline-overlay" onclick="openMediaModal('src/assets/lidar_forest_carbon.png', 'Rừng & Ngập mặn - Bản đồ 3D LiDAR Carbon Sinh khối')">
+          <img src="src/assets/lidar_forest_carbon.png" alt="3D LiDAR Forest Carbon Stock Mapping">
+          <div class="hud-badge bottom-left">
+            <span class="label">USE CASE:</span>
+            <span class="value glow-green">FOREST CARBON (LiDAR 3D)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: UNIQUE IMAGE uav_agriculture_methane.png -->
+      <div class="tab-content-panel" id="tab-agri">
+        <div class="usecase-info">
+          <h3>04. Đo nền phát thải Trang trại & Lúa (QĐ 942)</h3>
+          <p>Đo lường phát thải metan từ chăn nuôi và trồng lúa nước để chứng minh hiệu quả các biện pháp giảm phát thải (AWD, khẩu phần ăn).</p>
+          <div class="usecase-meta">
+            <div class="meta-row"><span class="label">Khách hàng:</span> Trang trại chăn nuôi lớn, vùng lúa xuất khẩu chất lượng cao</div>
+            <div class="meta-row"><span class="label">Cách đo:</span> Bay đo CH4 định kỳ trước và sau can thiệp kỹ thuật</div>
+            <div class="meta-row"><span class="label">Đầu ra:</span> Chuỗi số liệu nền đối chiếu hiệu quả giảm phát thải</div>
+          </div>
+        </div>
+        <div class="usecase-img hero-image-card scanline-overlay" onclick="openMediaModal('src/assets/uav_agriculture_methane.png', 'Nông nghiệp - Giám sát Metan Trang trại & Lúa nước QĐ 942')">
+          <img src="src/assets/uav_agriculture_methane.png" alt="Agricultural Methane Emissions Survey Flight">
+          <div class="hud-badge bottom-left">
+            <span class="label">USE CASE:</span>
+            <span class="value cyan">AGRICULTURE METHANE (QĐ 942)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: ROADMAP / HOW IT WORKS
+       ========================================================================== -->
+  <section class="roadmap-section" id="roadmap">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Quy trình 6 bước</div>
+        <h2 class="section-title">Cách thức Triển khai Khảo sát từ A - Z</h2>
+        <p class="section-subtitle">Tuân thủ nghiêm ngặt SOP & Checklist kiểm soát chất lượng QA/QC.</p>
+      </div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-step reveal-on-scroll delay-1">
+          <div class="step-num">01</div>
+          <h4>Khởi động & Scope</h4>
+          <p>Chốt mục tiêu đo, ranh giới khu vực, chuẩn báo cáo (IPCC/ISO) và hợp đồng.</p>
+        </div>
+
+        <div class="roadmap-step reveal-on-scroll delay-2">
+          <div class="step-num">02</div>
+          <h4>Xin phép bay & Pre-flight</h4>
+          <p>Cấp phép bay (NĐ 288/2025), hiệu chuẩn cảm biến bằng buồng chuẩn, thiết kế tuyến.</p>
+        </div>
+
+        <div class="roadmap-step reveal-on-scroll delay-3">
+          <div class="step-num">03</div>
+          <h4>Bay thu thập dữ liệu</h4>
+          <p>Vận hành bay lưới tự động kèm RTK GPS, đo nền khí (background) trước/sau bay.</p>
+        </div>
+
+        <div class="roadmap-step reveal-on-scroll delay-4">
+          <div class="step-num">04</div>
+          <h4>Xử lý Dữ liệu thô</h4>
+          <p>Ghép point cloud/orthomosaic, hiệu chỉnh nền, kiểm tra tọa độ mốc mặt đất GCP.</p>
+        </div>
+
+        <div class="roadmap-step reveal-on-scroll delay-1">
+          <div class="step-num">05</div>
+          <h4>Phân tích & Định lượng</h4>
+          <p>Mass balance / Gaussian plume inversion hoặc hồi quy LiDAR ô mẫu; đánh giá độ sai số.</p>
+        </div>
+
+        <div class="roadmap-step reveal-on-scroll delay-2">
+          <div class="step-num">06</div>
+          <h4>Báo cáo & Bàn giao</h4>
+          <p>Xuất báo cáo IPCC/ISO 14064 + Bản đồ GeoTIFF + Họp bàn giao khuyến nghị xử lý.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: SERVICE LEVELS (PACKAGES)
+       ========================================================================== -->
+  <section class="pricing-section" id="packages">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Cấu hình dịch vụ</div>
+        <h2 class="section-title">3 Cấp độ Dịch vụ Linh hoạt</h2>
+        <p class="section-subtitle">Được thiết kế phù hợp với nhu cầu từ rà soát ban đầu đến giám sát MRV định kỳ.</p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Level 1 -->
+        <div class="package-card reveal-on-scroll delay-1">
+          <div class="package-header">
+            <h3>Level 1 — Screening</h3>
+            <p class="package-target">Rà soát & Bản đồ điểm nóng phát thải sơ bộ</p>
+          </div>
+          <div class="package-price">
+            Liên hệ tư vấn
+          </div>
+          <ul class="package-features">
+            <li>Phạm vi: 1 đợt bay, diện tích $\le 50\text{ ha}$ (hoặc $\le 20$ điểm/giếng)</li>
+            <li>Payload: OGI Thermal hoặc Cảm biến CH4 / Đa phổ</li>
+            <li>Phát hiện & định vị tọa độ điểm rò rỉ/nguồn thải</li>
+            <li>Bản đồ điểm nóng (Hotspot map) + Báo cáo sơ bộ</li>
+            <li>Thời gian xử lý: Vài ngày sau bay</li>
+          </ul>
+          <a href="#lead-form" class="btn btn-outline" style="width:100%;">Chọn Level 1</a>
+        </div>
+
+        <!-- Level 2 (Featured) -->
+        <div class="package-card featured reveal-on-scroll delay-2">
+          <span class="package-badge">Được chọn nhiều nhất</span>
+          <div class="package-header">
+            <h3>Level 2 — Quantification</h3>
+            <p class="package-target">Định lượng & Bản đồ chi tiết theo chuẩn IPCC/ISO</p>
+          </div>
+          <div class="package-price gradient-text">
+            Khảo sát 1-2 đợt / năm
+          </div>
+          <ul class="package-features">
+            <li>Phạm vi: 1-2 đợt bay, diện tích $\le 200\text{ ha}$</li>
+            <li>Payload: LiDAR 3D + TDLAS + OGI + Đo nền khí (Background)</li>
+            <li>Có ô mẫu mặt đất + mốc RTK GCP đối chứng</li>
+            <li>Bản đồ carbon footprint ($tCO_2e/ha$, $kg\text{ }CH_4/h$)</li>
+            <li>Báo cáo kiểm kê đối chiếu chuẩn IPCC 2006/2019 & ISO 14064</li>
+            <li>Công bố đầy đủ mức độ không chắc chắn (Uncertainty)</li>
+          </ul>
+          <a href="#lead-form" class="btn btn-primary" style="width:100%;">Tư vấn gói Level 2</a>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="package-card reveal-on-scroll delay-3">
+          <div class="package-header">
+            <h3>Level 3 — MRV Monitoring</h3>
+            <p class="package-target">Giám sát MRV định kỳ & Hỗ trợ thẩm định carbon</p>
+          </div>
+          <div class="package-price">
+            Hợp đồng năm / Quý
+          </div>
+          <ul class="package-features">
+            <li>Phạm vi: Nhiều đợt bay trong năm (theo mùa / quý)</li>
+            <li>Toàn bộ payload tích hợp + Nền tảng Dashboard Web</li>
+            <li>Theo dõi biến động và chứng minh tỷ lệ giảm phát thải</li>
+            <li>Hồ sơ sẵn sàng cho thẩm định bên thứ 3 (ISO 14064-3)</li>
+            <li>Hỗ trợ hồ sơ đăng ký Tín chỉ carbon / PDD / CBAM</li>
+          </ul>
+          <a href="#lead-form" class="btn btn-outline" style="width:100%;">Chọn Level 3</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: DELIVERABLES (UNIQUE IMAGES FOR MOCKUP & REPORT)
+       ========================================================================== -->
+  <section class="benefits-section" id="deliverables" style="background: rgba(17,24,39,0.4);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Đầu ra bàn giao</div>
+        <h2 class="section-title">Bộ Kết quả Bàn giao Chuẩn mực</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-on-scroll delay-1" style="text-align:left;">
+          <h3 class="gradient-text">1. Bản đồ Carbon Footprint</h3>
+          <p>Lớp bản đồ phát thải ($tCO_2e/ha$, $ppm\cdot m$) hoặc trữ lượng carbon ($t\text{ }C/ha$) dạng GeoTIFF, Shapefile & PDF in ấn.</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-2" style="text-align:left;">
+          <h3 class="gradient-text">2. Định vị Điểm rò rỉ RTK</h3>
+          <p>Bảng tọa độ chính xác dưới mét của từng điểm phát thải kèm ảnh OGI/RGB minh chứng.</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-3" style="text-align:left;">
+          <h3 class="gradient-text">3. Số liệu Định lượng</h3>
+          <p>Bảng tính lưu lượng $kg\text{ }CH_4/h$, tổng $tCO_2e$ quy đổi GWP kèm thông số độ không chắc chắn.</p>
+        </div>
+
+        <div class="benefit-card reveal-on-scroll delay-4" style="text-align:left;">
+          <h3 class="gradient-text">4. Báo cáo IPCC / ISO 14064</h3>
+          <p>Báo cáo thuyết minh đầy đủ phương pháp luận, đo nền và căn cứ sẵn sàng cho đơn vị xác minh bên thứ ba.</p>
+        </div>
+      </div>
+
+      <!-- DELIVERABLES DUAL VISUAL MOCKUP WITH UNIQUE IMAGES -->
+      <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="reveal-on-scroll delay-2">
+        <div class="hero-image-card scanline-overlay glow-border" onclick="openMediaModal('src/assets/gascolae_dashboard_mockup.png', 'Giao diện Web Dashboard Quản lý Dữ liệu MRV & Bản đồ GeoTIFF S0291')">
+          <img src="src/assets/gascolae_dashboard_mockup.png" alt="GASCOLAE Carbon Mapping Deliverables Mockup">
+          <div class="hud-badge bottom-left">
+            <span class="label">DELIVERABLE 1:</span>
+            <span class="value green">WEB GIS DASHBOARD</span>
+          </div>
+        </div>
+
+        <div class="hero-image-card scanline-overlay glow-border" onclick="openMediaModal('src/assets/gascolae_report_iso14064.png', 'Bộ Báo cáo Kiểm kê KNK Chuẩn ISO 14064 & Lớp Dữ liệu GeoTIFF/Shapefile')">
+          <img src="src/assets/gascolae_report_iso14064.png" alt="ISO 14064 Report and Spatial Data Package">
+          <div class="hud-badge bottom-left">
+            <span class="label">DELIVERABLE 2:</span>
+            <span class="value cyan">ISO 14064 REPORT BUNDLE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: POSITIONING TABLE
+       ========================================================================== -->
+  <section class="positioning-section" id="positioning">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">So sánh giải pháp</div>
+        <h2 class="section-title">Định vị Ưu thế vượt trội của UAV S0291</h2>
+      </div>
+
+      <div class="table-responsive reveal-on-scroll delay-1">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tiêu chí so sánh</th>
+              <th>Ảnh Vệ tinh (Satellite)</th>
+              <th class="highlight">UAV Carbon S0291 (GASCOLAE)</th>
+              <th>Đo mặt đất thủ công (LDAR/Ô mẫu)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Độ phân giải không gian</strong></td>
+              <td>Thô ($>10-30\text{ m}$), bỏ sót nguồn nhỏ</td>
+              <td class="highlight">Rất cao (Centimét), đo chi tiết cơ sở</td>
+              <td>Chỉ đo tại điểm đặt thiết bị</td>
+            </tr>
+            <tr>
+              <td><strong>Độ linh hoạt & Mây che</strong></td>
+              <td>Phụ thuộc thời tiết, mây che phủ</td>
+              <td class="highlight">Chủ động lịch bay, bay dưới mây</td>
+              <td>Đi bộ chậm, tốn thời gian</td>
+            </tr>
+            <tr>
+              <td><strong>Khả năng tiếp cận</strong></td>
+              <td>Toàn cầu nhưng độ phân giải thô</td>
+              <td class="highlight">Vùng nguy hiểm/ngập nước/bãi rác</td>
+              <td>Không tiếp cận được vùng rủi ro</td>
+            </tr>
+            <tr>
+              <td><strong>Chi phí triển khai</strong></td>
+              <td>Rất đắt cho ảnh độ phân giải cao</td>
+              <td class="highlight">Tối ưu cho diện tích trung bình (ha)</td>
+              <td>Rất đắt khi đo phủ toàn bộ diện tích</td>
+            </tr>
+            <tr>
+              <td><strong>Báo cáo chuẩn ISO 14064</strong></td>
+              <td>Khó kiểm chứng cấp cơ sở</td>
+              <td class="highlight">Chuẩn hóa IPCC 2006/2019 & ISO 14064</td>
+              <td>Cần nhiều nhân lực tổng hợp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: FAQ
+       ========================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag">Hỏi đáp dịch vụ</div>
+        <h2 class="section-title">Câu hỏi Thường gặp (FAQ)</h2>
+      </div>
+
+      <div class="faq-accordion reveal-on-scroll delay-1">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>1. Dịch vụ UAV S0291 đo được những loại khí nào?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Trọng tâm của dịch vụ là Metan ($CH_4$) — khí có hệ số GWP cao gấp 28 lần $CO_2$ (100 năm) và ~86 lần (20 năm) — cùng định lượng quy đổi về $tCO_2e$. Camera OGI cũng phát hiện được các loại khí VOC. Ngoài ra dịch vụ đo trữ lượng carbon sinh khối rừng/ngập mặn ($CO_2$ hấp thụ).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>2. Dữ liệu UAV có được dùng cho kiểm kê KNK chính thức không?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Tại Việt Nam, kiểm kê cấp cơ sở tuân theo Nghị định 06/2022/NĐ-CP và Thông tư 17/2022/TT-BTNMT. Dữ liệu UAV cung cấp nguồn số liệu đo đạc trực tiếp theo không gian giúp đối chiếu và minh bạch hóa báo cáo. Việc thẩm định chính thức vẫn do đơn vị xác minh bên thứ ba thực hiện theo chuẩn ISO 14064-3.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>3. Thủ tục xin phép bay UAV do ai đảm nhận?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>GASCOLAE và đối tác vận hành chịu trách nhiệm toàn bộ thủ tục xin cấp phép bay với Cục Tác chiến / Bộ Quốc phòng cho từng hoạt động khảo sát, đảm bảo tuân thủ đầy đủ quy định pháp luật bay UAV (Nghị định 288/2025/NĐ-CP) và bảo hiểm trách nhiệm bên thứ ba.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>4. Độ chính xác của kết quả đo đạc đạt mức nào?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Với metan, cảm biến laser TDLAS đạt ngưỡng lưu lượng từ ~1 g/h (thông số nhà sản xuất) và dải đo 1-99,999 ppm·m. Với carbon sinh khối, mô hình UAV LiDAR kết hợp ô mẫu hiện trường đạt hệ số xác định R² từ 0.75 đến 0.89. Mọi báo cáo bàn giao đều công bố rõ mức độ không chắc chắn (Uncertainty).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>5. Kết quả khảo sát có hỗ trợ báo cáo CBAM và ESG không?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Có. Dữ liệu đo đạc theo không gian giúp doanh nghiệp minh bạch hóa phát thải nhúng cấp cơ sở, phục vụ khai báo CBAM để tránh bị áp giá trị mặc định bị phạt (+10% đến +30%), đồng thời định dạng báo cáo ISO 14064 dễ dàng tích hợp vào báo cáo phát triển bền vững ESG.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION: LEAD FORM
+       ========================================================================== -->
+  <section class="lead-section" id="lead-form">
+    <div class="container">
+      <div class="lead-card reveal-on-scroll">
+        <div style="text-align: center;">
+          <div class="section-tag">Liên hệ tư vấn</div>
+          <h2 class="section-title">Đo đạc, không chỉ ước tính — Nhận tư vấn khảo sát thử</h2>
+          <p class="section-subtitle">Điền thông tin bên dưới để chuyên gia tư vấn GASCOLAE liên hệ trực tiếp hỗ trợ giải pháp phù hợp với cơ sở của bạn.</p>
+        </div>
+
+        <form class="lead-form" id="consultation-form">
+          <div class="form-group">
+            <label for="fullName">Họ và tên *</label>
+            <input type="text" id="fullName" class="form-input" placeholder="Nguyễn Văn A" required>
+          </div>
+
+          <div class="form-group">
+            <label for="companyName">Tên công ty / Tổ chức *</label>
+            <input type="text" id="companyName" class="form-input" placeholder="Công ty CP Năng lượng / Môi trường X" required>
+          </div>
+
+          <div class="form-group">
+            <label for="industry">Lĩnh vực hoạt động *</label>
+            <select id="industry" class="form-select" required>
+              <option value="">-- Chọn lĩnh vực --</option>
+              <option value="landfill">Bãi chôn lấp / Xử lý chất thải</option>
+              <option value="oilgas">Dầu khí / Trạm nén / Kho chứa</option>
+              <option value="forest">Quản lý Rừng / Ngập mặn / Tín chỉ Carbon</option>
+              <option value="factory">Nhà máy Nhiệt điện / Xi măng / Thép / Hóa chất</option>
+              <option value="iz">Khu công nghiệp / Nhà xuất khẩu CBAM</option>
+              <option value="agri">Trang trại Nông nghiệp / Trồng lúa</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="areaSize">Diện tích dự kiến khảo sát (ha)</label>
+            <input type="text" id="areaSize" class="form-input" placeholder="Ví dụ: 25 ha / 150 ha">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email liên hệ *</label>
+            <input type="email" id="email" class="form-input" placeholder="nguyenvana@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Số điện thoại *</label>
+            <input type="tel" id="phone" class="form-input" placeholder="0912 345 678" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="goal">Mục tiêu chính của khảo sát</label>
+            <select id="goal" class="form-select">
+              <option value="inventory">Kiểm kê KNK cấp cơ sở (NĐ 06/2022)</option>
+              <option value="cbam">Báo cáo CBAM xuất khẩu EU</option>
+              <option value="credit">Phát triển Dự án Tín chỉ Carbon / REDD+</option>
+              <option value="leakage">Rà soát rò rỉ metan & Tối ưu thu hồi khí (RNG)</option>
+              <option value="esg">Báo cáo ESG / Đơn vị tư vấn MRV</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">Ghi chú bổ sung</label>
+            <textarea id="message" class="form-textarea" rows="3" placeholder="Yêu cầu cụ thể về địa bàn, thời gian khảo sát..."></textarea>
+          </div>
+
+          <div class="form-group full-width" style="margin-top: 1rem;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Gửi yêu cầu tư vấn miễn phí
+            </button>
+            <p style="font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-top: 0.5rem;">
+              🔒 Cam kết bảo mật thông tin theo tiêu chuẩn GASCOLAE Data Security Policy.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTAINER NHÚNG AI AGENT (PLACEHOLDER FOR USER PRE-BUILT AI AGENT)
+       ========================================================================== -->
+  <section class="ai-agent-placeholder-section" id="ai-agent-container">
+    <div class="container">
+      <div class="ai-agent-container-box reveal-on-scroll">
+        <span class="ai-agent-badge">AI AGENT INTEGRATION POINT</span>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Khu vực Nhúng AI Agent S0291</h3>
+        <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 1.5rem auto;">
+          Container bên dưới được chuẩn bị sẵn sàng để nhúng Script / Iframe / Component AI Agent của bạn. Nút floating ở góc phải màn hình đã được kết nối với khung AI Chat Widget demo.
+        </p>
+
+        <!-- 
+          ======================================================================
+          CRITICAL INTEGRATION POINT FOR USER:
+          Bạn có thể thay thế nội dung div #user-ai-agent-embed-slot bên dưới 
+          bằng mã script nhúng AI Agent của bạn!
+          Ví dụ: <script src="path/to/your-ai-agent-sdk.js" data-agent-id="AGENT_S0291"></script>
+          ======================================================================
+        -->
+        <div id="user-ai-agent-embed-slot" style="background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+          <p style="font-size: 0.9rem; color: var(--accent-green); font-weight: 600;">
+            ✓ Container HTML ID: <code style="background:rgba(255,255,255,0.1); padding:0.2rem 0.4rem; border-radius:4px;">#ai-agent-container</code> / <code style="background:rgba(255,255,255,0.1); padding:0.2rem 0.4rem; border-radius:4px;">#user-ai-agent-embed-slot</code>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.4rem;">
+            Sẵn sàng kết nối với AGENT_S0291 (Bản đồ Carbon UAV - Trợ lý S0291).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TECHNICAL MEDIA PREVIEW MODAL (INTERACTIVE HIGH-TECH SCANNER VIEW)
+       ========================================================================== -->
+  <div class="media-modal" id="media-modal">
+    <div class="media-modal-backdrop" onclick="closeMediaModal()"></div>
+    <div class="media-modal-container">
+      <button class="media-modal-close" onclick="closeMediaModal()">&times;</button>
+      <h3 id="modal-media-title" class="media-modal-title">Xem Chi Tiết Cảm Biến & Bản Đồ</h3>
+      <div class="media-modal-viewport scanline-overlay">
+        <img id="modal-media-img" src="" alt="Technical Image View">
+        <div class="hud-badge top-left">
+          <span class="pulse-dot"></span>
+          <span class="label">MODE:</span>
+          <span class="value green">HIGH-RES DIAGNOSTIC SCAN</span>
+        </div>
+        <div class="hud-badge top-right">
+          <span class="label">GRID RTK:</span>
+          <span class="value cyan">105.8542°E 21.0285°N</span>
+        </div>
+        <div class="hud-badge bottom-left">
+          <span class="label">ISO STANDARDS:</span>
+          <span class="value glow-green">ISO 14064-1 & 14064-3 COMPLIANT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FLOATING AI CHAT WIDGET (INTERACTIVE PREVIEW & TRIGGER)
+       ========================================================================== -->
+  <button class="ai-floating-trigger" id="ai-trigger-btn" aria-label="Open AI Assistant">
+    <span>🤖</span>
+    <span>Trợ lý Carbon S0291</span>
+  </button>
+
+  <div class="ai-widget-modal" id="ai-widget-modal">
+    <div class="ai-widget-header">
+      <div class="ai-header-title">
+        <span>🤖</span>
+        <div>
+          <div>Trợ lý Carbon UAV S0291</div>
+          <div style="font-size: 0.7rem; color: var(--accent-green); font-weight: normal;">Online • GASCOLAE AI</div>
+        </div>
+      </div>
+      <button class="ai-close-btn" id="ai-close-btn">&times;</button>
+    </div>
+
+    <div class="ai-widget-body" id="ai-chat-body">
+      <div class="chat-msg agent">
+        Chào bạn! Mình là trợ lý dịch vụ Bản đồ carbon footprint sử dụng UAV (S0291). Bạn cần tư vấn về đo phát thải metan, bản đồ carbon rừng hay kiểm kê khí nhà kính?
+      </div>
+
+      <div class="suggested-qs">
+        <div class="q-chip" onclick="askPresetQ('Dịch vụ này đo được những gì?')">👉 Dịch vụ này đo được những gì?</div>
+        <div class="q-chip" onclick="askPresetQ('Bãi chôn lấp ~25 ha dùng Level nào?')">👉 Bãi chôn lấp ~25 ha dùng Level nào?</div>
+        <div class="q-chip" onclick="askPresetQ('Dữ liệu có dùng cho kiểm kê KNK được không?')">👉 Dữ liệu có dùng cho kiểm kê KNK được không?</div>
+        <div class="q-chip" onclick="askPresetQ('Có cần xin phép bay không?')">👉 Có cần xin phép bay không?</div>
+      </div>
+    </div>
+
+    <div class="ai-widget-footer">
+      <input type="text" class="ai-input" id="ai-user-input" placeholder="Nhập câu hỏi của bạn..." onkeypress="handleKeyPress(event)">
+      <button class="ai-send-btn" onclick="sendChatMessage()">Gửi</button>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div class="toast-msg" id="toast-msg">Yêu cầu đã được gửi thành công!</div>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <span class="gradient-text">GASCOLAE</span>
+            <span class="logo-badge">S0291</span>
+          </div>
+          <p>Nền tảng đo đạc, lập bản đồ và quản lý phát thải carbon công nghệ cao bằng UAV hàng đầu tại Việt Nam.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Dịch vụ S0291</h4>
+          <ul>
+            <li><a href="#overview">Tổng quan giải pháp</a></li>
+            <li><a href="#tech">Công nghệ Cảm biến</a></li>
+            <li><a href="#usecases">Các Use Cases</a></li>
+            <li><a href="#packages">Cấu hình Level 1-3</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Chuẩn mực & Pháp lý</h4>
+          <ul>
+            <li><a href="#">IPCC 2006 / 2019 Refinement</a></li>
+            <li><a href="#">Tiêu chuẩn ISO 14064-1/3</a></li>
+            <li><a href="#">Nghị định 06/2022/NĐ-CP</a></li>
+            <li><a href="#">EU CBAM Compliance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liên hệ</h4>
+          <ul>
+            <li>Email: info@gascolae.vn</li>
+            <li>Hotline: 1900 xxxx</li>
+            <li>Địa chỉ: Hà Nội & TP. Hồ Chí Minh</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 GASCOLAE PLATFORM. All rights reserved. Service Code: S0291.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Script -->
+  <script src="src/script.js"></script>
+</body>
+</html>

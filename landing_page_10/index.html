@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giám sát khí thải tàu biển dùng UAV | S0303 | GASCOLAE PLATFORM</title>
+    <meta name="description" content="Tìm hiểu phương án UAV sniffer giám sát khí thải tàu biển S0303: đo SO₂/CO₂, nhận dạng tàu, báo cáo chất lượng QA và giới hạn sàng lọc FSC hỗ trợ cơ quan hàng hải và cảng biển.">
+    <meta name="keywords" content="giám sát khí thải tàu biển dùng UAV, sniffer drone tàu biển, sàng lọc FSC, đo SO2 CO2 bằng UAV, giám sát phát thải tại cảng, hỗ trợ PSC, S0303 GASCOLAE">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gascolae.com/giam-sat-khi-thai-tau-bien-uav-s0303">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="../assets/service-hub.css">
+  <script src="../assets/service-hub.js" defer></script>
+</head>
+<body>
+
+    <!-- Top Status Announcement Bar -->
+    <div class="announcement-bar" id="top-announcement">
+        <div class="container announcement-content">
+            <span class="badge-status">DRAFT / PROPOSAL</span>
+            <p>Dịch vụ S0303 là phương án đề xuất hỗ trợ sàng lọc – Chưa công nhận giá trị phạt hành chính hay chứng nhận MARPOL trực tiếp.</p>
+            <a href="#guardrails" class="link-more">Xem giới hạn đo &rarr;</a>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="site-header" id="site-header">
+        <div class="container header-inner">
+            <a href="#" class="brand-logo" id="brand-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">GASCOLAE</span>
+                    <span class="brand-tag">S0303 • Sniffer Drone</span>
+                </div>
+            </a>
+
+            <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="#hero">Tổng quan</a></li>
+                    <li><a href="#problems">Vấn đề</a></li>
+                    <li><a href="#capabilities">Năng lực & Thí điểm</a></li>
+                    <li><a href="#use-cases">Tình huống ứng dụng</a></li>
+                    <li><a href="#how-it-works">Quy trình SOP</a></li>
+                    <li><a href="#packages">Gói dịch vụ (Levels)</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-outline btn-agent-trigger" id="open-agent-header-btn">
+                    <span class="agent-dot"></span>
+                    <span>Trợ lý AI S0303</span>
+                </button>
+                <a href="#lead-form" class="btn btn-primary" id="header-cta-btn">Trao đổi nhu cầu</a>
+            </div>
+
+            <button class="mobile-nav-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+        <!-- 1. HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="service-pill" id="service-pill">
+                        <span class="pill-id">S0303</span>
+                        <span class="pill-divider">•</span>
+                        <span class="pill-desc">UAV-based Maritime Vessel Emission Monitoring</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Giám sát khí thải <br>
+                        <span class="text-gradient">Tàu biển bằng UAV</span>
+                    </h1>
+
+                    <p class="hero-subheadline">
+                        Dữ liệu sniffer SO₂/CO₂, nhận dạng tàu qua AIS và báo cáo chất lượng có kiểm soát độ không đảm bảo đo — Hỗ trợ cơ quan quản lý hàng hải & cảng biển ưu tiên xem xét dấu hiệu nghi ngờ phát thải.
+                    </p>
+
+                    <div class="hero-disclaimer-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>Phương án đề xuất chưa duyệt; không thay thế thanh tra PSC hoặc chứng nhận MARPOL trực tiếp.</span>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#lead-form" class="btn btn-primary btn-lg" id="hero-primary-cta">
+                            <span>Trao đổi nhu cầu khảo sát</span>
+                            <svg width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#guardrails" class="btn btn-secondary btn-lg" id="hero-secondary-cta">
+                            <span>Phạm vi & Giới hạn đo</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats-row">
+                        <div class="stat-item">
+                            <span class="stat-value">SO₂ / CO₂</span>
+                            <span class="stat-label">Cặp khí Sniffer chính</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">QA / QC</span>
+                            <span class="stat-label">Kiểm soát Bất định</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">NĐ 288/2025</span>
+                            <span class="stat-label">Khung pháp lý UAV VN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="visual-card-wrapper">
+                        <img src="src/assets/hero_uav.png" alt="UAV Sniffer giám sát khí thải tàu biển" class="hero-img" id="hero-main-img">
+                        
+                        <!-- Floating Simulated Telemetry Card -->
+                        <div class="telemetry-card floating-anim" id="telemetry-card">
+                            <div class="card-header">
+                                <span class="status-live">● S0303 LIVE SNIFFER</span>
+                                <span class="ais-tag">MMSI: 563049210</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="telemetry-metric">
+                                    <span class="metric-label">SO₂/CO₂ Ratio (ppm):</span>
+                                    <span class="metric-val text-cyan">0.0034</span>
+                                </div>
+                                <div class="telemetry-metric">
+                                    <span class="metric-label">Ước tính FSC Sàng lọc:</span>
+                                    <span class="metric-val text-amber">0.17% S</span>
+                                </div>
+                                <div class="telemetry-progress">
+                                    <div class="progress-bar" style="width: 68%;"></div>
+                                </div>
+                                <div class="card-footer-info">
+                                    <span>Độ không đảm bảo (U): ±0.03%</span>
+                                    <span class="flag-pass">QA FLAG: PASS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. CUSTOMER PROBLEMS SECTION -->
+        <section class="section problems-section" id="problems">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">VẤN ĐỀ VẬN HÀNH</span>
+                    <h2 class="section-title">Thách thức trong giám sát tuân thủ khí thải tàu biển</h2>
+                    <p class="section-desc">
+                        Cơ quan quản lý hàng hải, Cảng vụ và Đơn vị khai thác tàu đối mặt với nhiều khó khăn kỹ thuật khi muốn kiểm soát hiệu quả nguồn phát thải từ khói tàu.
+                    </p>
+                </div>
+
+                <div class="grid grid-2 problems-grid-container">
+                    <div class="problems-visual-side">
+                        <div class="image-box">
+                            <img src="src/assets/customer_problems.png" alt="Thách thức giám sát môi trường cảng biển" class="img-responsive rounded-lg" id="problem-img">
+                            <div class="image-caption">
+                                <span>Bối cảnh nguồn khói phức tạp và nhiễu nền tại cảng biển</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="problems-cards-side">
+                        <div class="problem-card">
+                            <div class="problem-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="problem-content">
+                                <h3>1. Nhu cầu ưu tiên kiểm tra tàu (PSC)</h3>
+                                <p>PSC cần dữ liệu sàng lọc có chất lượng để chọn lượt tàu thực sự có dấu hiệu nghi ngờ cần xem xét, thay vì coi mọi tín hiệu phát thải cao đơn lẻ là vi phạm.</p>
+                                <span class="source-tag">Căn cứ: CODE_02 Mục 2 • SRC-02</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="problem-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="problem-content">
+                                <h3>2. Quan sát tàu đang hành trình</h3>
+                                <p>Khảo sát tại bến không mô tả đầy đủ các trạng thái nhiên liệu khi tàu hoạt động trên luồng. UAV là phương án bổ sung linh hoạt khi được cấp phép bay.</p>
+                                <span class="source-tag">Căn cứ: CODE_02 Mục 2 • SRC-02</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="problem-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="problem-content">
+                                <h3>3. Nguồn nhiễu & gán sai nguồn khói</h3>
+                                <p>Khói tàu lai, bến bãi xung quanh và biến động nồng độ khí nền có thể gây sai lệch kết quả. Cần quy trình tách nền và xác thực tàu chính xác qua AIS/GNSS.</p>
+                                <span class="source-tag">Căn cứ: CODE_00 G6 • SRC-16</span>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <div class="problem-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div class="problem-content">
+                                <h3>4. Ranh giới diễn giải kết quả</h3>
+                                <p>Cần làm rõ mức độ tin cậy dữ liệu, trường hợp tàu trang bị thiết bị lọc khói (Scrubber) và khoảng cách giữa sàng lọc sơ bộ với kết luận pháp lý.</p>
+                                <span class="source-tag">Căn cứ: SRC-01, SRC-09 • CODE_00 G2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. SOLUTION & GUARDRAILS SECTION -->
+        <section class="section guardrails-section" id="guardrails">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">GIẢI PHÁP & RANH GIỚI PHÁP LÝ</span>
+                    <h2 class="section-title">Giải pháp S0303 & Guardrail Kỹ thuật Bắt buộc</h2>
+                    <p class="section-desc">
+                        S0303 kết hợp thiết bị sniffer SO₂/CO₂ trên UAV, dữ liệu hành trình AIS và camera bối cảnh để hỗ trợ khảo sát luồng khói tàu biển.
+                    </p>
+                </div>
+
+                <!-- Solution Summary Banner -->
+                <div class="solution-summary-card">
+                    <div class="summary-badge">TÓM TẮT NGUYÊN LÝ S0303</div>
+                    <p class="summary-text">
+                        Ước tính hàm lượng lưu huỳnh nhiên liệu (FSC) sàng lọc được tính toán từ cặp khí tăng vọt ΔSO₂/ΔCO₂ so với khí nền sau khi đã đồng bộ thời gian và độ trễ mẫu. Kết quả được gán cờ chất lượng (QA Flags) và tính độ không đảm bảo đo (U) trước khi lập báo cáo.
+                    </p>
+                </div>
+
+                <!-- Guardrails Grid -->
+                <div class="guardrail-boxes-grid">
+                    <div class="guardrail-box alert-danger">
+                        <div class="box-header">
+                            <span class="alert-icon">🚫</span>
+                            <h3>KHÔNG XỬ PHẠT / KHÔNG THAY CHỨNG NHẬN MARPOL</h3>
+                        </div>
+                        <p>Dịch vụ chỉ cung cấp thông tin **sàng lọc dấu hiệu nghi ngờ** hỗ trợ con người xem xét. Không tự xử phạt vi phạm hành chính, không chứng nhận tuân thủ MARPOL Annex VI và không thay thế lấy mẫu dầu trực tiếp của PSC.</p>
+                    </div>
+
+                    <div class="guardrail-box alert-warning">
+                        <div class="box-header">
+                            <span class="alert-icon">⚠️</span>
+                            <h3>KHÔNG SUY FSC THỰC SAU THIẾT BỊ SCRUBBER</h3>
+                        </div>
+                        <p>Không dùng tỷ lệ SO₂/CO₂ đo trong ống khói tàu trang bị hệ thống lọc khí thải (EGCS/Scrubber) để suy ngược ra hàm lượng lưu huỳnh của nhiên liệu gốc ban đầu.</p>
+                    </div>
+
+                    <div class="guardrail-box alert-warning">
+                        <div class="box-header">
+                            <span class="alert-icon">⚠️</span>
+                            <h3>KHÔNG CHỨNG NHẬN IMO TIER TỪ NOX PPM</h3>
+                        </div>
+                        <p>Không sử dụng nồng độ khí đo từ xa tính bằng ppm để kết luận hoặc tự cấp chứng nhận IMO Tier I/II/III cho động cơ tàu. Nồng độ ppm biến đổi phụ thuộc tốc độ pha loãng không khí.</p>
+                    </div>
+
+                    <div class="guardrail-box alert-info">
+                        <div class="box-header">
+                            <span class="alert-icon">🔒</span>
+                            <h3>QUY TẮC NGUYÊN TẮC GIÁ BÁN (PRICING RULE)</h3>
+                        </div>
+                        <p>Trợ lý AI và tài liệu công khai **không lặp lại, xác nhận, tính toán hoặc nêu bất kỳ số tiền nào** cho mọi kênh/vai trò. Tất cả thông tin chi phí được chuyển trực tiếp sang bộ phận Sales/Finance bên ngoài Agent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. KEY CAPABILITIES & TECHNOLOGY -->
+        <section class="section capabilities-section" id="capabilities">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">NĂNG LỰC KỸ THUẬT</span>
+                    <h2 class="section-title">Năng lực cốt lõi của Hệ thống S0303</h2>
+                    <p class="section-desc">
+                        Cấu hình thiết bị đo sniffer, quy trình xử lý dữ liệu và kiểm soát chất lượng đáp ứng các nguyên tắc kỹ thuật hàng hải.
+                    </p>
+                </div>
+
+                <div class="grid grid-2 align-center">
+                    <div class="capabilities-image-col">
+                        <div class="tech-img-wrapper">
+                            <img src="src/assets/uav_tech.png" alt="Payload cảm biến sniffer trên UAV" class="img-responsive rounded-lg" id="tech-img">
+                            
+                            <div class="overlay-tech-badge">
+                                <div class="badge-title">PAYLOAD CẢM BIẾN S0303</div>
+                                <div class="badge-list">
+                                    <span>✓ Cảm biến SO₂ & CO₂ Sniffer</span>
+                                    <span>✓ Đầu dò lấy mẫu đường hút</span>
+                                    <span>✓ Camera RGB / Thermal bối cảnh</span>
+                                    <span>✓ Thu tín hiệu AIS / GNSS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="capabilities-list-col">
+                        <div class="capability-item">
+                            <div class="cap-number">01</div>
+                            <div class="cap-content">
+                                <h3>Đo Sniffer SO₂/CO₂ trực tiếp</h3>
+                                <p>Thu thập chuỗi nồng độ khí tại luồng khói tàu, thực hiện trừ khí nền môi trường và tích phân cặp khí đồng bộ để ước tính FSC sàng lọc có kèm độ không đảm bảo đo.</p>
+                            </div>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="cap-number">02</div>
+                            <div class="cap-content">
+                                <h3>Nhận dạng tàu qua AIS & Ảnh</h3>
+                                <p>Đối chiếu dữ liệu AIS (MMSI/IMO), thời gian, tọa độ và ảnh chụp bối cảnh để gán chính xác nguồn phát thải; loại bỏ các lượt bay bị nhiễu do chồng luồng khói.</p>
+                            </div>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="cap-number">03</div>
+                            <div class="cap-content">
+                                <h3>Đa chỉ tiêu & Ảnh nhiệt bối cảnh</h3>
+                                <p>Hỗ trợ đo bổ sung CH₄/VOCs (Gói L2) khi cảm biến đã được kiểm định an toàn. Ảnh nhiệt RGB/Thermal cung cấp góc nhìn bối cảnh nhiệt, không phải ảnh nhận diện khí trực tiếp.</p>
+                            </div>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="cap-number">04</div>
+                            <div class="cap-content">
+                                <h3>Báo cáo kiểm soát chất lượng QA/QC (D1)</h3>
+                                <p>Mọi kết quả D1 đều tự động hiển thị khí nền, lịch sử hiệu chuẩn thiết bị, độ trễ đo, cờ QA (Pass/Fail/Invalid) và độ không đảm bảo đo (U). Mẫu không đạt ghi "không kết luận".</p>
+                            </div>
+                        </div>
+
+                        <div class="capability-item">
+                            <div class="cap-number">05</div>
+                            <div class="cap-content">
+                                <h3>Bản đồ phân bố 3D tùy chọn (D3)</h3>
+                                <p>Mô hình hóa trường nồng độ 3D quanh tàu khi có thiết kế đường bay nghiệm thu. Nêu rõ các giả thiết, mật độ điểm đo và bất định của mô hình nội suy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. USE CASES SECTION -->
+        <section class="section usecases-section" id="use-cases">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">KỊCH BẢN ỨNG DỤNG</span>
+                    <h2 class="section-title">4 Tình huống khảo sát thực tế của S0303</h2>
+                    <p class="section-desc">
+                        Tùy thuộc vào vị trí tàu (hành trình hay tại bến) và mục tiêu giám sát để chọn cấu hình gói và sản phẩm bàn giao phù hợp.
+                    </p>
+                </div>
+
+                <!-- Interactive Tabs for Use Cases -->
+                <div class="usecase-tabs-wrapper">
+                    <div class="tab-buttons" role="tablist">
+                        <button class="tab-btn active" data-tab="uc1" role="tab">UC1: Tàu đang hành trình</button>
+                        <button class="tab-btn" data-tab="uc2" role="tab">UC2: Tàu tại bến</button>
+                        <button class="tab-btn" data-tab="uc3" role="tab">UC3: Tầm soát CH₄/VOCs</button>
+                        <button class="tab-btn" data-tab="uc4" role="tab">UC4: Tàu trang bị Scrubber</button>
+                    </div>
+
+                    <div class="tab-contents">
+                        <!-- UC1 -->
+                        <div class="tab-pane active" id="uc1" role="tabpanel">
+                            <div class="usecase-card-grid">
+                                <div class="uc-info">
+                                    <div class="uc-badge">UC1 • FAIRWAY PASS-BY</div>
+                                    <h3>Sàng lọc khí thải tàu đang hành trình trên luồng</h3>
+                                    <p>UAV tiếp cận luồng khói phía sau tàu đang di chuyển ngoài luồng hàng hải để đo cặp khí SO₂/CO₂. Kết hợp dữ liệu AIS để nhận dạng tàu và đối chiếu tốc độ hành trình.</p>
+                                    <ul class="uc-features-list">
+                                        <li><strong>Gói áp dụng:</strong> Level L1 / Level L3</li>
+                                        <li><strong>Sản phẩm bàn giao:</strong> Báo cáo D1; Phiếu cảnh báo D4 (sau Human review)</li>
+                                        <li><strong>Điều kiện:</strong> Hồ sơ bay được phép theo Nghị định 288/2025/NĐ-CP và khí tượng phù hợp.</li>
+                                    </ul>
+                                </div>
+                                <div class="uc-visual-box">
+                                    <div class="svg-diagram-container">
+                                        <svg viewBox="0 0 400 240" class="svg-diagram">
+                                            <rect width="400" height="240" fill="#0F172A"/>
+                                            <!-- Sea wave background -->
+                                            <path d="M0 160 Q100 150 200 160 T400 160 L400 240 L0 240 Z" fill="#1E293B"/>
+                                            <!-- Vessel Underway -->
+                                            <path d="M60 170 L220 170 L250 145 L210 145 L200 120 L150 120 L140 145 L60 145 Z" fill="#334155" stroke="#38BDF8" stroke-width="2"/>
+                                            <rect x="170" y="100" width="15" height="20" fill="#475569"/>
+                                            <!-- Plume -->
+                                            <path d="M177 100 Q210 70 260 60 Q320 50 380 40 L380 80 Q310 90 250 100 Z" fill="url(#plumeGrad)" opacity="0.6"/>
+                                            <!-- UAV -->
+                                            <circle cx="270" cy="70" r="10" fill="#00F2FE"/>
+                                            <line x1="260" y1="70" x2="280" y2="70" stroke="#FFF" stroke-width="2"/>
+                                            <line x1="270" y1="60" x2="270" y2="80" stroke="#FFF" stroke-width="2"/>
+                                            <text x="270" y="45" fill="#00F2FE" font-size="11" text-anchor="middle" font-weight="bold">Sniffer UAV</text>
+                                            <text x="140" y="195" fill="#94A3B8" font-size="12">Tàu đang hành trình (Underway)</text>
+                                            <defs>
+                                                <linearGradient id="plumeGrad" x1="0" y1="0" x2="1" y2="0">
+                                                    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.8"/>
+                                                    <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.1"/>
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UC2 -->
+                        <div class="tab-pane" id="uc2" role="tabpanel">
+                            <div class="usecase-card-grid">
+                                <div class="uc-info">
+                                    <div class="uc-badge">UC2 • BERTH / MOORED</div>
+                                    <h3>Đo khí thải tàu tại cầu cảng (Berth)</h3>
+                                    <p>Khảo sát phát thải khi tàu đang lưu tại bến cảng, hoạt động máy phụ (Auxiliary Engine) hoặc nồi hơi. Phân biệt luồng khói riêng biệt của từng ống khói.</p>
+                                    <ul class="uc-features-list">
+                                        <li><strong>Gói áp dụng:</strong> Level L1 / Level L2</li>
+                                        <li><strong>Sản phẩm bàn giao:</strong> Báo cáo D1, Hồ sơ ảnh bối cảnh D2</li>
+                                        <li><strong>Giới hạn:</strong> Không kết luận tuân thủ điện bờ hay cảng xanh chỉ từ mẫu khí ngắn hạn.</li>
+                                    </ul>
+                                </div>
+                                <div class="uc-visual-box">
+                                    <div class="svg-diagram-container">
+                                        <svg viewBox="0 0 400 240" class="svg-diagram">
+                                            <rect width="400" height="240" fill="#0F172A"/>
+                                            <!-- Quay wall -->
+                                            <rect x="0" y="170" width="400" height="70" fill="#1E293B"/>
+                                            <rect x="0" y="165" width="400" height="5" fill="#475569"/>
+                                            <!-- Moored Ship -->
+                                            <path d="M100 165 L320 165 L310 120 L130 120 Z" fill="#334155" stroke="#10B981" stroke-width="2"/>
+                                            <!-- Stack -->
+                                            <rect x="230" y="90" width="16" height="30" fill="#475569"/>
+                                            <!-- Vertical Plume -->
+                                            <path d="M238 90 Q240 50 260 30 Q280 20 310 15 L330 35 Q290 45 254 90 Z" fill="#10B981" opacity="0.4"/>
+                                            <!-- UAV hovering -->
+                                            <circle cx="260" cy="40" r="10" fill="#10B981"/>
+                                            <text x="260" y="25" fill="#10B981" font-size="11" text-anchor="middle" font-weight="bold">Berth Hover</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UC3 -->
+                        <div class="tab-pane" id="uc3" role="tabpanel">
+                            <div class="usecase-card-grid">
+                                <div class="uc-info">
+                                    <div class="uc-badge">UC3 • LNG / SPECIAL CARGO</div>
+                                    <h3>Tầm soát CH₄ / VOCs trên tàu LNG & Hàng đặc thù</h3>
+                                    <p>Tùy chọn tích hợp cảm biến đo Methane Slip (CH₄) hoặc hợp chất hữu cơ dễ bay hơi (VOCs) đối với các tàu chở khí hóa lỏng LNG hoặc hóa chất.</p>
+                                    <ul class="uc-features-list">
+                                        <li><strong>Gói áp dụng:</strong> Level L2 (Cấu hình cảm biến tùy chọn)</li>
+                                        <li><strong>Sản phẩm bàn giao:</strong> Báo cáo đa chỉ tiêu D2</li>
+                                        <li><strong>Lưu ý an toàn:</strong> Phải được phê duyệt đánh giá vùng nguy hiểm chống cháy nổ (Ex-proof) trước khi thực hiện.</li>
+                                    </ul>
+                                </div>
+                                <div class="uc-visual-box">
+                                    <div class="svg-diagram-container">
+                                        <svg viewBox="0 0 400 240" class="svg-diagram">
+                                            <rect width="400" height="240" fill="#0F172A"/>
+                                            <!-- LNG Tanker spherical tanks -->
+                                            <path d="M50 170 L350 170 L340 140 L60 140 Z" fill="#334155" stroke="#F59E0B" stroke-width="2"/>
+                                            <circle cx="120" cy="135" r="22" fill="#475569" stroke="#F59E0B"/>
+                                            <circle cx="190" cy="135" r="22" fill="#475569" stroke="#F59E0B"/>
+                                            <circle cx="260" cy="135" r="22" fill="#475569" stroke="#F59E0B"/>
+                                            <!-- CH4 leak plume -->
+                                            <path d="M190 113 Q210 70 250 50 Q300 40 350 35" fill="none" stroke="#F59E0B" stroke-width="3" stroke-dasharray="4,4"/>
+                                            <circle cx="250" cy="50" r="8" fill="#F59E0B"/>
+                                            <text x="250" y="35" fill="#F59E0B" font-size="11" text-anchor="middle" font-weight="bold">CH₄ Sensor</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UC4 -->
+                        <div class="tab-pane" id="uc4" role="tabpanel">
+                            <div class="usecase-card-grid">
+                                <div class="uc-info">
+                                    <div class="uc-badge">UC4 • EGCS / SCRUBBER SURVEY</div>
+                                    <h3>Khảo sát luồng khí tàu trang bị Scrubber & Phân bố 3D</h3>
+                                    <p>Khảo sát bối cảnh nhiệt và phân bố nồng độ khí xung quanh tàu trang bị hệ thống xử lý khí thải EGCS. Hỗ trợ xây dựng bản đồ phân bố 3D tùy chọn (D3).</p>
+                                    <ul class="uc-features-list">
+                                        <li><strong>Gói áp dụng:</strong> Level L2 (Tùy chọn D3)</li>
+                                        <li><strong>Sản phẩm bàn giao:</strong> Báo cáo D2, Bản đồ 3D D3 (khi được nghiệm thu)</li>
+                                        <li><strong>Ranh giới Guardrail:</strong> Không chứng nhận hiệu suất Scrubber và không suy FSC nhiên liệu gốc từ luồng khí sau xử lý.</li>
+                                    </ul>
+                                </div>
+                                <div class="uc-visual-box">
+                                    <div class="svg-diagram-container">
+                                        <svg viewBox="0 0 400 240" class="svg-diagram">
+                                            <rect width="400" height="240" fill="#0F172A"/>
+                                            <!-- 3D grid lines -->
+                                            <path d="M50 200 L200 130 L350 200 M200 130 L200 30" stroke="#334155" stroke-dasharray="2,2"/>
+                                            <circle cx="200" cy="100" r="45" fill="none" stroke="#818CF8" stroke-width="2" stroke-dasharray="5,5"/>
+                                            <circle cx="200" cy="100" r="75" fill="none" stroke="#6366F1" stroke-width="1" stroke-dasharray="3,3"/>
+                                            <text x="200" y="95" fill="#818CF8" font-size="12" text-anchor="middle">3D Grid Mapping</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. HOW IT WORKS / SOP SECTION -->
+        <section class="section sop-section" id="how-it-works">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">QUY TRÌNH VẬN HÀNH</span>
+                    <h2 class="section-title">5 Bước Quy trình SOP Đề xuất</h2>
+                    <p class="section-desc">
+                        Quy trình chuẩn bị, thực hiện và bàn giao dữ liệu được thực hiện nghiêm ngặt theo các bước quản lý chất lượng.
+                    </p>
+                </div>
+
+                <div class="sop-steps-timeline">
+                    <div class="sop-step-card">
+                        <div class="step-num">01</div>
+                        <div class="step-body">
+                            <h3>Xác định Mục tiêu & Khảo sát ban đầu</h3>
+                            <p>Trao đổi yêu cầu cụ thể, thông tin tàu, khu vực cảng/luồng và tình trạng thiết bị lọc khói (Scrubber) để lựa chọn cấp dịch vụ L1 - L4 phù hợp.</p>
+                        </div>
+                    </div>
+
+                    <div class="sop-step-card">
+                        <div class="step-num">02</div>
+                        <div class="step-body">
+                            <h3>Rà soát Pháp lý Bay & Kế hoạch An toàn</h3>
+                            <p>Đánh giá tính khả thi hiện trường, hoàn thiện hồ sơ phép bay theo Nghị định 288/2025/NĐ-CP, phối hợp Cảng vụ và kiểm tra điều kiện an toàn bay GO/NO-GO.</p>
+                        </div>
+                    </div>
+
+                    <div class="sop-step-card">
+                        <div class="step-num">03</div>
+                        <div class="step-body">
+                            <h3>Thu thập Dữ liệu Sniffer & AIS</h3>
+                            <p>Huy động UAV mang cảm biến lấy mẫu khí nền trước/sau, tiếp cận luồng khói thu chuỗi SO₂/CO₂ và đối chiếu mã tàu AIS/ảnh chụp bối cảnh.</p>
+                        </div>
+                    </div>
+
+                    <div class="sop-step-card">
+                        <div class="step-num">04</div>
+                        <div class="step-body">
+                            <h3>Kiểm soát Chất lượng (QA) & Bất định</h3>
+                            <p>Thực hiện trừ khí nền, kiểm tra độ trễ mẫu, gán cờ chất lượng (QA Flags) và tính độ không đảm bảo đo. Các chuỗi đo bị nhiễu sẽ đánh cờ "không kết luận".</p>
+                        </div>
+                    </div>
+
+                    <div class="sop-step-card">
+                        <div class="step-num">05</div>
+                        <div class="step-body">
+                            <h3>Phê duyệt Con người & Bàn giao (D1-D4)</h3>
+                            <p>Báo cáo D1 và phiếu cảnh báo nghi ngờ D4 bắt buộc trải qua rà soát của chuyên gia (Human Review) trước khi phát hành chính thức tới đầu mối được phép.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. SERVICE LEVELS / PACKAGES SECTION -->
+        <section class="section packages-section" id="packages">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">CẤU HÌNH GÓI DỊCH VỤ</span>
+                    <h2 class="section-title">4 Cấp độ Dịch vụ Đề xuất (Service Levels)</h2>
+                    <p class="section-desc">
+                        Các gói cấu hình từ cơ bản đến nâng cao. Lưu ý: Mọi mức cấu hình đều ở dạng đề xuất chưa duyệt chính thức.
+                    </p>
+                </div>
+
+                <div class="grid grid-4 packages-grid">
+                    <!-- L1 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <span class="level-badge text-cyan">LEVEL 1</span>
+                            <h3>Basic FSC Screening</h3>
+                            <p class="package-desc">Sàng lọc FSC cơ bản</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>✓ Cảm biến SO₂ + CO₂ Sniffer</li>
+                                <li>✓ Đối chiếu dữ liệu AIS & GNSS</li>
+                                <li>✓ Kiểm soát chất lượng khí nền</li>
+                                <li>✓ Sản phẩm bàn giao: **Báo cáo D1**</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <span class="price-guardrail-notice">Giá: Chuyển Sales/Finance</span>
+                            <a href="#lead-form" class="btn btn-outline btn-block">Yêu cầu tư vấn L1</a>
+                        </div>
+                    </div>
+
+                    <!-- L2 -->
+                    <div class="package-card featured">
+                        <div class="popular-ribbon">ĐỀ XUẤT PHỔ BIẾN</div>
+                        <div class="package-header">
+                            <span class="level-badge text-amber">LEVEL 2</span>
+                            <h3>Multi-Gas & Thermal</h3>
+                            <p class="package-desc">Đa chỉ tiêu & Ảnh bối cảnh</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>✓ Tất cả tính năng của Level 1</li>
+                                <li>✓ Tùy chọn cảm biến CH₄/VOCs</li>
+                                <li>✓ Ảnh bối cảnh RGB & Thermal</li>
+                                <li>✓ Bản đồ 3D D3 (tùy chọn)</li>
+                                <li>✓ Sản phẩm bàn giao: **D1, D2, D3**</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <span class="price-guardrail-notice">Giá: Chuyển Sales/Finance</span>
+                            <a href="#lead-form" class="btn btn-primary btn-block">Yêu cầu tư vấn L2</a>
+                        </div>
+                    </div>
+
+                    <!-- L3 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <span class="level-badge text-purple">LEVEL 3</span>
+                            <h3>Cloud & PSC Alert</h3>
+                            <p class="package-desc">Lưu trữ mây & Cảnh báo PSC</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>✓ Kế thừa toàn bộ dữ liệu L1/L2</li>
+                                <li>✓ Quản lý hồ sơ dữ liệu trên Mây</li>
+                                <li>✓ Cảnh báo D4 sau Human Review</li>
+                                <li>⚠️ *Tích hợp API PSC: Chưa xác minh*</li>
+                                <li>✓ Sản phẩm bàn giao: **D1 - D4**</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <span class="price-guardrail-notice">Giá: Chuyển Sales/Finance</span>
+                            <a href="#lead-form" class="btn btn-outline btn-block">Yêu cầu tư vấn L3</a>
+                        </div>
+                    </div>
+
+                    <!-- L4 -->
+                    <div class="package-card r-d-card">
+                        <div class="package-header">
+                            <span class="level-badge text-gray">LEVEL 4</span>
+                            <h3>Autonomous DiaB</h3>
+                            <p class="package-desc">Trạm UAV tự động (Drone-in-a-Box)</p>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>🧪 **GIAI ĐOẠN R&D CHƯA BÁN**</li>
+                                <li>✕ Chưa vận hành tự chủ thương mại</li>
+                                <li>✕ Chưa xác nhận hạ tầng Docking</li>
+                                <li>✓ Đầu ra theo đề cương thử nghiệm</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <span class="price-guardrail-notice">Chỉ nghiên cứu R&D</span>
+                            <button class="btn btn-secondary btn-block" disabled>Chưa thương mại</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Guardrail Note -->
+                <div class="pricing-policy-alert mt-4">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span><strong>Lưu ý về Báo giá:</strong> Theo Guardrail dịch vụ S0303, thông tin chi phí không công bố công khai trên Landing Page hay AI Agent. Quý khách vui lòng gửi mẫu yêu cầu để bộ phận Commercial (Sales/Finance) trực tiếp liên hệ hỗ trợ.</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 8. DELIVERABLES SECTION -->
+        <section class="section deliverables-section" id="deliverables">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">SẢN PHẨM BÀN GIAO</span>
+                    <h2 class="section-title">Danh mục Kết quả Bàn giao (Deliverables D1 - D5)</h2>
+                    <p class="section-desc">
+                        Chi tiết các định dạng hồ sơ dữ liệu đầu ra được cung cấp sau mỗi nhiệm vụ giám sát.
+                    </p>
+                </div>
+
+                <div class="deliverables-grid">
+                    <div class="deliverable-card">
+                        <div class="deliv-code">D1</div>
+                        <div class="deliv-info">
+                            <h3>Báo cáo Sàng lọc FSC & Chất lượng đo</h3>
+                            <p>Báo cáo PDF chuẩn ghi nhận chuỗi nồng độ SO₂/CO₂ đã trừ nền, mã nhận dạng tàu AIS, cờ hợp lệ (QA flags), phương pháp tính và độ không đảm bảo đo (U). Các mẫu bị nhiễu ghi rõ "không kết luận".</p>
+                            <span class="deliv-tag tag-ready">Đầu ra Gói L1 / L2 / L3</span>
+                        </div>
+                    </div>
+
+                    <div class="deliverable-card">
+                        <div class="deliv-code">D2</div>
+                        <div class="deliv-info">
+                            <h3>Hồ sơ Đa chỉ tiêu & Ảnh bối cảnh</h3>
+                            <p>Bảng tổng hợp nồng độ các chất khí bổ sung (CH₄/VOCs) thực sự được đo theo cảm biến xác nhận, kèm bộ ảnh chụp bối cảnh bốc khói RGB/Thermal có đóng dấu thời gian và độ tin cậy.</p>
+                            <span class="deliv-tag tag-ready">Đầu ra Gói L2 / L3</span>
+                        </div>
+                    </div>
+
+                    <div class="deliverable-card">
+                        <div class="deliv-code">D3</div>
+                        <div class="deliv-info">
+                            <h3>Bản đồ Phân bố 3D Tùy chọn</h3>
+                            <p>Tệp dữ liệu không gian GIS/Mô hình 3D thể hiện mật độ điểm đo, vùng tán xòe luồng khói kèm báo cáo giả định và sai số mô hình nội suy. Chỉ cung cấp khi có thiết kế khảo sát nghiệm thu.</p>
+                            <span class="deliv-tag tag-option">Tùy chọn Level L2 / L3</span>
+                        </div>
+                    </div>
+
+                    <div class="deliverable-card">
+                        <div class="deliv-code">D4</div>
+                        <div class="deliv-info">
+                            <h3>Phiếu Cảnh báo Nghi ngờ cho PSC</h3>
+                            <p>Thông báo dữ liệu sàng lọc có dấu hiệu vượt ngưỡng FSC quy định kèm lịch sử phê duyệt của chuyên gia (Human review). Chỉ gửi tới các đầu mối được phân quyền tiếp nhận.</p>
+                            <span class="deliv-tag tag-review">Đầu ra Gói L3 (Cần Human Review)</span>
+                        </div>
+                    </div>
+
+                    <div class="deliverable-card disabled-deliv">
+                        <div class="deliv-code">D5</div>
+                        <div class="deliv-info">
+                            <h3>Dashboard & Nhật ký Tra cứu trực tuyến</h3>
+                            <p>Giao diện điều hành tra cứu trực tuyến, nhật ký lịch sử bay và phân quyền. <strong>Trạng thái: Chưa triển khai.</strong> Hiện tại không chào bán hoặc bàn giao như một hệ thống đã hoạt động.</p>
+                            <span class="deliv-tag tag-draft">CHƯA TRIỂN KHAI / KHÔNG BÀN GIAO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 9. FAQ SECTION -->
+        <section class="section faq-section" id="faq">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">GIẢI ĐÁP THẮC MẮC</span>
+                    <h2 class="section-title">Câu hỏi thường gặp về Dịch vụ S0303</h2>
+                    <p class="section-desc">
+                        Giải đáp các thắc mắc về phạm vi kỹ thuật, tính pháp lý và quy định vận hành bay tại Việt Nam.
+                    </p>
+                </div>
+
+                <div class="faq-accordion-container" id="faq-accordion">
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>1. Kết quả đo của S0303 có dùng để phạt vi phạm hoặc chứng nhận MARPOL không?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Không.</strong> Kết quả của S0303 chỉ đóng vai trò là **dữ liệu sàng lọc (screening)** hỗ trợ cơ quan quản lý hàng hải và PSC khoanh vùng các lượt tàu nghi ngờ để ưu tiên kiểm tra. Dịch vụ không thay thế thanh tra PSC chính thức, không xử phạt trực tiếp và không cấp chứng nhận tuân thủ MARPOL Annex VI.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>2. Cảm biến trên UAV đo được những chỉ tiêu khí nào?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Cấu hình mặc định Level 1 đo cặp khí chính là SO₂ và CO₂ cùng tín hiệu AIS/GNSS. Cấu hình Level 2 có thể hỗ trợ bổ sung CH₄ hoặc VOCs khi cảm biến đã được thẩm định và phê duyệt an toàn. Các chỉ tiêu khí khác như NOx hay PM chỉ áp dụng khi có cảm biến xác nhận.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>3. Đo khói tàu có trang bị Scrubber có suy ra hàm lượng FSC nhiên liệu gốc được không?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Không.</strong> Tỷ lệ SO₂/CO₂ đo trong luồng khí thải sau hệ thống xử lý khí (Scrubber / EGCS) phản ánh hiệu quả rửa khí của thiết bị chứ không đại diện cho nồng độ lưu huỳnh gốc trong nhiên liệu. Do đó, guardrail S0303 cấm suy FSC nhiên liệu gốc từ luồng khói sau Scrubber.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>4. Camera nhiệt có nhìn thấy khí trực tiếp không và NOx có chứng nhận Tier được không?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Camera nhiệt (Thermal) thông thường chỉ cung cấp bối cảnh nhiệt độ ống khói và luồng khí, không phải là thiết bị ghi hình quang học nhận biết khí (OGI). Đồng thời, nồng độ NOx đo từ xa (ppm) phụ thuộc tốc độ pha loãng nên không dùng để chứng nhận IMO Tier (I/II/III).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>5. Dịch vụ đã kết nối tự động với hệ thống PSC và vận hành trạm UAV tự động chưa?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Chưa. Kết nối tự động API PSC (Gói L3) đang trong giai đoạn rà soát tích hợp tại Việt Nam; phiếu cảnh báo D4 hiện tại bắt buộc phải qua duyệt con người. Cấp độ L4 (Trạm UAV tự động DiaB) hiện là dự án nghiên cứu R&D, chưa thương mại hóa.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>6. Giá dịch vụ và thời gian khảo sát được tính như thế nào?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Theo quy tắc Pricing Guardrail, AI Agent và tài liệu công khai không cung cấp bất kỳ con số chi phí nào. Quý khách vui lòng gửi Form yêu cầu tư vấn, bộ phận Sales & Finance sẽ liên hệ trực tiếp để cung cấp thông tin thương mại sau khi rà soát điều kiện hiện trường.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>7. Quy định cấp phép bay UAV áp dụng tại Việt Nam ra sao?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Hoạt động bay UAV của S0303 tuân thủ nghiêm ngặt **Nghị định 288/2025/NĐ-CP** của Chính phủ Việt Nam. Mọi chuyến bay giám sát phải có hồ sơ phép bay được Cục Tác chiến phê duyệt, phối hợp Cảng vụ địa phương và hoàn thành đánh giá rủi ro an toàn bay trước khi cất cánh.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>8. Mẫu đo không đạt chất lượng QA/QC được xử lý như thế nào?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Các chuỗi dữ liệu đo bị ảnh hưởng bởi nhiễu nền biến động, chồng luồng khói tàu khác hoặc không rõ tín hiệu AIS sẽ được hệ thống gán cờ "Invalid" và ghi rõ "Không đủ cơ sở ước tính FSC". Dữ liệu này không dùng để đưa ra bất kỳ nhận định nào.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 10. LEAD FORM / CALL TO ACTION SECTION -->
+        <section class="section lead-section" id="lead-form">
+            <div class="container">
+                <div class="lead-box-wrapper">
+                    <div class="lead-info-side">
+                        <span class="badge-tag">LIÊN HỆ KHẢO SÁT</span>
+                        <h2>Trao đổi Nhu cầu Giám sát Khí thải Tàu biển S0303</h2>
+                        <p>
+                            Quý cơ quan quản lý, đơn vị vận hành cảng hoặc chủ tàu có nhu cầu tìm hiểu phạm vi khảo sát, vui lòng để lại thông tin. Đội ngũ Kỹ thuật & Kinh doanh sẽ liên hệ hỗ trợ.
+                        </p>
+                        
+                        <div class="contact-highlights">
+                            <div class="highlight-item">
+                                <span class="h-icon">📋</span>
+                                <div>
+                                    <strong>Tư vấn phạm vi phù hợp</strong>
+                                    <p>Đánh giá điều kiện hiện trường và xác định cấu hình L1 - L3.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="h-icon">🛡️</span>
+                                <div>
+                                    <strong>Bảo mật thông tin</strong>
+                                    <p>Không yêu cầu tọa độ nhạy cảm hay thông tin ngân sách công khai.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lead-form-side">
+                        <form id="service-lead-form" class="lead-form" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="lead-name">Họ và tên *</label>
+                                <input type="text" id="lead-name" required placeholder="Ví dụ: Nguyễn Văn A">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lead-org">Tổ chức / Đơn vị & Vai trò *</label>
+                                <input type="text" id="lead-org" required placeholder="Ví dụ: Cảng vụ Hàng hải / Chủ tàu">
+                            </div>
+
+                            <div class="form-row grid grid-2">
+                                <div class="form-group">
+                                    <label for="lead-email">Email liên hệ *</label>
+                                    <input type="email" id="lead-email" required placeholder="email@donvi.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lead-phone">Số điện thoại *</label>
+                                    <input type="tel" id="lead-phone" required placeholder="090x xxx xxx">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lead-location">Khu vực / Cảng khảo sát dự kiến</label>
+                                <input type="text" id="lead-location" placeholder="Khái quát khu vực cảng hoặc tuyến luồng">
+                            </div>
+
+                            <div class="form-row grid grid-2">
+                                <div class="form-group">
+                                    <label for="lead-type">Tình huống tàu</label>
+                                    <select id="lead-type">
+                                        <option value="transit">Tàu đang hành trình (UC1)</option>
+                                        <option value="berth">Tàu đang tại bến (UC2)</option>
+                                        <option value="lng">Tàu LNG / Khí đốt (UC3)</option>
+                                        <option value="scrubber">Tàu có Scrubber (UC4)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lead-level">Cấp dịch vụ quan tâm</label>
+                                    <select id="lead-level">
+                                        <option value="L1">Level 1 - Basic FSC</option>
+                                        <option value="L2">Level 2 - Multi-Gas & Thermal</option>
+                                        <option value="L3">Level 3 - Cloud & PSC Alert</option>
+                                        <option value="unsure">Cần tư vấn thêm</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lead-notes">Ghi chú nhu cầu cụ thể</label>
+                                <textarea id="lead-notes" rows="3" placeholder="Mô tả mục tiêu giám sát hoặc thắc mắc về hồ sơ bay..."></textarea>
+                            </div>
+
+                            <div class="form-consent">
+                                <input type="checkbox" id="lead-consent" required checked>
+                                <label for="lead-consent">Tôi đồng ý cung cấp thông tin liên hệ để GASCOLAE tư vấn dịch vụ S0303.</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-lead-btn">
+                                <span>Gửi nhu cầu tư vấn</span>
+                            </button>
+                            
+                            <div class="form-response-msg" id="form-response-msg"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- AI AGENT EMBEDDED WIDGET & MODAL FRAME -->
+    <div class="ai-agent-widget-container" id="ai-agent-widget">
+        <!-- Floating Trigger Button -->
+        <button class="agent-fab-button" id="agent-fab-btn" aria-label="Mở Trợ lý AI S0303">
+            <div class="fab-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M12 7v4"></path>
+                    <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                    <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                </svg>
+            </div>
+            <span class="fab-label">Trợ lý AI S0303</span>
+            <span class="fab-pulse"></span>
+        </button>
+
+        <!-- Agent Chat Modal Window -->
+        <div class="agent-chat-modal" id="agent-chat-modal">
+            <div class="agent-modal-header">
+                <div class="agent-title-box">
+                    <div class="agent-avatar">🤖</div>
+                    <div>
+                        <h4 class="agent-name">Trợ lý S0303</h4>
+                        <span class="agent-sub">Giám sát khí thải tàu biển • GASCOLAE</span>
+                    </div>
+                </div>
+                <div class="agent-header-actions">
+                    <span class="agent-badge-ready">Khung AI sẵn sàng</span>
+                    <button class="close-agent-btn" id="close-agent-btn" aria-label="Đóng">&times;</button>
+                </div>
+            </div>
+
+            <div class="agent-modal-body" id="agent-chat-body">
+                <!-- Welcome Message -->
+                <div class="chat-message agent-message">
+                    <div class="msg-avatar">🤖</div>
+                    <div class="msg-content">
+                        <p><strong>Xin chào!</strong> Tôi là Trợ lý AI hỗ trợ giải đáp phạm vi dịch vụ S0303 (Giám sát khí thải tàu biển bằng UAV).</p>
+                        <p>Tôi có thể giúp bạn tìm hiểu các mức dịch vụ L1–L3, sản phẩm bàn giao D1–D4 và ranh giới kỹ thuật đo.</p>
+                        <div class="msg-guardrail-notice">
+                            ⚠️ <em>Lưu ý: Tôi không tự kết luận vi phạm pháp lý và không công bố số giá bán. Yêu cầu báo giá sẽ được chuyển bộ phận Sales/Finance.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggested Questions Chips -->
+                <div class="suggested-questions-box" id="suggested-questions">
+                    <span class="suggestions-label">Câu hỏi gợi ý:</span>
+                    <button class="chip-btn" data-question="S0303 đo được gì và không kết luận được gì?">
+                        ❓ S0303 đo được gì và không kết luận được gì?
+                    </button>
+                    <button class="chip-btn" data-question="Tàu đang hành trình và tại bến phù hợp Level nào?">
+                        ⚓ Tàu hành trình & tại bến phù hợp Level nào?
+                    </button>
+                    <button class="chip-btn" data-question="D1 khác D2, D3, D4 và D5 như thế nào?">
+                        📄 D1 khác D2, D3, D4 và D5 như thế nào?
+                    </button>
+                    <button class="chip-btn" data-question="Tôi cần cung cấp thông tin gì để trao đổi với Sales?">
+                        📞 Tôi cần thông tin gì để trao đổi với Sales?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Agent Chat Input Footer -->
+            <div class="agent-modal-footer">
+                <form id="agent-chat-form" onsubmit="return false;">
+                    <div class="input-wrapper">
+                        <input type="text" id="agent-input-text" placeholder="Nhập câu hỏi về dịch vụ S0303..." autocomplete="off">
+                        <button type="submit" id="agent-send-btn" aria-label="Gửi">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <div class="agent-footer-note">
+                    <span>Khung kết nối API Agent (Sẽ nhúng Backend về sau)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="brand-title">GASCOLAE PLATFORM</div>
+                <p>Nền tảng Quản lý & Giám sát Ô nhiễm Môi trường Hàng hải</p>
+                <p class="service-id-foot">Asset ID: S0303 • UAV Emission Monitoring • Version 1.0</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-col">
+                    <h4>Cấu hình S0303</h4>
+                    <ul>
+                        <li><a href="#packages">Level 1 - Basic FSC</a></li>
+                        <li><a href="#packages">Level 2 - Multi-Gas</a></li>
+                        <li><a href="#packages">Level 3 - Cloud PSC Alert</a></li>
+                        <li><a href="#packages">Level 4 - Autonomous (R&D)</a></li>
+                    </ul>
+                </div>
+                <div class="link-col">
+                    <h4>Căn cứ & Tiêu chuẩn</h4>
+                    <ul>
+                        <li><a href="#guardrails">IMO MARPOL Annex VI</a></li>
+                        <li><a href="#guardrails">Nghị định 288/2025/NĐ-CP</a></li>
+                        <li><a href="#guardrails">QCVN 05:2023/BTNMT</a></li>
+                        <li><a href="#guardrails">Guide JCGM 100:2008 QA</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p>&copy; 2026 GASCOLAE Platform. Tất cả các quyền được bảo lưu. Tài liệu thiết kế Landing Page theo đặc tả CODE_09.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="src/script.js"></script>
+</body>
+</html>
