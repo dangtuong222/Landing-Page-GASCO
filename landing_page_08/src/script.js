@@ -237,7 +237,7 @@ function handleModalSubmit(e) {
     e.preventDefault();
     closeConsultModal();
     const refCode = 'S0298-' + Math.floor(100000 + Math.random() * 900000);
-    alert(`✅ Đăng ký thành công!\nMã hồ sơ tư vấn của bạn: ${refCode}\nChuyên viên GASCOLAE sẽ liên hệ qua SĐT/Email bạn đã cung cấp.`);
+    alert(`Bản demo hoàn tất (${refCode}). Thông tin chưa được gửi tới GASCOLAE.`);
 }
 
 function handleFormSubmit(e) {
@@ -246,7 +246,7 @@ function handleFormSubmit(e) {
     const orgName = document.getElementById('orgName').value;
     const refCode = 'S0298-' + Math.floor(100000 + Math.random() * 900000);
     
-    alert(`🎉 Cảm ơn ${fullName} từ ${orgName}!\nYêu cầu tư vấn đợt quan trắc bụi mịn 3D S0298 đã được gửi thành công.\nMã hồ sơ: ${refCode}\nBộ phận Sales/Finance GASCOLAE sẽ phát hành phương án kỹ thuật và báo giá chính thức cho bạn.`);
+    alert(`Bản demo hoàn tất (${refCode}). Thông tin tư vấn S0298 chưa được gửi tới GASCOLAE.`);
     
     document.getElementById('leadConsultForm').reset();
 }

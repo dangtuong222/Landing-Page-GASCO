@@ -27,6 +27,7 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
   <!-- Glowing Background Orbs -->
   <div class="bg-orb bg-orb-1"></div>
@@ -43,9 +44,9 @@
         </div>
       </a>
 
-      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+      <button class="mobile-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">☰</button>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="#overview" class="nav-link">Tổng quan</a></li>
         <li><a href="#problems" class="nav-link">Thách thức</a></li>
         <li><a href="#solution" class="nav-link">Giải pháp</a></li>
@@ -62,7 +63,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <!-- HERO SECTION -->
     <section id="overview" class="hero-section">
       <div class="container hero-grid">
@@ -584,7 +585,7 @@
               </div>
             </div>
 
-            <form id="consultationForm" class="contact-form">
+            <form id="consultationForm" class="contact-form" method="post">
               <div class="form-group">
                 <label for="fullName">Họ và tên *</label>
                 <input type="text" id="fullName" placeholder="Ví dụ: Nguyễn Văn A" required>
@@ -626,7 +627,8 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary full-width">Gửi yêu cầu khảo sát thí điểm</button>
+              <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary full-width">Gửi yêu cầu khảo sát thí điểm</button>
             </form>
           </div>
         </div>

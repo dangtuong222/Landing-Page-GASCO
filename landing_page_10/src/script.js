@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (formResponseMsg) {
                     formResponseMsg.className = 'form-response-msg success';
                     formResponseMsg.innerHTML = `
-                        <strong>✓ Đã nhận nhu cầu tư vấn thành công!</strong><br>
-                        Cảm ơn ông/bà <strong>${escapeHtml(name)}</strong> (${escapeHtml(org)}). Bộ phận Kỹ thuật & Commercial của GASCOLAE sẽ liên hệ qua email <em>${escapeHtml(email)}</em> trong thời gian sớm nhất.
+                        <strong>Bản demo hoàn tất</strong><br>
+                        Thông tin S0303 chưa được gửi tới GASCOLAE. Liên hệ qua kênh chính thức để tiếp tục tư vấn.
                     `;
                     formResponseMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }

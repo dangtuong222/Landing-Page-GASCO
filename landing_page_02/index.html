@@ -26,6 +26,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -43,13 +44,14 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact" class="btn btn-nav" id="cta-nav">Liên hệ tư vấn</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" aria-label="Menu" type="button" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- HERO SECTION WITH 3D CANVAS BACKGROUND & IMAGE SHOWCASE -->
+  <main id="main-content" tabindex="-1">
   <section class="hero" id="hero">
     <!-- 3D Interactive WebGL Canvas -->
     <canvas id="hero-3d-canvas" class="hero-canvas"></canvas>
@@ -911,7 +913,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form" id="contact-form" novalidate method="post">
           <div class="form-row">
             <div class="form-group">
               <label for="f-name">Họ và tên *</label>
@@ -951,7 +953,8 @@
               placeholder="Vị trí đèo, chiều dài tuyến đèo cần giám sát, hiện trạng vết nứt (nếu có)..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-full" id="form-submit">
+          <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary btn-full" id="form-submit">
             Gửi yêu cầu khảo sát &amp; Báo giá
           </button>
           <p class="form-disclaimer">* Thông tin của bạn được cam kết bảo mật 100% theo tiêu chuẩn dự án hạ tầng giao
@@ -962,6 +965,9 @@
   </section>
 
   <!-- FOOTER -->
+
+  </main>
+
   <footer class="footer" id="footer">
     <div class="container">
       <div class="footer-top">

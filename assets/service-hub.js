@@ -1,6 +1,23 @@
 (() => {
   "use strict";
 
+  // Keep mobile menu controls in sync with the menu's visual state.
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("button[aria-controls][aria-expanded]");
+    if (!trigger) return;
+
+    requestAnimationFrame(() => {
+      const panel = document.getElementById(trigger.getAttribute("aria-controls"));
+      const expanded = Boolean(
+        panel &&
+          (panel.classList.contains("active") ||
+            panel.classList.contains("open") ||
+            (panel.style.display && panel.style.display !== "none"))
+      );
+      trigger.setAttribute("aria-expanded", String(expanded));
+    });
+  });
+
   const match = window.location.pathname.match(/landing_page_(\d{2})/i);
   if (!match || document.querySelector(".gascolae-hub-nav")) return;
 

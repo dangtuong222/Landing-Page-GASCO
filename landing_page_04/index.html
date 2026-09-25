@@ -22,6 +22,7 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
   <!-- Glowing Background Orbs -->
   <div class="bg-orb bg-orb-1"></div>
@@ -38,9 +39,9 @@
         </div>
       </a>
 
-      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+      <button class="mobile-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">☰</button>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="#overview" class="nav-link">Tổng quan</a></li>
         <li><a href="#problems" class="nav-link">Vấn đề</a></li>
         <li><a href="#solution" class="nav-link">Giải pháp</a></li>
@@ -56,7 +57,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <!-- HERO SECTION -->
     <section id="overview" class="hero-section">
       <div class="container hero-grid">
@@ -632,7 +633,7 @@
           <!-- FORM WRAPPER -->
           <div class="glass-card form-wrapper">
             <h3>Trao đổi về nhu cầu MRV carbon mái xanh</h3>
-            <form id="consultationForm">
+            <form id="consultationForm" method="post">
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="fullName">Họ và tên *</label>
@@ -676,7 +677,8 @@
                 <textarea id="notes" class="form-control" rows="3" placeholder="Mô tả loại cây, độ dày đất hoặc thời gian dự kiến khảo sát..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary" style="width:100%;">
+              <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary" style="width:100%;">
                 <span>Yêu cầu tư vấn</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
               </button>

@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<span>Đang tiếp nhận thông tin tư vấn...</span>`;
 
         setTimeout(() => {
-          alert('Cảm ơn bạn! Yêu cầu tư vấn dịch vụ S0302 đã được gửi thành công. Chuyên viên GASCOLAE sẽ liên hệ lại trong thời gian sớm nhất.');
+          alert('Bản demo đã hoàn tất. Thông tin S0302 chưa được gửi tới GASCOLAE.');
           contactForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalText;

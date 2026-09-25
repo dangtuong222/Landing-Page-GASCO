@@ -14,6 +14,7 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
   <!-- ==========================================================================
        SITE HEADER & NAVIGATION
@@ -40,7 +41,7 @@
         Đặt lịch tư vấn
       </a>
 
-      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle menu">
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle menu" type="button" aria-expanded="false" aria-controls="nav-links">
         ☰
       </button>
     </div>
@@ -49,6 +50,7 @@
   <!-- ==========================================================================
        HERO SECTION WITH ANIMATED HUD & SCANNER CANVAS
        ========================================================================== -->
+  <main id="main-content" tabindex="-1">
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
       <div class="hero-content reveal-on-scroll">
@@ -752,7 +754,7 @@
           <p class="section-subtitle">Điền thông tin bên dưới để chuyên gia tư vấn GASCOLAE liên hệ trực tiếp hỗ trợ giải pháp phù hợp với cơ sở của bạn.</p>
         </div>
 
-        <form class="lead-form" id="consultation-form">
+        <form class="lead-form" id="consultation-form" method="post">
           <div class="form-group">
             <label for="fullName">Họ và tên *</label>
             <input type="text" id="fullName" class="form-input" placeholder="Nguyễn Văn A" required>
@@ -809,7 +811,8 @@
           </div>
 
           <div class="form-group full-width" style="margin-top: 1rem;">
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary" style="width: 100%;">
               Gửi yêu cầu tư vấn miễn phí
             </button>
             <p style="font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-top: 0.5rem;">
@@ -862,7 +865,7 @@
       <button class="media-modal-close" onclick="closeMediaModal()">&times;</button>
       <h3 id="modal-media-title" class="media-modal-title">Xem Chi Tiết Cảm Biến & Bản Đồ</h3>
       <div class="media-modal-viewport scanline-overlay">
-        <img id="modal-media-img" src="" alt="Technical Image View">
+        <img id="modal-media-img" alt="Hình ảnh kỹ thuật được chọn" hidden>
         <div class="hud-badge top-left">
           <span class="pulse-dot"></span>
           <span class="label">MODE:</span>
@@ -925,6 +928,9 @@
   <!-- ==========================================================================
        SITE FOOTER
        ========================================================================== -->
+
+  </main>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">

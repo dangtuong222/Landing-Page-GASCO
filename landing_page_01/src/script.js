@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<span>Đang gửi thông tin khẩn cấp...</span>`;
 
         setTimeout(() => {
-          alert('Cảm ơn bạn! Yêu cầu tư vấn dịch vụ S0296 đã được gửi thành công. Đội ngũ dã chiến GASCOLAE sẽ liên hệ lại trong vòng 15 phút.');
+          alert('Bản demo đã hoàn tất. Yêu cầu S0296 chưa được gửi; vui lòng liên hệ GASCOLAE qua kênh chính thức để được hỗ trợ.');
           contactForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalText;

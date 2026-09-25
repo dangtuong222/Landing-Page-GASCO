@@ -305,15 +305,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Display Modal Confirmation
       showLightboxModal(
-        'Đã Gửi Yêu Cầu Tư Vấn S0294 Thành Công',
+        'Bản demo hoàn tất — thông tin S0294 chưa được gửi',
         `<div style="text-align: center; padding: 1.5rem 0;">
           <div style="width: 54px; height: 54px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <h4 style="font-size: 1.2rem; color: #f8fafc; margin-bottom: 0.5rem;">Cảm ơn ${name} (${org})!</h4>
-          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Yêu cầu khảo sát dịch vụ quan trắc Methane Bãi Rác (S0294) đã được ghi nhận. Đội ngũ GASCOLAE Sales & Business Development sẽ liên hệ qua email <strong>${email}</strong> trong thời gian sớm nhất.</p>
+          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Đây chỉ là mô phỏng trên trang. Thông tin S0294 chưa được gửi tới GASCOLAE. Vui lòng liên hệ qua kênh chính thức để nhận tư vấn.</p>
         </div>`,
-        'Yêu cầu được định tuyến chính xác theo quy trình tư vấn S0294.'
+        'Mô phỏng form tư vấn S0294.'
       );
 
       leadForm.reset();

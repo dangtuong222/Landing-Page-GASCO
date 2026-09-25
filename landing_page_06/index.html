@@ -26,6 +26,7 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
     <!-- BACKGROUND GLOW EFFECTS -->
     <div class="bg-glow bg-glow-1"></div>
@@ -70,14 +71,15 @@
                 <a href="#contact" class="btn btn-primary btn-sm">Đặt lịch tư vấn</a>
             </div>
 
-            <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle menu" type="button" aria-expanded="false" aria-controls="navLinks">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero-section" id="overview">
+    <main id="main-content" tabindex="-1">
+  <section class="hero-section" id="overview">
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="pill-badge">
@@ -147,7 +149,7 @@
     </section>
 
     <!-- METRICS BANNER SECTION -->
-    <section class="metrics-banner">
+    <section class="metrics-banner" aria-label="Chỉ số tổng quan dịch vụ S0300">
         <div class="container">
             <div class="metrics-grid">
                 <div class="metric-card">
@@ -878,7 +880,7 @@
                 </div>
 
                 <div class="contact-form-col">
-                    <form class="lead-form glass-card" id="leadForm" onsubmit="handleFormSubmit(event)">
+                    <form class="lead-form glass-card" id="leadForm" onsubmit="handleFormSubmit(event)" method="post">
                         <h3 class="form-title">Đăng ký Tư vấn & Khảo sát Thử</h3>
                         
                         <div class="form-group">
@@ -925,7 +927,8 @@
                             <textarea id="notes" rows="3" placeholder="Rừng keo 5 năm tuổi tại Quảng Trị..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary btn-block btn-lg">
                             <span>Gửi Yêu cầu Tư vấn</span>
                         </button>
                     </form>
@@ -935,7 +938,10 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
+
+  </main>
+
+  <footer class="footer">
         <div class="container footer-container">
             <div class="footer-top">
                 <div class="footer-brand">

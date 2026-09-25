@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S0299 - Ứng Dụng UAV Phun Vi Hạt Tích Điện Giảm Bụi Mịn PM2.5 | GASCOLAE</title>
+    <title>UAV kiểm soát bụi bám trên tấm pin mặt trời bằng vi hạt tích điện | GASCOLAE S0299</title>
     <meta name="description"
-        content="Dịch vụ S0299 ứng dụng UAV mang hệ phun vi hạt tích điện làm sạch bụi/soiling trên bề mặt module quang điện PV, đo soiling ratio theo tiêu chuẩn IEC 61724-1.">
+        content="Dịch vụ S0299 ứng dụng UAV phun vi hạt tích điện để kiểm soát bụi bám trên module quang điện, đồng thời đo soiling ratio theo IEC 61724-1.">
 
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
 
     <!-- Header Navigation -->
@@ -56,7 +57,7 @@
                 <button class="btn btn-primary open-modal-btn" id="navCtaBtn">
                     <i class="fa-regular fa-calendar-check"></i> Đặt Lịch Tư Vấn
                 </button>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation" type="button" aria-expanded="false" aria-controls="navMenu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -64,7 +65,7 @@
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main id="main-content" tabindex="-1">
         <!-- Hero Section -->
         <section class="hero-section" id="hero">
             <div class="hero-bg-glow"></div>
@@ -1200,7 +1201,7 @@
                     Sales/Finance.</p>
             </div>
 
-            <form id="consultationForm" class="modal-form">
+            <form id="consultationForm" class="modal-form" method="post">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Họ và tên *</label>
@@ -1261,16 +1262,16 @@
                     GASCOLAE Security Filter.
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-full btn-lg">
+                <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary btn-full btn-lg">
                     <i class="fa-solid fa-paper-plane"></i> Gửi Yêu Cầu Cho Đội Ngũ GASCOLAE
                 </button>
             </form>
 
             <div class="form-success-msg hidden" id="formSuccessMsg">
                 <i class="fa-solid fa-circle-check text-emerald success-icon"></i>
-                <h4>Yêu Cầu Đã Được Gửi Thành Công!</h4>
-                <p>Đội ngũ Chuyên viên O&M và Sales/Finance GASCOLAE sẽ đối chiếu thông tin địa bàn và liên hệ lại với
-                    bạn trong thời gian sớm nhất.</p>
+                <h4>Bản demo hoàn tất</h4>
+                <p>Thông tin S0299 chưa được gửi tới GASCOLAE. Hãy liên hệ qua kênh chính thức để được tư vấn.</p>
                 <button class="btn btn-secondary" id="modalDoneBtn">Đóng cửa sổ</button>
             </div>
         </div>

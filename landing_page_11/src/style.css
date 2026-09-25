@@ -1359,3 +1359,14 @@ h1, h2, h3, h4, h5, h6 {
   .workflow-timeline { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
 }
+
+
+/* Shared responsive and accessibility refinements */
+html { scroll-padding-top: 6rem; }
+body { padding-bottom: 7.5rem; }
+main { display: block; min-width: 0; }
+main > section { min-width: 0; }
+img, svg, canvas, video, iframe { max-width: 100%; }
+:focus-visible { outline: 3px solid #68e6cc; outline-offset: 3px; }
+@media (max-width: 700px) { body { padding-bottom: 10rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

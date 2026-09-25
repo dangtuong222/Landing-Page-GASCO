@@ -21,6 +21,7 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body class="dark-theme">
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
 
     <!-- Top Announcement Bar -->
     <div class="announcement-bar">
@@ -63,7 +64,7 @@
                 <button class="btn btn-primary glow-effect" onclick="openConsultModal()">
                     <i class="fa-solid fa-paper-plane"></i> Đăng ký tư vấn
                 </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" type="button" aria-expanded="false" aria-controls="navLinks">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -71,7 +72,8 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section" id="overview">
+    <main id="main-content" tabindex="-1">
+  <section class="hero-section" id="overview">
         <div class="hero-bg-glow"></div>
         <div class="container hero-grid">
             <div class="hero-text-content">
@@ -811,10 +813,10 @@
                 <!-- Lead Form Card -->
                 <div class="glass-card lead-form-card">
                     <h3>Biểu mẫu Đăng ký Tư vấn</h3>
-                    <form id="leadConsultForm" onsubmit="handleFormSubmit(event)">
+                    <form id="leadConsultForm" onsubmit="handleFormSubmit(event)" method="post">
                         <div class="form-group">
                             <label for="fullName">Họ và tên <span class="text-danger">*</span></label>
-                            <input type="text" id="fullName" required placeholder="Nguyễn Văn A" class="form-control">
+                            <input type="text" id="fullName" required placeholder="Nguyễn Văn A" aria-label="Họ và tên" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -857,7 +859,8 @@
                             <textarea id="noteMsg" rows="3" placeholder="Mô tả công trình cao tầng, KCN, quận đô thị hoặc mục tiêu nghiên cứu..." class="form-control"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block btn-lg glow-effect margin-top-sm">
+                        <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary btn-block btn-lg glow-effect margin-top-sm">
                             <i class="fa-solid fa-paper-plane"></i> Gửi Yêu Cầu Tư Vấn
                         </button>
                     </form>
@@ -867,7 +870,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+
+  </main>
+
+  <footer class="footer">
         <div class="container footer-content">
             <div class="grid grid-4 gap-lg">
                 <div class="footer-brand">
@@ -918,20 +924,21 @@
                 <p>Điền thông tin để nhận tư vấn phương án kỹ thuật và báo giá chính thức.</p>
             </div>
             <div class="modal-body">
-                <form onsubmit="handleModalSubmit(event)">
+                <form method="post" onsubmit="handleModalSubmit(event)">
                     <div class="form-group">
                         <label>Gói dịch vụ quan tâm:</label>
-                        <input type="text" id="modalPackageName" value="Level 2 - Profile 3D & Khí bổ trợ" readonly class="form-control readonly-input">
+                        <input type="text" id="modalPackageName" aria-label="Gói dịch vụ được chọn" value="Level 2 - Profile 3D & Khí bổ trợ" readonly class="form-control readonly-input">
                     </div>
                     <div class="form-group">
-                        <label>Họ tên:</label>
-                        <input type="text" required placeholder="Nguyễn Văn A" class="form-control">
+                        <label for="modalFullName">Họ tên:</label>
+                        <input type="text" id="modalFullName" required placeholder="Nguyễn Văn A" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Số điện thoại / Email:</label>
-                        <input type="text" required placeholder="090xxxxxxx hoặc email@org.vn" class="form-control">
+                        <label for="modalContact">Số điện thoại / Email:</label>
+                        <input type="text" id="modalContact" required placeholder="090xxxxxxx hoặc email@org.vn" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block glow-effect">Xác Nhận Đăng Ký</button>
+                    <p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button type="submit" class="btn btn-primary btn-block glow-effect">Xác Nhận Đăng Ký</button>
                 </form>
             </div>
         </div>

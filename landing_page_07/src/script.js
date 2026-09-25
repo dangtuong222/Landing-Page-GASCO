@@ -47,7 +47,7 @@ document.querySelectorAll('.faq-item button').forEach(button => {
 document.querySelector('#lead-form')?.addEventListener('submit', event => {
   event.preventDefault();
   const message = event.currentTarget.querySelector('.form-message');
-  message.textContent = 'Cảm ơn bạn. Thông tin đã sẵn sàng để đội ngũ tư vấn tiếp nhận.';
+  message.textContent = 'Bản demo đã hoàn tất. Thông tin chưa được gửi tới GASCOLAE.';
   event.currentTarget.reset();
 });
 

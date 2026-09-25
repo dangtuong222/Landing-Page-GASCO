@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const company = document.getElementById('companyName').value;
 
       if (toast) {
-        toast.textContent = `Cảm ơn ${name} (${company})! Yêu cầu tư vấn S0291 đã được tiếp nhận. Chuyên gia GASCOLAE sẽ liên hệ trong thời gian sớm nhất.`;
+        toast.textContent = `Bản demo hoàn tất cho ${name} (${company}). Thông tin S0291 chưa được gửi tới GASCOLAE.`;
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 5000);
       }
@@ -257,6 +257,7 @@ function openMediaModal(imgSrc, titleText) {
 
   if (modal && modalImg) {
     modalImg.src = imgSrc;
+    modalImg.hidden = false;
     if (modalTitle) modalTitle.textContent = titleText || 'Chẩn đoán Dữ liệu Cảm biến S0291';
     modal.classList.add('active');
   }

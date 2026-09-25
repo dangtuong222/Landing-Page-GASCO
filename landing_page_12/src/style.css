@@ -1404,3 +1404,21 @@ h1, h2, h3, h4, h5, h6 {
   .footer-container { grid-template-columns: 1fr; }
   .footer-bottom-container { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
+
+
+/* Shared responsive and accessibility refinements */
+html { scroll-padding-top: 6rem; }
+body { padding-bottom: 7.5rem; }
+main { display: block; min-width: 0; }
+main > section { min-width: 0; }
+img, svg, canvas, video, iframe { max-width: 100%; }
+:focus-visible { outline: 3px solid #68e6cc; outline-offset: 3px; }
+@media (max-width: 700px) { body { padding-bottom: 10rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+
+/* Keep the mobile CTA and menu control in one compact header row. */
+.nav-container { gap: 12px; }
+.nav-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.nav-actions .btn-nav { white-space: nowrap; padding: .7rem .9rem; font-size: .85rem; }
+@media (max-width: 480px) { .nav-actions .btn-nav { display: none; } .brand-name { font-size: 1.05rem; } .nav-container { padding-right: 16px; padding-left: 16px; } }

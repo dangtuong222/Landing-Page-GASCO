@@ -113,7 +113,7 @@ function initLeadForm() {
       submitBtn.innerHTML = originalText;
       form.reset();
 
-      alert(`🎉 Cảm ơn ${fullName}! Yêu cầu khảo sát thí điểm dịch vụ S0301 cho cơ sở ${company} (${infraType}) đã được gửi tới bộ phận Sales/BD của GASCOLAE.`);
+      alert(`Bản demo hoàn tất, ${fullName}. Thông tin khảo sát S0301 chưa được gửi tới GASCOLAE.`);
     }, 1200);
   });
 }

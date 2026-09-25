@@ -86,7 +86,7 @@ function initLeadForm() {
       submitBtn.innerHTML = originalText;
       form.reset();
 
-      showToast(`🎉 Cảm ơn ${fullName}! Yêu cầu tư vấn dịch vụ S0295 (${area ? area + ' m²' : 'Mái xanh'}) đã được gửi tới bộ phận Sales/BD của GASCOLAE.`);
+      showToast(`Bản demo hoàn tất, ${fullName}. Thông tin S0295 chưa được gửi tới GASCOLAE.`);
     }, 1200);
   });
 }

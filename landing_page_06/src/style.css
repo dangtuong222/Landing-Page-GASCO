@@ -1506,3 +1506,22 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
     }
 }
+
+
+/* Shared responsive and accessibility refinements */
+html { scroll-padding-top: 6rem; }
+body { padding-bottom: 7.5rem; }
+main { display: block; min-width: 0; }
+main > section { min-width: 0; }
+img, svg, canvas, video, iframe { max-width: 100%; }
+:focus-visible { outline: 3px solid #68e6cc; outline-offset: 3px; }
+@media (max-width: 700px) { body { padding-bottom: 10rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Decorative glows must not contribute to the document width. */
+.bg-glow { position: fixed; }
+
+@media (max-width: 768px) {
+  .grid-2-col { grid-template-columns: minmax(0, 1fr) !important; }
+  .contact-info-col, .contact-form-col { width: 100%; min-width: 0; max-width: 100%; }
+}

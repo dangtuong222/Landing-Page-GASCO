@@ -255,7 +255,7 @@ function handleFormSubmit(event) {
         return;
     }
 
-    alert(`Cảm ơn ${name} (${org})! Yêu cầu tư vấn dịch vụ S0300 của bạn đã được chuyển tới Đội ngũ Sales & Chuyên gia Carbon GASCOLAE. Chúng tôi sẽ liên hệ lại qua số điện thoại ${phone} trong thời gian sớm nhất.`);
+    alert(`Bản demo hoàn tất, ${name}. Thông tin tư vấn S0300 chưa được gửi tới GASCOLAE.`);
     
     document.getElementById('leadForm').reset();
 }

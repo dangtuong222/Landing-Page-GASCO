@@ -13,17 +13,18 @@
   <script src="../assets/service-hub.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Bỏ qua đến nội dung chính</a>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="GASCOLAE trang chủ"><span class="brand-mark">G</span><span class="brand-lockup"><b>GASCOLAE</b><small>ENVIRONMENTAL INTELLIGENCE</small></span></a>
-    <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="main-nav" aria-label="Điều hướng chính">
+    <button class="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
       <a href="#giai-phap">Giải pháp</a><a href="#ung-dung">Ứng dụng</a><a href="#quy-trinh">Quy trình</a><a href="#cap-do">Cấp độ dịch vụ</a>
       <a class="nav-cta" href="#tu-van">Đặt lịch tư vấn</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <section class="hero">
       <img class="hero-image" src="src/assets/uav-hero.png" alt="UAV gắn cảm biến bay trên khu công nghiệp và đô thị">
       <div class="hero-overlay"></div>
@@ -157,7 +158,8 @@
 
     <section class="agent-section"><div class="container agent-layout"><div><p class="eyebrow light"><span></span>TRỢ LÝ AI S0289</p><h2>Cần trao đổi nhanh<br>về nhu cầu khảo sát?</h2><p>Trợ lý AI sẵn sàng giải đáp về phạm vi đo đa khí, lựa chọn cấp độ dịch vụ (Level 1/2/3), xuất dữ liệu GIS 2D/3D và tư vấn phương án hiện trường.</p></div><div class="agent-placeholder" id="ai-agent-mount" aria-label="Vị trí nhúng AI Agent"><div class="agent-orbit"></div><span class="agent-icon">✦</span><h3>Trợ lý S0289 - Environmental AI</h3><p>Chọn câu hỏi bên dưới để xem tương tác mẫu từ Trợ lý:</p><div class="agent-waves" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="agent-prompts"><button type="button" class="prompt-chip" data-prompt="Cấp độ Level 2 cung cấp những gì?">Level 2 có gì?</button><button type="button" class="prompt-chip" data-prompt="Khảo sát rò rỉ VOCs ở KCN triển khai ra sao?">Đo VOCs KCN</button><button type="button" class="prompt-chip" data-prompt="Bản đồ GIS 3D bàn giao định dạng nào?">Bản đồ GIS 3D</button></div><div class="agent-demo-chat" id="agent-demo-chat" aria-live="polite"><span class="chat-placeholder-text">✦ Sẵn sàng tư vấn trực tiếp theo dự án của bạn</span></div></div></div></section>
 
-    <section class="contact container" id="tu-van"><div class="contact-copy"><p class="eyebrow"><span></span>TRAO ĐỔI NHU CẦU</p><h2>Đặt lịch tư vấn<br>khảo sát phù hợp.</h2><p>Hãy cho chúng tôi biết khu vực, mục tiêu và thời gian dự kiến. Đội ngũ sẽ tư vấn phương án phù hợp theo dự án.</p><div class="contact-points"><span>✓ Đô thị & khu dân cư</span><span>✓ KCN & nguồn điểm</span><span>✓ Hỗ trợ MRV/ESG</span></div></div><form class="lead-form" id="lead-form"><div class="form-row"><label>Họ và tên<input required name="name" type="text" placeholder="Nguyễn Văn A"></label><label>Tổ chức<input required name="organization" type="text" placeholder="Tên đơn vị"></label></div><div class="form-row"><label>Email hoặc điện thoại<input required name="contact" type="text" placeholder="email@congty.vn"></label><label>Khu vực khảo sát<input name="location" type="text" placeholder="Tỉnh / thành phố"></label></div><label>Mục tiêu khảo sát<textarea name="objective" rows="3" placeholder="Ví dụ: khoanh vùng điểm nóng VOC quanh KCN..."></textarea></label><button class="button primary" type="submit">Gửi yêu cầu tư vấn <b>→</b></button><p class="form-message" role="status"></p></form></section>
+    <section class="contact container" id="tu-van"><div class="contact-copy"><p class="eyebrow"><span></span>TRAO ĐỔI NHU CẦU</p><h2>Đặt lịch tư vấn<br>khảo sát phù hợp.</h2><p>Hãy cho chúng tôi biết khu vực, mục tiêu và thời gian dự kiến. Đội ngũ sẽ tư vấn phương án phù hợp theo dự án.</p><div class="contact-points"><span>✓ Đô thị & khu dân cư</span><span>✓ KCN & nguồn điểm</span><span>✓ Hỗ trợ MRV/ESG</span></div></div><form class="lead-form" id="lead-form" method="post"><div class="form-row"><label>Họ và tên<input required name="name" type="text" placeholder="Nguyễn Văn A"></label><label>Tổ chức<input required name="organization" type="text" placeholder="Tên đơn vị"></label></div><div class="form-row"><label>Email hoặc điện thoại<input required name="contact" type="text" placeholder="email@congty.vn"></label><label>Khu vực khảo sát<input name="location" type="text" placeholder="Tỉnh / thành phố"></label></div><label>Mục tiêu khảo sát<textarea name="objective" rows="3" placeholder="Ví dụ: khoanh vùng điểm nóng VOC quanh KCN..."></textarea></label><p class="demo-note" role="note">Đây là bản demo: thông tin chưa được gửi hoặc lưu.</p>
+  <button class="button primary" type="submit">Gửi yêu cầu tư vấn <b>→</b></button><p class="form-message" role="status"></p></form></section>
   </main>
   <footer><a class="brand" href="#top"><span class="brand-mark">G</span><span>GASCOLAE</span></a><p>Quan trắc đa khí đô thị bằng UAV · S0289</p><a href="#top">Lên đầu trang ↑</a></footer>
   <a class="floating-agent" href="#ai-agent-mount" aria-label="Mở khu vực trợ lý S0289"><span>✦</span><b>Hỏi trợ lý</b><i></i></a>

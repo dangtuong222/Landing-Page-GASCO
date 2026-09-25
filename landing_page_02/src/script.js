@@ -381,7 +381,7 @@ if (contactForm) {
     submitBtn.disabled = true;
 
     setTimeout(() => {
-      submitBtn.textContent = '✓ Đã Gửi Thành Công! Kỹ sư sẽ liên hệ trong 24h.';
+      submitBtn.textContent = 'Bản demo hoàn tất — thông tin chưa được gửi.';
       submitBtn.style.background = 'linear-gradient(135deg, #06d6a0, #059669)';
       contactForm.reset();
       
