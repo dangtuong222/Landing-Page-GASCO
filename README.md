@@ -2,6 +2,14 @@
 
 Thư mục này là một website tĩnh hoàn chỉnh, không cần cài package hoặc chạy bước build.
 
+## Cấu trúc thư mục
+
+- `index.html` — dashboard trung tâm dịch vụ
+- `landing_page_01/` đến `landing_page_15/` — nội dung và tài nguyên riêng của từng dịch vụ
+- `assets/` — CSS, JavaScript và ảnh dùng chung
+- `404.html` — trang báo đường dẫn không tồn tại
+- `.nojekyll` — tắt xử lý Jekyll khi phục vụ website tĩnh qua GitHub Pages
+
 ## Cấu trúc URL
 
 - `/` — dashboard tổng, có tìm kiếm và bộ lọc dịch vụ
@@ -22,33 +30,23 @@ Nội dung được biên tập từ các file `09_Service_Landing_Page_Content.
 
 Các trang mới dùng HTML tĩnh, CSS chung tại `assets/service-detail.css`, tương tác tại `assets/service-detail.js` và ảnh riêng trong `src/assets/`. Giao diện có ảnh WebP đáp ứng theo màn hình, sơ đồ SVG, xem ảnh phóng to, menu đánh dấu mục đang đọc, thanh tiến trình, nút lên đầu trang và tab L1–L3 dùng được bằng bàn phím. Không cần bước build; nội dung vẫn đọc được khi JavaScript bị tắt. Hiệu ứng tôn trọng cài đặt giảm chuyển động.
 
-Ảnh đầu trang là ảnh minh họa AI, được ghi nhãn trực tiếp. Nguồn tạo, đường dẫn ảnh và prompt nằm trong [docs/service-illustrations.md](docs/service-illustrations.md). Đánh giá và thay đổi UI/UX được ghi tại [docs/ui-ux-review-13-15.md](docs/ui-ux-review-13-15.md).
+Ảnh đầu trang là ảnh minh họa AI, được ghi nhãn trực tiếp. Mỗi trang mới lưu ảnh WebP và sơ đồ SVG trong `src/assets/`; ảnh không mô tả dự án thực tế của GASCOLAE.
 
 **Phạm vi sử dụng hiện tại:** xem và review trên máy. Cần xác nhận quyền công bố của ba hồ sơ trước khi đưa bản cập nhật này lên hosting công khai. Thẻ `noindex` không thay thế kiểm soát truy cập.
 
 ## Chạy thử trên máy
 
-Tại thư mục này, chạy:
+Nếu máy đã cài Python, mở terminal tại thư mục dự án và chạy:
 
-```bash
-node tools/serve.mjs
-```
-
-Hoặc, nếu máy chưa có Node.js:
-
-```bash
-python -m http.server 8080
+```powershell
+python -m http.server 8080 --bind 127.0.0.1
 ```
 
 Sau đó mở `http://localhost:8080/`.
 
 > Không mở trực tiếp bằng `file://`, vì HTTP server mô phỏng đúng cách website sẽ hoạt động sau khi host.
 
-Để tự kiểm tra dashboard, toàn bộ trang con, asset dùng chung và trang 404:
-
-```bash
-node tools/serve.mjs 8765 --verify
-```
+Kiểm tra dashboard, tìm kiếm/bộ lọc, liên kết tới 15 trang dịch vụ và hình ảnh trên trình duyệt. Trên các trang 13–15, kiểm tra thêm menu, tab L1–L3, FAQ và xem ảnh phóng to. Nhấn `Ctrl+C` trong terminal để dừng server.
 
 ## Deploy một link duy nhất sau khi nội dung được duyệt
 
@@ -62,7 +60,7 @@ Kết nối repository chứa thư mục này, chọn chế độ static/không 
 
 ### GitHub Pages
 
-Đưa toàn bộ nội dung đã được phép công bố lên một repository, sau đó bật Pages cho branch chứa website. Dashboard và 15 đường dẫn con sẽ được phục vụ cùng một domain.
+Đưa toàn bộ nội dung đã được phép công bố lên một repository, sau đó bật Pages cho branch chứa website và chọn thư mục `/(root)` làm nguồn xuất bản. Giữ file `.nojekyll` ở thư mục gốc. Dashboard và 15 đường dẫn con sẽ được phục vụ cùng một domain.
 
 ## Lưu ý trước khi chạy production
 
