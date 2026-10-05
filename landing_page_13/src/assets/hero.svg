@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+<title id="title">S0075 — Các thành phần của hồ sơ quan sát</title><desc id="desc">Phạm vi và quyền dữ liệu kết nối với UAV; đầu ra cần có nguồn gốc và kiểm soát chất lượng.</desc>
+<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" stroke="#b8db89" opacity=".05" fill="none"/></pattern></defs>
+<rect width="640" height="400" fill="#0b1a18"/><rect width="640" height="400" fill="url(#grid)"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<g fill="none" stroke="#b8db89" opacity=".3" stroke-width="2"><circle cx="320" cy="198" r="96"/><path d="m170 100 100 60m200-60-100 60M170 300l100-60m200 60-100-60" stroke-dasharray="6 6"/></g>
+<g transform="translate(320 195)" fill="#203328" stroke="#b8db89" stroke-width="3"><path d="m0-34 24 24 56 7v14l-54 3L8 42H-8L-26 14l-54-3V-3l56-7Z"/><circle cx="-60" cy="-10" r="17" fill="none"/><circle cx="60" cy="-10" r="17" fill="none"/><circle r="6" fill="#b8db89"/></g>
+<g fill="#162c24" stroke="#3c5546"><rect x="32" y="55" width="236" height="80" rx="14"/><rect x="372" y="55" width="236" height="80" rx="14"/><rect x="32" y="267" width="236" height="80" rx="14"/><rect x="372" y="267" width="236" height="80" rx="14"/></g>
+<g fill="#edf5ef" font-size="26" font-weight="600" text-anchor="middle"><text x="150" y="105">Phạm vi</text><text x="490" y="105">Quyền dữ liệu</text><text x="150" y="317">Nguồn gốc / QA</text><text x="490" y="317">Hồ sơ quan sát</text></g></g>
+</svg>

@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -76,13 +76,25 @@ server.listen(port, host, async () => {
 
   if (!verifyMode) return;
 
+  const serviceFolders = (await readdir(root, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory() && /^landing_page_\d{2}$/.test(entry.name))
+    .map((entry) => entry.name)
+    .sort();
   const paths = [
     "/",
-    ...Array.from({ length: 12 }, (_, index) => `/landing_page_${String(index + 1).padStart(2, "0")}/`),
+    ...serviceFolders.map((folder) => `/${folder}/`),
     "/assets/dashboard.css",
     "/assets/dashboard.js",
     "/assets/service-hub.css",
     "/assets/service-hub.js",
+    "/assets/service-detail.css",
+    "/assets/service-detail.js",
+    ...[13, 14, 15].flatMap((number) => [
+      `/landing_page_${number}/src/style.css`,
+      `/landing_page_${number}/src/assets/hero.svg`,
+      `/landing_page_${number}/src/assets/hero-illustration.webp`,
+      `/landing_page_${number}/src/assets/hero-illustration-768.webp`,
+    ]),
     "/assets/dashboard-thumbnails/service-01.webp",
   ];
 

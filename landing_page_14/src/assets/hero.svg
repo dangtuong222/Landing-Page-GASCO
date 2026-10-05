@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+<title id="title">S0064 — Phân biệt nhiệt và khí</title><desc id="desc">Nhiệt bề mặt và khí mục tiêu dùng phương pháp phù hợp riêng; cả hai cần đối chứng và kiểm soát chất lượng.</desc>
+<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" stroke="#efc483" opacity=".05" fill="none"/></pattern></defs>
+<rect width="640" height="400" fill="#0b1a18"/><rect width="640" height="400" fill="url(#grid)"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<defs><radialGradient id="heat"><stop stop-color="#fff0a8"/><stop offset=".3" stop-color="#f1b965"/><stop offset=".6" stop-color="#a3613d"/><stop offset="1" stop-color="#142820"/></radialGradient></defs>
+<g fill="#13261f" stroke="#495240"><rect x="32" y="24" width="272" height="263" rx="16"/><rect x="336" y="24" width="272" height="263" rx="16"/></g>
+<rect x="68" y="84" width="200" height="168" rx="10" fill="url(#heat)"/>
+<g stroke="#efc483" fill="none" opacity=".4"><circle cx="168" cy="168" r="48"/><path d="M168 94v148M82 168h172"/></g>
+<g stroke="#efc483" stroke-width="2" fill="#393725"><path d="m405 142 65-38 60 50-19 70-67 18-45-55Z"/><path d="m405 142 106 82m-41-120-26 138m-45-55 131-33"/><circle cx="405" cy="142" r="13"/><circle cx="470" cy="104" r="15"/><circle cx="530" cy="154" r="12"/><circle cx="511" cy="224" r="14"/><circle cx="444" cy="242" r="12"/><circle cx="399" cy="187" r="10"/></g>
+<g fill="#edf5ef" font-size="26" font-weight="600" text-anchor="middle"><text x="168" y="64">Nhiệt bề mặt</text><text x="472" y="64">Khí mục tiêu</text></g>
+<path d="M168 289v40h304v-40" stroke="#efc483" fill="none" opacity=".5" stroke-width="2"/>
+<rect x="160" y="315" width="320" height="61" rx="12" fill="#302a20" stroke="#66563b"/><text x="320" y="355" fill="#efc483" font-size="26" text-anchor="middle">Đối chứng / QA</text></g>
+</svg>

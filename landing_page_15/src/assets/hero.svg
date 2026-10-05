@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+<title id="title">S0061 — Từ quan sát nhiệt đến kiểm tra bổ sung</title><desc id="desc">Hồ sơ nhiệt được chuyên gia xem xét theo tiêu chí đã duyệt để lập danh mục kiểm tra bổ sung.</desc>
+<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" stroke="#a6cde8" opacity=".05" fill="none"/></pattern></defs>
+<rect width="640" height="400" fill="#0b1a18"/><rect width="640" height="400" fill="url(#grid)"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<defs><linearGradient id="thermal" x2="1" y2="1"><stop stop-color="#9ccdd9"/><stop offset=".5" stop-color="#5078a0"/><stop offset="1" stop-color="#1c303b"/></linearGradient></defs>
+<g fill="#12252b" stroke="#37515a"><rect x="32" y="24" width="272" height="263" rx="16"/><rect x="336" y="24" width="272" height="263" rx="16"/></g>
+<g fill="url(#thermal)" stroke="#678c9e"><rect x="61" y="95" width="95" height="65" rx="7"/><rect x="178" y="95" width="95" height="65" rx="7"/><rect x="61" y="180" width="95" height="65" rx="7"/><rect x="178" y="180" width="95" height="65" rx="7"/></g>
+<circle cx="224" cy="127" r="18" fill="#e7c895"/><circle cx="224" cy="127" r="27" stroke="#e7c895" fill="none" stroke-dasharray="4 5"/>
+<g stroke="#a6cde8" stroke-width="3" fill="none"><path d="m370 112 8 8 14-19m-22 63 8 8 14-19m-22 63 8 8 14-19"/><path d="M416 113h155M416 165h127M416 217h155" opacity=".5"/></g>
+<g fill="#edf5ef" font-size="26" font-weight="600" text-anchor="middle"><text x="168" y="64">Quan sát nhiệt</text><text x="472" y="64">Tiêu chí đã duyệt</text></g>
+<path d="M168 289v40h304v-40" stroke="#a6cde8" fill="none" opacity=".5" stroke-width="2"/>
+<rect x="135" y="315" width="370" height="61" rx="12" fill="#1c303b" stroke="#37515a"/><text x="320" y="355" fill="#a6cde8" font-size="26" text-anchor="middle">Kiểm tra bổ sung</text></g>
+</svg>
