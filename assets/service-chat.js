@@ -11,8 +11,8 @@
   const api = new URL(configuredApi || '../api/', scriptUrl);
   // Public page excerpts keep the widget usable on static GitHub Pages.
   const documents = Promise.all([
-    import(new URL('document-chat.mjs?v=20261008-chat-4', scriptUrl)),
-    fetch(new URL('service-faq.json?v=20261008-chat-4', scriptUrl)).then(response => {
+    import(new URL('document-chat.mjs?v=20261008-chat-5', scriptUrl)),
+    fetch(new URL('service-faq.json?v=20261008-chat-5', scriptUrl)).then(response => {
       if (!response.ok) throw new Error('Chưa tải được nội dung dịch vụ.');
       return response.json();
     }),

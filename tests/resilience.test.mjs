@@ -7,6 +7,12 @@ import { ChatError } from '../server/gemini.mjs';
 const knowledge = Knowledge.load('.knowledge/index.json');
 const unavailable = async () => { throw new ChatError(502, 'GEMINI_REGION', 'Vùng máy chủ chưa được hỗ trợ.'); };
 
+test('static reference excludes monetary quotes even when a public page contains them', () => {
+  for (const service of knowledge.data.publicReference.services) {
+    for (const entry of service.entries) assert.doesNotMatch(entry.text, /\b(?:USD|VND|VNĐ)\b|[₫$€]/i);
+  }
+});
+
 test('a greeting works without calling an unavailable Gemini provider', async () => {
   const result = await answerChat(knowledge, { serviceId: 'S0303', message: 'chào bạn' }, () => assert.fail('greeting must not call Gemini'));
   assert.match(result.answer, /S0303/);

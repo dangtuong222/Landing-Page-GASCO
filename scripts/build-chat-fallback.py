@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 IDS = "S0296 S0297 S0291 S0295 S0301 S0300 S0289 S0298 S0299 S0303 S0302 S0294 S0075 S0064 S0061".split()
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 SKIP = set("script style svg canvas form nav footer dialog".split())
+COMMERCIAL = re.compile(r"\b(?:USD|VND|VNĐ)\b|[₫$€]|báo giá|giá tín chỉ|chi phí|đơn giá|chiết khấu", re.I)
 
 
 class Node:
@@ -72,13 +73,13 @@ def build():
                 for item in faq_items:
                     question = next(item.find({"summary", "button", "h3"}), None)
                     answers = [p.text() for p in item.find({"p", "li"}) if p.text()]
-                    if question and answers:
+                    if question and answers and not COMMERCIAL.search(question.text() + " ".join(answers)):
                         entries.append({"title": question.text().rstrip(" +−"), "anchor": anchor,
                                         "text": "\n".join(answers), "file": f"{page}/index.html", "service": code, "faq": True})
                 continue
             # Keep paragraphs intact, including qualifications and negative statements.
             paragraphs = [n.text() for n in section.find({"h3", "h4", "p", "li", "summary", "button", "td"})]
-            paragraphs = list(dict.fromkeys(p for p in paragraphs if p and not re.search(r"HƯỚNG DẪN:|Nhập câu hỏi|Gửi nhu cầu", p)))
+            paragraphs = list(dict.fromkeys(p for p in paragraphs if p and not COMMERCIAL.search(p) and not re.search(r"HƯỚNG DẪN:|Nhập câu hỏi|Gửi nhu cầu", p)))
             if not paragraphs:
                 continue
             groups, group = [], []
