@@ -18,6 +18,6 @@ for (const name of ['gemini', 'knowledge', 'chat', 'worker']) {
   modules.push(source);
 }
 await writeFile(path.join(host, 'src/worker.mjs'), `${modules.join('\n')}\nconst knowledge = new Knowledge(${JSON.stringify(data)});\nexport default createWorker(knowledge);\n`);
-await writeFile(path.join(host, 'build.mjs'), `import { mkdir, copyFile, writeFile } from 'node:fs/promises';\nawait mkdir('dist/server', { recursive: true });\nawait copyFile('src/worker.mjs', 'dist/server/index.js');\nawait writeFile('dist/server/wrangler.json', JSON.stringify({name:'gascolae-service-chat', main:'index.js', compatibility_date:'2026-10-01', placement:{region:'gcp:us-central1'}}, null, 2));\n`);
+await writeFile(path.join(host, 'build.mjs'), `import { mkdir, copyFile, writeFile } from 'node:fs/promises';\nimport { fileURLToPath } from 'node:url';\nconst source = new URL('./src/worker.mjs', import.meta.url);\nconst output = new URL('./dist/server/', import.meta.url);\nawait mkdir(output, { recursive: true });\nawait copyFile(source, new URL('index.js', output));\nawait writeFile(new URL('wrangler.json', output), JSON.stringify({name:'gascolae-service-chat', main:'index.js', compatibility_date:'2026-10-01', placement:{region:'gcp:us-central1'}}, null, 2));\n`);
 await writeFile(path.join(host, '.gitignore'), 'dist/\n.env\n.sites-runtime/\n.wrangler/\nnode_modules/\n');
 console.log(`Private server prepared: ${data.services.length} services, ${data.documents.length} documents, ${data.chunks.length} runtime chunks.`);
