@@ -11,8 +11,8 @@
   const api = new URL(configuredApi || '../api/', scriptUrl);
   // Public page excerpts keep the widget usable on static GitHub Pages.
   const documents = Promise.all([
-    import(new URL('document-chat.mjs?v=20261008-chat-6', scriptUrl)),
-    fetch(new URL('service-faq.json?v=20261008-chat-6', scriptUrl)).then(response => {
+    import(new URL('document-chat.mjs?v=20261008-chat-7', scriptUrl)),
+    fetch(new URL('service-faq.json?v=20261008-chat-7', scriptUrl)).then(response => {
       if (!response.ok) throw new Error('Chưa tải được nội dung dịch vụ.');
       return response.json();
     }),
@@ -124,9 +124,9 @@
       append('model', data.answer);
       history.push({ role: 'user', text }, { role: 'model', text: data.answer.slice(0, 8000) });
       answered = true;
-      if (data.mode === 'document_lookup') {
+      if (data.mode === 'unavailable' || data.mode === 'document_lookup') {
         $('.status').textContent = `Kết nối AI gián đoạn · Hỗ trợ cơ bản`;
-        $('.note').textContent = 'AI hiện chưa kết nối. Chế độ cơ bản chỉ trả lời thông tin có sẵn, chưa hỗ trợ trao đổi chuyên sâu.';
+        $('.note').textContent = 'Gemini hiện chưa kết nối. Phần giới thiệu dịch vụ vẫn hoạt động; câu hỏi chuyên môn cần AI kết nối trở lại.';
       } else if (data.mode === 'gemini') {
         $('.status').textContent = 'Gemini đã kết nối';
         $('.note').textContent = 'Nội dung hội thoại được gửi tới Gemini để trả lời.';

@@ -1,8 +1,5 @@
 // This module runs on GitHub Pages and in the private backend. It contains no credentials.
 export const normalizeChat = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').toLowerCase();
-const ignored = new Set('toi ban anh chi la va cua cho ve cac mot co khong nao gi nay voi duoc trong khi de the thi bao nhieu hay can xin vui long dich vu huong dan'.split(' '));
-const words = value => [...new Set(normalizeChat(value).match(/[a-z0-9]+/g)?.filter(w => w.length > 1 && !ignored.has(w)) || [])];
-
 // Customer-facing subjects, rather than document titles or agent configuration.
 export const serviceSubjects = {
   S0296: 'ứng dụng UAV để dự báo và hỗ trợ khắc phục lũ lụt',
@@ -58,45 +55,7 @@ export function guidanceReply(serviceId, message, services = []) {
 export function documentReply(data, serviceId, message, history = [], providerIssue = 'GEMINI_UNAVAILABLE') {
   const guidance = guidanceReply(serviceId, message, data.services);
   if (guidance) return guidance;
-  const result = { serviceId, mode: 'document_lookup', providerIssue, grounded: false, sources: [] };
-  const unknown = () => ({ ...result, answer: `Tôi chỉ hỗ trợ ${serviceSubjects[serviceId] || serviceId}. Hiện kết nối AI đang gián đoạn nên tôi chưa thể trả lời chi tiết câu hỏi này. Bạn có thể thử lại sau hoặc hỏi về phạm vi, quy trình và sản phẩm bàn giao.` });
-  const service = data.services.find(s => s.id === serviceId);
-  const query = normalizeChat(message);
-  if (!service || /api.?key|system prompt|khoa api|huong dan he thong|nau pho|pho bo|tong thong|role[xs]|bitcoin/.test(query)) return unknown();
-  let intent = '';
-  if (/ban giao|dau ra|nhan duoc|deliverable/.test(query)) intent = 'deliverable';
-  else if (/\blevel\b|\bl[1-4]\b|cac goi|cap do/.test(query)) intent = 'level';
-  else if (/chuan bi|truoc khi|dieu kien/.test(query)) intent = 'prepare';
-  else if (/quy trinh|cac buoc|\bsop\b/.test(query)) intent = 'workflow';
-  else if (/pham vi|phu hop|lam gi|la gi|tong quan/.test(query) && words(message).length <= 4) intent = 'overview';
-  const patterns = { deliverable: /ban giao|dau ra|deliverable|nhan duoc|san pham/, level: /level|\bl[1-4]\b|cac goi|cap do|cau hinh goi/,
-    prepare: /chuan bi|dieu kien|quy trinh|workflow|sop/, workflow: /quy trinh|workflow|how it works|sop|lo trinh/,
-    overview: /tong quan|giai phap|pham vi|hero|overview/ };
-  let terms = words(message).filter(w => w !== serviceId.toLowerCase());
-  if (!terms.length && history.length) terms = words(history.filter(h => h.role === 'user').at(-1)?.text || '');
-  const entries = service.entries;
-  const frequency = new Map();
-  for (const entry of entries) for (const w of words(entry.text)) frequency.set(w, (frequency.get(w) || 0) + 1);
-  const ranked = entries.map(entry => {
-    const text = normalizeChat(`${entry.title}\n${entry.text}`);
-    const present = new Set(words(text));
-    let score = 0, matched = 0;
-    for (const term of terms) if (present.has(term)) {
-      matched++;
-      score += Math.log(1 + (entries.length + 1) / (1 + (frequency.get(term) || 0)));
-      if (normalizeChat(entry.title).includes(term)) score += 1.5;
-    }
-    const topic = intent && patterns[intent].test(normalizeChat(`${entry.anchor.replaceAll('-', ' ')} ${entry.title}`));
-    if (topic) score += 12;
-    // An output question must prefer the actual deliverables section over a FAQ
-    // that merely mentions results, legal use or uncertainty.
-    if (intent === 'deliverable' && /deliverables|ban-giao/.test(entry.anchor)) score += 24;
-    if (entry.faq) score += 3;
-    return { entry, score, eligible: topic || (matched >= Math.min(2, terms.length) && matched / Math.max(terms.length, 1) >= 0.55) };
-  }).filter(r => r.eligible && r.score > 0).sort((a, b) => b.score - a.score);
-  if (!ranked.length) return unknown();
-  const selected = ranked.slice(0, intent === 'level' ? 3 : 1).map(r => r.entry);
-  return { ...result, grounded: true,
-    answer: customerText(selected.map(e => e.text.replace(/^\s*\d+[.)]\s*[^\n]*\?\s*/u, '').trim()).join('\n\n')),
-    sources: selected.map((e, i) => ({ number: i + 1, file: e.file, locator: e.title, anchor: e.anchor, service: serviceId })) };
+  // An outage is not a reason to substitute keyword matches for a conversation.
+  return { serviceId, mode: 'unavailable', providerIssue, grounded: false, sources: [],
+    answer: `Tôi hỗ trợ ${serviceSubjects[serviceId] || serviceId}, nhưng hiện chưa kết nối được AI để trao đổi chi tiết về câu hỏi này. Bạn vui lòng thử lại sau. Tôi vẫn có thể giới thiệu dịch vụ nếu bạn muốn.` };
 }

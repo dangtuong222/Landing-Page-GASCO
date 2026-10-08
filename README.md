@@ -63,7 +63,7 @@ npm run eval:live
 
 Để chạy toàn bộ câu hỏi đã điền bằng Gemini, dùng `node --env-file=.env scripts/evaluate.mjs --live --all`. Lệnh này dùng quota Gemini theo số câu hỏi. Báo cáo có observed outputs để review, không tự gán PASS cho độ đúng chuyên môn. Các kiểm thử tự động bao gồm phạm vi 15 dịch vụ, lịch sử, dữ liệu đầu vào, lỗi Gemini, API HTTP, CORS GitHub Pages và bảo vệ file riêng tư.
 
-`qa:api` hỏi một câu đúng chủ đề cho mỗi dịch vụ qua Node HTTP API và kiểm tra ba tình huống biên. Báo cáo tách `geminiResponses` với `documentLookupResponses`, yêu cầu nguồn đúng dịch vụ và trả exit code lỗi nếu có ca thất bại. Dùng `npm run qa:api -- --require-gemini` khi cần mọi phản hồi chuyên môn đều do Gemini tạo. Bài này không xác nhận kết nối từ trình duyệt GitHub Pages hoặc độ đúng chuyên môn của mọi câu trả lời.
+`qa:api` hỏi một câu đúng chủ đề cho mỗi dịch vụ qua Node HTTP API và kiểm tra ba tình huống biên. Báo cáo tách `geminiResponses` với `unavailableResponses` và coi mất kết nối là ca thất bại, yêu cầu nguồn đúng dịch vụ và trả exit code lỗi nếu có ca thất bại. Dùng `npm run qa:api -- --require-gemini` khi cần mọi phản hồi chuyên môn đều do Gemini tạo. Bài này không xác nhận kết nối từ trình duyệt GitHub Pages hoặc độ đúng chuyên môn của mọi câu trả lời.
 
 ## Hosting
 
@@ -73,11 +73,11 @@ API hiện tại: `https://gascolae-service-chat.almondlark.chatgpt.site/api/`. 
 
 **Bản sửa hội thoại ngày 08/10/2026:** Gemini dùng tài liệu của đúng dịch vụ làm kiến thức nền, trả lời trực tiếp và dùng lịch sử để hiểu câu hỏi tiếp nối. Không hiện trích dẫn, tên file hay danh sách nguồn trong chat. Kết quả JSON tách `answer` với `sourceIds`; backend giữ metadata nguồn để kiểm tra phạm vi, giao diện chỉ hiển thị lời trả lời. Hướng dẫn trình bày này ưu tiên hơn hướng dẫn trích dẫn cũ trong workbook cấu hình.
 
-Các câu giới thiệu như “Bạn là ai?” và “Bạn có thể giúp gì cho tôi?” được trả lời theo đúng chủ đề của mỗi bot, tránh khớp nhầm FAQ. Nếu Gemini lỗi hoặc mất kết nối, giao diện báo rõ chế độ hỗ trợ cơ bản. Chế độ này chỉ có thông tin đã công khai và không thay thế hội thoại AI. Mỗi câu hỏi chuyên môn mới đều thử kết nối lại; thời gian chờ frontend 50 giây phù hợp với timeout backend 45 giây.
+Các câu giới thiệu như “Bạn là ai?” và “Bạn có thể giúp gì cho tôi?” được trả lời theo đúng chủ đề của mỗi bot, tránh khớp nhầm FAQ. Nếu Gemini lỗi hoặc mất kết nối, bot báo rõ chưa kết nối được AI (`mode: unavailable`), không ghép trích đoạn tìm kiếm thành câu trả lời. Phần giới thiệu dịch vụ vẫn hoạt động, câu hỏi chuyên môn chờ AI kết nối trở lại. Mỗi câu hỏi chuyên môn mới đều thử kết nối lại; thời gian chờ frontend 50 giây phù hợp với timeout backend 45 giây.
 
 `assets/service-faq.json` chỉ chứa nội dung đã công khai trên 15 landing page, do `scripts/build-chat-fallback.py` tạo. Không chứa tài liệu nội bộ, workbook giá, khóa API hoặc cấu hình agent. Sau khi sửa nội dung trang, chạy `python scripts/build-chat-fallback.py` để cập nhật dữ liệu tra cứu. `assets/document-chat.mjs` dùng chung cho trình duyệt và backend. Trang giữ một chatbot duy nhất cho mỗi dịch vụ.
 
-Gemini trên backend hiện vẫn có thể trả `GEMINI_REGION` khi chạy ở vùng không được Google hỗ trợ. Chế độ hỗ trợ cơ bản duy trì các thông tin có sẵn nhưng không giả lập khả năng hội thoại AI. Muốn khôi phục trả lời AI tổng hợp từ toàn bộ 170 tài liệu, cần backend ở vùng được Gemini hỗ trợ; không coi kiểm tra API từ terminal là bằng chứng đầy đủ cho trải nghiệm trình duyệt.
+Gemini trên backend hiện vẫn có thể trả `GEMINI_REGION` khi chạy ở vùng không được Google hỗ trợ. Phần giới thiệu dịch vụ không giả lập khả năng hội thoại AI. Muốn khôi phục trả lời AI tổng hợp từ toàn bộ 170 tài liệu, cần backend ở vùng được Gemini hỗ trợ; không coi kiểm tra API từ terminal là bằng chứng đầy đủ cho trải nghiệm trình duyệt.
 
 Backend triển khai bằng Cloudflare Worker qua Sites, cho phép CORS từ `https://dangtuong222.github.io`, xử lý preflight và gọi Gemini bằng secret máy chủ. `server/worker.mjs` dùng cùng bộ tra cứu và quy tắc với backend Node. `node scripts/prepare-chat-host.mjs` tạo checkout riêng tư `.chat-host/` với 15 kho dịch vụ trong bundle máy chủ; không đưa checkout này, tài liệu hoặc secret lên repository GitHub Pages. Nạp lại tài liệu và triển khai lại backend sau khi cập nhật hồ sơ. Để thay endpoint, chạy `node scripts/configure-chat-api.mjs https://your-backend.example/api/` rồi push frontend.
 

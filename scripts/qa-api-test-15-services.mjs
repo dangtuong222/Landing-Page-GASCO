@@ -30,9 +30,9 @@ export function assessResponse(status, data, serviceId, requireGemini = false) {
   const scoped = Array.isArray(sources) && sources.length > 0 && sources.every(s => s.service === serviceId);
   const usable = status === 200 && data.serviceId === serviceId && typeof data.answer === 'string'
     && data.answer.trim().length > 0 && data.grounded === true && scoped;
-  return { pass: usable && (requireGemini ? mode === 'gemini' : ['gemini', 'document_lookup'].includes(mode)),
+  return { pass: usable && (requireGemini ? mode === 'gemini' : mode === 'gemini'),
     mode, grounded: data.grounded === true, sourceScopePass: scoped,
-    degraded: mode === 'document_lookup', providerIssue: data.providerIssue || data.code || null };
+    degraded: mode === 'unavailable' || mode === 'document_lookup', providerIssue: data.providerIssue || data.code || null };
 }
 
 export async function runQa({ knowledge = Knowledge.load(new URL('../.knowledge/index.json', import.meta.url)),
@@ -43,7 +43,7 @@ export async function runQa({ knowledge = Knowledge.load(new URL('../.knowledge/
   const base = `http://127.0.0.1:${server.address().port}`;
   const report = { executedAt: new Date().toISOString(),
     testEnvironment: 'Local Node HTTP API; does not establish GitHub Pages browser connectivity',
-    requireGemini, limitation: 'Checks valid responses, citations and service scope. Semantic correctness still requires review.',
+    requireGemini, limitation: 'Checks valid AI responses, internal provenance and service scope. Semantic correctness still requires review.',
     serviceTestResults: [], edgeCaseResults: [] };
   async function ask(input) {
     const start = Date.now();
@@ -93,6 +93,7 @@ export async function runQa({ knowledge = Knowledge.load(new URL('../.knowledge/
     failedServices: results.filter(r => !r.pass).length,
     geminiResponses: results.filter(r => r.mode === 'gemini').length,
     documentLookupResponses: results.filter(r => r.mode === 'document_lookup').length,
+    unavailableResponses: results.filter(r => r.mode === 'unavailable').length,
     edgeCasesTested: report.edgeCaseResults.length,
     edgeCasesPassed: report.edgeCaseResults.filter(r => r.pass).length,
   };
