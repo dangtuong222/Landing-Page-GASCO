@@ -53,6 +53,7 @@ Chạy `scripts/ingest.py` sau khi sửa hồ sơ rồi khởi động lại bac
 
 ```powershell
 npm test
+npm run qa:api
 npm run check:gemini
 npm run eval:retrieval
 npm run eval:live
@@ -61,6 +62,8 @@ npm run eval:live
 `eval:retrieval` kiểm tra phạm vi tra cứu của các câu hỏi đã điền trong workbook 10; placeholder được thống kê riêng. `eval:live` gọi Gemini với một câu hỏi mỗi dịch vụ, lưu câu trả lời thực tế, nguồn và expected behavior tại `test-results/live-smoke.json`. Kiểm tra phạm vi/có phản hồi không đồng nghĩa đã đạt tất cả yêu cầu nội dung.
 
 Để chạy toàn bộ câu hỏi đã điền bằng Gemini, dùng `node --env-file=.env scripts/evaluate.mjs --live --all`. Lệnh này dùng quota Gemini theo số câu hỏi. Báo cáo có observed outputs để review, không tự gán PASS cho độ đúng chuyên môn. Các kiểm thử tự động bao gồm phạm vi 15 dịch vụ, lịch sử, dữ liệu đầu vào, lỗi Gemini, API HTTP, CORS GitHub Pages và bảo vệ file riêng tư.
+
+`qa:api` hỏi một câu đúng chủ đề cho mỗi dịch vụ qua Node HTTP API và kiểm tra ba tình huống biên. Báo cáo tách `geminiResponses` với `documentLookupResponses`, yêu cầu nguồn đúng dịch vụ và trả exit code lỗi nếu có ca thất bại. Dùng `npm run qa:api -- --require-gemini` khi cần mọi phản hồi chuyên môn đều do Gemini tạo. Bài này không xác nhận kết nối từ trình duyệt GitHub Pages hoặc độ đúng chuyên môn của mọi câu trả lời.
 
 ## Hosting
 

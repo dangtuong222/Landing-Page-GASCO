@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node --env-file=.env server/index.mjs",
     "test": "node --test tests/*.test.mjs",
+    "qa:api": "node --env-file=.env scripts/qa-api-test-15-services.mjs",
     "check:gemini": "node --env-file=.env scripts/check-gemini.mjs",
     "eval:retrieval": "node scripts/evaluate.mjs",
     "eval:live": "node --env-file=.env scripts/evaluate.mjs --live"
