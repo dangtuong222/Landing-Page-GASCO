@@ -54,6 +54,9 @@ test('all four suggested questions have scoped static references on every servic
       const result = await answerChat(knowledge, { serviceId: service.id, message }, unavailable);
       assert.equal(result.grounded, true, `${service.id}: ${message}`);
       assert.ok(result.sources.every(s => s.service === service.id));
+      if (message.includes('sản phẩm bàn giao') && service.id !== 'S0289') {
+        assert.match(result.sources[0].anchor, /deliverables|ban-giao/, `wrong output source: ${service.id}`);
+      }
     }
   }
 });

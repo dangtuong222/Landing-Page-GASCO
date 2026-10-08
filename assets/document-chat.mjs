@@ -36,7 +36,7 @@ export function documentReply(data, serviceId, message, history = [], providerIs
   else if (/chuan bi|truoc khi|dieu kien/.test(query)) intent = 'prepare';
   else if (/quy trinh|cac buoc|\bsop\b/.test(query)) intent = 'workflow';
   else if (/pham vi|phu hop|lam gi|la gi|tong quan/.test(query) && words(message).length <= 4) intent = 'overview';
-  const patterns = { deliverable: /ban giao|dau ra|deliverable|ket qua/, level: /level|\bl[1-4]\b|cac goi|cap do|cau hinh goi/,
+  const patterns = { deliverable: /ban giao|dau ra|deliverable|nhan duoc|san pham/, level: /level|\bl[1-4]\b|cac goi|cap do|cau hinh goi/,
     prepare: /chuan bi|dieu kien|quy trinh|workflow|sop/, workflow: /quy trinh|workflow|how it works|sop|lo trinh/,
     overview: /tong quan|giai phap|pham vi|hero|overview/ };
   let terms = words(message).filter(w => w !== serviceId.toLowerCase());
@@ -55,6 +55,9 @@ export function documentReply(data, serviceId, message, history = [], providerIs
     }
     const topic = intent && patterns[intent].test(normalizeChat(`${entry.anchor.replaceAll('-', ' ')} ${entry.title}`));
     if (topic) score += 12;
+    // An output question must prefer the actual deliverables section over a FAQ
+    // that merely mentions results, legal use or uncertainty.
+    if (intent === 'deliverable' && /deliverables|ban-giao/.test(entry.anchor)) score += 24;
     if (entry.faq) score += 3;
     return { entry, score, eligible: topic || (matched >= Math.min(2, terms.length) && matched / Math.max(terms.length, 1) >= 0.55) };
   }).filter(r => r.eligible && r.score > 0).sort((a, b) => b.score - a.score);
