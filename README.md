@@ -1,70 +1,77 @@
-# GASCOLAE — Trung tâm 15 dịch vụ UAV
+# GASCOLAE — 15 landing page và trợ lý Gemini
 
-Thư mục này là một website tĩnh hoàn chỉnh, không cần cài package hoặc chạy bước build.
+Chatbot đã nối vào cả 15 trang, dùng `gemini-3.5-flash-lite`. API key được đọc ở máy chủ từ `.env`; trình duyệt chỉ gọi `/api/chat`. Trợ lý tra cứu đúng dịch vụ, giữ lịch sử phiên chat và hiển thị tên file cùng vị trí nguồn trích dẫn.
 
-## Cấu trúc thư mục
+Kho kiến thức được tạo từ **170 tài liệu** trong 15 thư mục bên cạnh dự án: 75 DOCX, 76 XLSX, 15 PPTX và 4 PDF, kể cả nguồn SRC và bản sao workbook. Đây là tra cứu tài liệu (RAG), không phải huấn luyện lại trọng số Gemini. Trợ lý có thể tổng hợp hồ sơ để trả lời câu hỏi mới; thông tin thiếu hoặc chưa xác minh cần được nêu rõ, không bảo đảm trả lời đúng mọi câu hỏi.
 
-- `index.html` — dashboard trung tâm dịch vụ
-- `landing_page_01/` đến `landing_page_15/` — nội dung và tài nguyên riêng của từng dịch vụ
-- `assets/` — CSS, JavaScript và ảnh dùng chung
-- `404.html` — trang báo đường dẫn không tồn tại
-- `.nojekyll` — tắt xử lý Jekyll khi phục vụ website tĩnh qua GitHub Pages
+## Chạy trên máy hiện tại
 
-## Cấu trúc URL
-
-- `/` — dashboard tổng, có tìm kiếm và bộ lọc dịch vụ
-- `/landing_page_01/` đến `/landing_page_15/` — 15 landing page
-- Mỗi landing page có thanh điều hướng cuối trang để quay về dashboard hoặc chuyển sang dịch vụ tiếp theo; trang 15 quay vòng về trang 01.
-
-Các đường dẫn đều là đường dẫn tương đối, nên website chạy được cả ở domain riêng và ở subpath như GitHub Pages.
-
-## Ba hồ sơ nghiên cứu mới
-
-| Trang | Mã | Nội dung |
-| --- | --- | --- |
-| `landing_page_13/` | S0075 | Tuần tra biên giới VTOL 50–100 km |
-| `landing_page_14/` | S0064 | Giám sát kho đạn dược & nhiên liệu bằng UAV nhiệt–khí |
-| `landing_page_15/` | S0061 | Kiểm tra nhiệt nguồn điện phục vụ quốc phòng |
-
-Nội dung được biên tập từ các file `09_Service_Landing_Page_Content.docx` tương ứng trong thư mục thực tập. Ba trang giữ trạng thái **bản nháp nội bộ, NO-PUBLISH / NO-DEPLOY** của tài liệu nguồn, phân biệt đầu ra đề xuất với năng lực đã được xác nhận. Các trang không có form tiếp nhận, chatbot, analytics, giá hoặc cam kết triển khai.
-
-Các trang mới dùng HTML tĩnh, CSS chung tại `assets/service-detail.css`, tương tác tại `assets/service-detail.js` và ảnh riêng trong `src/assets/`. Giao diện có ảnh WebP đáp ứng theo màn hình, sơ đồ SVG, xem ảnh phóng to, menu đánh dấu mục đang đọc, thanh tiến trình, nút lên đầu trang và tab L1–L3 dùng được bằng bàn phím. Không cần bước build; nội dung vẫn đọc được khi JavaScript bị tắt. Hiệu ứng tôn trọng cài đặt giảm chuyển động.
-
-Ảnh đầu trang là ảnh minh họa AI, được ghi nhãn trực tiếp. Mỗi trang mới lưu ảnh WebP và sơ đồ SVG trong `src/assets/`; ảnh không mô tả dự án thực tế của GASCOLAE.
-
-**Phạm vi sử dụng hiện tại:** xem và review trên máy. Cần xác nhận quyền công bố của ba hồ sơ trước khi đưa bản cập nhật này lên hosting công khai. Thẻ `noindex` không thay thế kiểm soát truy cập.
-
-## Chạy thử trên máy
-
-Nếu máy đã cài Python, mở terminal tại thư mục dự án và chạy:
+API key và kho kiến thức đã được cấu hình cục bộ. Mở PowerShell trong thư mục dự án:
 
 ```powershell
-python -m http.server 8080 --bind 127.0.0.1
+node --env-file=.env server/index.mjs
 ```
 
-Sau đó mở `http://localhost:8080/`.
+Hoặc chạy `./Start-Chatbot.ps1`. Mở `http://127.0.0.1:8080/`, chọn dịch vụ rồi bấm **Hỏi trợ lý**. Giữ terminal mở; `Ctrl+C` để dừng. Nếu cổng 8080 đang có server do Codex chạy thì có thể dùng ngay link này. Chạy qua `file://` hay `python -m http.server` chỉ phục vụ trang tĩnh, không có backend Gemini.
 
-> Không mở trực tiếp bằng `file://`, vì HTTP server mô phỏng đúng cách website sẽ hoạt động sau khi host.
+## Cài trên máy khác
 
-Kiểm tra dashboard, tìm kiếm/bộ lọc, liên kết tới 15 trang dịch vụ và hình ảnh trên trình duyệt. Trên các trang 13–15, kiểm tra thêm menu, tab L1–L3, FAQ và xem ảnh phóng to. Nhấn `Ctrl+C` trong terminal để dừng server.
+Cần Node.js 22 trở lên, Python 3.10 trở lên và thư mục tài liệu nguồn. Backend không cần package npm bổ sung.
 
-## Deploy một link duy nhất sau khi nội dung được duyệt
+```powershell
+Copy-Item .env.example .env
+# Điền GEMINI_API_KEY trong .env; không đưa key vào HTML/JavaScript.
+python -m pip install -r scripts/requirements.txt
+python scripts/ingest.py --source "D:/HK7/THUCTAP"
+node --env-file=.env server/index.mjs
+```
 
-### Cloudflare Pages
+Trên máy có Codex, có thể dùng Python và thư viện đã được đóng gói:
 
-Upload **toàn bộ nội dung của thư mục này** làm static site. Không đặt build command; thư mục output là `.`.
+```powershell
+& "$env:USERPROFILE/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe" scripts/ingest.py
+```
 
-### Netlify hoặc Vercel
+## Nạp lại tài liệu
 
-Kết nối repository chứa thư mục này, chọn chế độ static/không framework, bỏ trống build command và đặt publish/output directory là `.`.
+Chạy `scripts/ingest.py` sau khi sửa hồ sơ rồi khởi động lại backend. Script đọc tất cả DOCX/XLSX/PPTX/PDF và TXT/MD/CSV trong 15 thư mục dịch vụ, không sửa bản gốc. Nội dung website và ảnh tài nguyên không được xem là tài liệu kiến thức. DOCX giữ thứ tự đoạn và bảng; XLSX giữ nhãn, vị trí ô, công thức và giá trị lưu; PPTX gồm slide và notes; PDF giữ số trang. PDF không có lớp văn bản cần OCR trước. Nếu một file bị lỗi, script báo cụ thể và giữ index tốt trước đó.
 
-### GitHub Pages
+`.knowledge/index.json` chứa văn bản riêng tư, SHA-256 tài liệu, nguồn, guardrail và câu hỏi kiểm thử. `.knowledge/manifest.json` ghi số tài liệu từng dịch vụ và lỗi nạp. `.knowledge/`, `.env` và `test-results/` bị loại khỏi Git và bị backend chặn truy cập HTTP.
 
-Đưa toàn bộ nội dung đã được phép công bố lên một repository, sau đó bật Pages cho branch chứa website và chọn thư mục `/(root)` làm nguồn xuất bản. Giữ file `.nojekyll` ở thư mục gốc. Dashboard và 15 đường dẫn con sẽ được phục vụ cùng một domain.
+## Phạm vi trợ lý
 
-## Lưu ý trước khi chạy production
+- Mỗi trang chỉ tra cứu hồ sơ đúng mã dịch vụ. Hỏi mã khác được hướng dẫn mở đúng landing page.
+- Toàn bộ tài liệu được đọc cục bộ để kiểm kê. File `07_Service_*` không được đưa vào ngữ cảnh Gemini; câu hỏi giá, tính tiền hoặc chiết khấu được hướng dẫn sang Sales/Finance.
+- Sheet kiểm thử lưu câu hỏi và hành vi mong đợi để đánh giá, không dùng làm dữ kiện cho model. Guardrail thực tế được lấy từ workbook 10.
+- Khi trả lời, chỉ các đoạn liên quan của đúng dịch vụ cùng các quy tắc được gửi tới Gemini; không upload toàn bộ file hoặc fine-tuning. Người dùng được thông báo nội dung chat gửi tới Gemini.
+- Hội thoại giữ trong bộ nhớ trang; tải lại hoặc chọn hội thoại mới sẽ xóa lịch sử. Máy chủ không lưu nội dung chat vào log hoặc cơ sở dữ liệu.
+- Các nút và form chat cũ mở cùng một cuộc hội thoại thật, không chạy phản hồi giả lập. Widget ngoài ở trang 01 đã được thay bằng chatbot chung.
+- Form đăng ký vẫn là demo. Chatbot không gửi lead, đặt lịch hoặc thực hiện chuyển tiếp đến chuyên viên; người dùng cần chủ động liên hệ.
+- Trợ lý không tìm kiếm web. Quy định trong hồ sơ được giải thích theo thời điểm tài liệu, không tự xác nhận tính hiệu lực hiện tại.
 
-- Các form và AI chat có sẵn trong 12 landing page ban đầu hiện chỉ mô phỏng phản hồi ở trình duyệt; chưa gửi dữ liệu tới backend.
-- Dịch vụ 13–15 thuộc nhóm lọc “Quốc phòng & an ninh”; hiện là hồ sơ nghiên cứu nội bộ, chưa mở tiếp nhận yêu cầu.
-- Một số trang dùng Google Fonts, Font Awesome hoặc Three.js qua CDN, nên cần kết nối internet để hiển thị đủ hiệu ứng.
-- Khi có domain chính thức, nên cập nhật canonical URL và Open Graph URL theo domain đó.
+## Kiểm thử
+
+```powershell
+npm test
+npm run check:gemini
+npm run eval:retrieval
+npm run eval:live
+```
+
+`eval:retrieval` kiểm tra phạm vi tra cứu của các câu hỏi đã điền trong workbook 10; placeholder được thống kê riêng. `eval:live` gọi Gemini với một câu hỏi mỗi dịch vụ, lưu câu trả lời thực tế, nguồn và expected behavior tại `test-results/live-smoke.json`. Kiểm tra phạm vi/có phản hồi không đồng nghĩa đã đạt tất cả yêu cầu nội dung.
+
+Để chạy toàn bộ câu hỏi đã điền bằng Gemini, dùng `node --env-file=.env scripts/evaluate.mjs --live --all`. Lệnh này dùng quota Gemini theo số câu hỏi. Báo cáo có observed outputs để review, không tự gán PASS cho độ đúng chuyên môn. Có 8 kiểm thử tự động về phạm vi nguồn, lịch sử, dữ liệu đầu vào, lỗi Gemini, API HTTP và bảo vệ file riêng tư.
+
+## Hosting
+
+Bản này đang chạy **cục bộ**, chưa deploy. S0075/S0064/S0061 giữ trạng thái bản nháp nội bộ; chatbot dùng cho review tại máy. Việc công bố nội dung và sử dụng dữ liệu trên hosting cần được xác nhận theo hồ sơ nguồn.
+
+Chatbot cần hosting chạy **Node backend** hoặc API tương đương qua reverse proxy cùng origin. GitHub Pages và upload site tĩnh đơn thuần không chạy được API chat.
+
+Trên hosting, đặt `GEMINI_API_KEY` và `GEMINI_MODEL` bằng biến môi trường, giữ knowledge index trong vùng riêng tư, chạy `node server/index.mjs`. Mặc định `HOST=127.0.0.1` để xem trên máy; chỉ dùng `HOST=0.0.0.0` khi đã thiết lập kiểm soát truy cập phù hợp. TLS/reverse proxy do hosting cung cấp. Backend giới hạn 20 request/phút theo địa chỉ kết nối và 4 request Gemini đồng thời mỗi process; cần điều chỉnh cho reverse proxy/số instance khi vận hành thực tế.
+
+Không upload toàn bộ thư mục này như site tĩnh vì `.env`, `.knowledge/` và kết quả kiểm thử là dữ liệu riêng tư. Backend chỉ phục vụ HTML và tài nguyên website được phép.
+
+Tài liệu tích hợp: [GenerateContent API](https://ai.google.dev/api/generate-content), [quản lý API key Gemini](https://ai.google.dev/gemini-api/docs/api-key).
+
+Nếu bài kiểm thử đầy đủ gặp giới hạn Gemini, kết quả một phần được lưu và chương trình dừng gửi thêm. Sau khi quota khả dụng, dùng `node --env-file=.env scripts/evaluate.mjs --live --all --resume` để chạy tiếp chỉ các câu chưa có phản hồi thành công.
