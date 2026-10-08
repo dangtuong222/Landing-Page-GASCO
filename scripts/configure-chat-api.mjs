@@ -9,7 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 for (let page = 1; page <= 15; page++) {
   const filename = path.join(root, `landing_page_${String(page).padStart(2, '0')}`, 'index.html');
   const html = await readFile(filename, 'utf8');
-  const tag = `<script src="../assets/service-chat.js?v=20261008-chat-2" data-api-base="${endpoint.href}" defer></script>`;
+  const tag = `<script src="../assets/service-chat.js?v=20261008-chat-3" data-api-base="${endpoint.href}" defer></script>`;
   const changed = html.replace(/<script src="\.\.\/assets\/service-chat\.js(?:\?[^\"]*)?"[^>]*><\/script>/, tag);
   if (html === changed && !html.includes(tag)) throw new Error(`Missing assistant script in ${filename}`);
   await writeFile(filename, changed);

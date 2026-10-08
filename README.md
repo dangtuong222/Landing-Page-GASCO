@@ -68,7 +68,11 @@ Frontend giữ trên GitHub Pages. Thẻ script của mỗi trang có `data-api-
 
 API hiện tại: `https://gascolae-service-chat.almondlark.chatgpt.site/api/`. Chỉ endpoint HTTPS được đưa vào mã frontend, không có API key hoặc tài liệu nguyên bản.
 
-**Trạng thái kiểm tra ngày 08/10/2026:** frontend và backend HTTPS đã được xuất bản. Gọi API từ terminal trả lời thành công, nhưng kiểm tra trực tiếp trên trình duyệt tại Việt Nam gặp `GEMINI_REGION`: Google từ chối vị trí máy chủ. Sites chưa áp dụng placement từ cấu hình Wrangler đi kèm; chưa thể xác nhận chatbot dùng được ổn định cho khách trên GitHub Pages. Cần triển khai backend qua tài khoản hosting cho phép chọn vùng rồi kiểm tra lại từ trình duyệt.
+**Bản sửa ngày 08/10/2026:** chatbot trên GitHub Pages có chế độ tra cứu tài liệu khi Gemini lỗi vùng, hết quota hoặc backend mất kết nối. Lời chào, yêu cầu báo giá và chuyển sang mã dịch vụ khác được xử lý trực tiếp. Với câu hỏi chuyên môn, chatbot tìm trích đoạn của đúng dịch vụ và hiển thị nguồn; câu hỏi không có thông tin phù hợp được trả lời rõ là chưa tìm thấy. Chế độ này không phải câu trả lời do Gemini tổng hợp.
+
+`assets/service-faq.json` chỉ chứa nội dung đã công khai trên 15 landing page, do `scripts/build-chat-fallback.py` tạo. Không chứa tài liệu nội bộ, workbook giá, khóa API hoặc cấu hình agent. Sau khi sửa nội dung trang, chạy `python scripts/build-chat-fallback.py` để cập nhật dữ liệu tra cứu. `assets/document-chat.mjs` dùng chung cho trình duyệt và backend. Trang giữ một chatbot duy nhất cho mỗi dịch vụ.
+
+Gemini trên backend hiện vẫn có thể trả `GEMINI_REGION` khi chạy ở vùng không được Google hỗ trợ. Chế độ tra cứu tĩnh giúp người dùng hỏi được mà không phải tạo tài khoản hosting. Muốn khôi phục trả lời AI tổng hợp từ toàn bộ 170 tài liệu, cần backend ở vùng được Gemini hỗ trợ; không coi kiểm tra API từ terminal là bằng chứng đầy đủ cho trải nghiệm trình duyệt.
 
 Backend triển khai bằng Cloudflare Worker qua Sites, cho phép CORS từ `https://dangtuong222.github.io`, xử lý preflight và gọi Gemini bằng secret máy chủ. `server/worker.mjs` dùng cùng bộ tra cứu và quy tắc với backend Node. `node scripts/prepare-chat-host.mjs` tạo checkout riêng tư `.chat-host/` với 15 kho dịch vụ trong bundle máy chủ; không đưa checkout này, tài liệu hoặc secret lên repository GitHub Pages. Nạp lại tài liệu và triển khai lại backend sau khi cập nhật hồ sơ. Để thay endpoint, chạy `node scripts/configure-chat-api.mjs https://your-backend.example/api/` rồi push frontend.
 

@@ -9,6 +9,16 @@
   const scriptUrl = new URL(document.currentScript.src);
   const configuredApi = ['localhost', '127.0.0.1'].includes(location.hostname) ? '' : document.currentScript.dataset.apiBase;
   const api = new URL(configuredApi || '../api/', scriptUrl);
+  // Public page excerpts keep the widget usable on static GitHub Pages.
+  const documents = Promise.all([
+    import(new URL('document-chat.mjs?v=20261008-chat-3', scriptUrl)),
+    fetch(new URL('service-faq.json?v=20261008-chat-3', scriptUrl)).then(response => {
+      if (!response.ok) throw new Error('Chưa tải được nội dung dịch vụ.');
+      return response.json();
+    }),
+  ]);
+  // Observe startup rejection; send() reports it if the static reference fails.
+  documents.catch(() => {});
   const host = document.createElement('gascolae-chat');
   const root = host.attachShadow({ mode: 'open' });
   root.innerHTML = `
@@ -49,7 +59,7 @@
   const $ = selector => root.querySelector(selector);
   const messages = $('.messages'), input = $('input'), launcher = $('.launcher'), panel = $('.panel');
   const history = [];
-  let busy = false, returnFocus = launcher;
+  let busy = false, returnFocus = launcher, documentModeUntil = 0, answered = false;
 
   function open(origin = launcher) {
     returnFocus = origin;
@@ -104,15 +114,36 @@
     setBusy(true);
     const pending = append('model', 'Đang tra cứu tài liệu và soạn câu trả lời…');
     try {
-      const response = await fetch(new URL('chat', api), { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ serviceId, message: text, history: history.slice(-12) }), signal: AbortSignal.timeout(55000) });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Máy chủ chưa sẵn sàng.');
+      const [lookup, reference] = await documents;
+      let data = lookup.guidanceReply(serviceId, text, reference.services);
+      if (!data) {
+        if (Date.now() < documentModeUntil) {
+          data = lookup.documentReply(reference, serviceId, text, history.slice(-12));
+        } else {
+          try {
+            const response = await fetch(new URL('chat', api), { method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ serviceId, message: text, history: history.slice(-12) }), signal: AbortSignal.timeout(15000) });
+            data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Máy chủ chưa sẵn sàng.');
+          } catch {
+            documentModeUntil = Date.now() + 600000;
+            data = lookup.documentReply(reference, serviceId, text, history.slice(-12));
+          }
+        }
+      }
       if (typeof data.answer !== 'string') throw new Error('Phản hồi chưa hợp lệ.');
       pending.remove();
       append('model', data.answer, data.sources || []);
       history.push({ role: 'user', text }, { role: 'model', text: data.answer.slice(0, 8000) });
-      $('.status').textContent = 'Đã kết nối · Trả lời theo hồ sơ dịch vụ';
+      answered = true;
+      if (data.mode === 'document_lookup') {
+        documentModeUntil = Date.now() + 600000;
+        $('.status').textContent = `Tra cứu tài liệu · ${serviceId}`;
+        $('.note').textContent = 'Đang dùng trích đoạn nội dung dịch vụ. Gemini hiện chưa khả dụng; câu trả lời này không do AI tổng hợp.';
+      } else if (data.mode === 'gemini') {
+        $('.status').textContent = 'Gemini đã kết nối · Trả lời theo hồ sơ dịch vụ';
+        $('.note').textContent = 'Trả lời theo tài liệu · Thông tin thương mại qua Sales/Finance. Nội dung chat được gửi tới Gemini để trả lời.';
+      } else $('.status').textContent = `Trợ lý ${serviceId} · Sẵn sàng nhận câu hỏi`;
     } catch (error) {
       pending.remove();
       const node = append('error', error instanceof TypeError || error.name === 'TimeoutError' || error instanceof SyntaxError
@@ -140,8 +171,11 @@
   fetch(new URL('health', api), { signal: AbortSignal.timeout(8000) }).then(async response => {
     if (!response.ok) throw new Error();
     const data = await response.json();
-    $('.status').textContent = data.configured ? `Máy chủ sẵn sàng · ${data.documents} tài liệu / 15 dịch vụ` : 'Máy chủ chưa cấu hình khóa Gemini';
-  }).catch(() => { $('.status').textContent = 'Chưa kết nối máy chủ chatbot'; });
+    if (!answered) $('.status').textContent = data.configured ? `Kho hồ sơ đã kết nối · ${data.documents} tài liệu / 15 dịch vụ` : `Tra cứu nội dung ${serviceId}`;
+  }).catch(() => {
+    documentModeUntil = Date.now() + 600000;
+    if (!answered) $('.status').textContent = `Tra cứu nội dung ${serviceId}`;
+  });
 
   // Connect existing page entry points to one real conversation. Capture prevents the old mock handlers from replying.
   const inputSelector = '#chat-input,#aiChatInput,#chatInput,#ai-user-input,#aiAgentInput,#agent-input-text,.chat-disabled-input';

@@ -19,7 +19,11 @@ for (const message of ['Khách hàng nhận được sản phẩm bàn giao nào
   const result = await response.json();
   report.results.push({ message, status: response.status, cors: response.headers.get('access-control-allow-origin'), ...result });
   console.log(JSON.stringify({ status: response.status, service: result.serviceId, sourceCount: result.sources?.length, message, answer: result.answer || result.error }));
-  if (response.status === 429) break;
+  if (response.status === 429) {
+    await mkdir('test-results', { recursive: true });
+    await writeFile('test-results/hosted-smoke.json', JSON.stringify(report, null, 2));
+    throw new Error('Hosted smoke test incomplete: provider or server rate limit.');
+  }
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('access-control-allow-origin'), origin);
   assert.equal(result.serviceId, 'S0300');

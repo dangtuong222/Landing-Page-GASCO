@@ -10,11 +10,13 @@ if (data.failures.length || data.services.length !== 15) throw new Error('Kho tÃ
 // Only runtime knowledge is bundled. Pricing and evaluation documents stay local.
 data.chunks = data.chunks.filter(c => !c.evaluation && !c.pricing && !/07_Service_/.test(c.file) && !/sheet .*test_cases/i.test(c.locator));
 delete data.testCases;
+data.publicReference = JSON.parse(await readFile(path.join(root, 'assets/service-faq.json'), 'utf8'));
 const modules = [];
+modules.push(await readFile(path.join(root, 'assets/document-chat.mjs'), 'utf8'));
 for (const name of ['gemini', 'knowledge', 'chat', 'worker']) {
   let source = await readFile(path.join(root, 'server', `${name}.mjs`), 'utf8');
   source = source.replace(/^import .*;\r?\n/gm, '');
-  source = source.replace(/^  static load\(path\).*\r?\n/m, '');
+  source = source.replace(/^  static load\(path\) \{[\s\S]*?^  \}\r?\n/m, '');
   modules.push(source);
 }
 await writeFile(path.join(host, 'src/worker.mjs'), `${modules.join('\n')}\nconst knowledge = new Knowledge(${JSON.stringify(data)});\nexport default createWorker(knowledge);\n`);

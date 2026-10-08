@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { ChatError } from './gemini.mjs';
 
-export const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').toLowerCase();
+export const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').toLowerCase();
 export function compactLocator(locator) {
   const parts = locator.split(' → ');
   if (parts.length < 2) return locator;
@@ -37,7 +37,11 @@ export class Knowledge {
       this.byService.set(service.id, { indexed, frequency, avg: indexed.reduce((sum, c) => sum + c.length, 0) / indexed.length });
     }
   }
-  static load(path) { return new Knowledge(JSON.parse(readFileSync(path, 'utf8'))); }
+  static load(path) {
+    const data = JSON.parse(readFileSync(path, 'utf8'));
+    data.publicReference = JSON.parse(readFileSync(new URL('../assets/service-faq.json', import.meta.url), 'utf8'));
+    return new Knowledge(data);
+  }
   service(id) {
     const service = this.services.get(id);
     if (!service) throw new ChatError(400, 'INVALID_SERVICE', 'Mã dịch vụ không hợp lệ.');

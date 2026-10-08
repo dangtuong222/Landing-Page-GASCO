@@ -76,6 +76,11 @@ test('HTTP protects private paths, limits requests and serves the pages and chat
       assert.equal((await fetch(base + pathname)).status, 404, pathname);
     }
     for (const service of knowledge.data.services) assert.equal((await fetch(`${base}/${service.page}/`)).status, 200);
+    for (const asset of ['document-chat.mjs', 'service-faq.json']) {
+      const response = await fetch(`${base}/assets/${asset}`);
+      assert.equal(response.status, 200);
+      assert.match(response.headers.get('content-type'), /javascript|json/);
+    }
     assert.equal((await fetch(base + '/api/chat', { method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://attacker.test' }, body: '{}' })).status, 403);
     const options = { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ serviceId: 'S0296', message: 'Bàn giao những gì?' }) };
     const first = await fetch(base + '/api/chat', options);

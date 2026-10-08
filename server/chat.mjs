@@ -1,5 +1,6 @@
 import { ChatError, generate } from './gemini.mjs';
 import { normalize, compactLocator } from './knowledge.mjs';
+import { guidanceReply, documentReply } from '../assets/document-chat.mjs';
 
 export function validateRequest(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw new ChatError(400, 'INVALID_REQUEST', 'Yêu cầu không hợp lệ.');
@@ -38,18 +39,9 @@ ${policies}`;
 export async function answerChat(knowledge, input, provider = generate) {
   const { serviceId, message, history } = validateRequest(input);
   const service = knowledge.service(serviceId);
-  const other = message.toUpperCase().match(/\bS\d{4}\b/g)?.find(id => id !== serviceId);
-  if (other) {
-    const target = knowledge.services.get(other);
-    return { answer: target ? `Bạn đang hỏi về ${other}. Hãy mở trang ${target.page} để trợ lý tra cứu đúng hồ sơ dịch vụ đó.`
-      : `Trợ lý này tư vấn hồ sơ ${serviceId}. Mã ${other} chưa có trong kho 15 dịch vụ.`, sources: [], serviceId, grounded: false, handoff: true };
-  }
+  const guidance = guidanceReply(serviceId, message, knowledge.data.services);
+  if (guidance) return guidance;
   const query = normalize(message);
-  const commercialQuery = normalize(message.normalize('NFC').replace(/giả|già/gi, ' '))
-    .replace(/danh gia|gia tri|gia dinh|tham gia|chuyen gia|tac gia|quoc gia|gia tang|gia lap|gia su/g, '');
-  if (/\bgia\b|bao gia|chi phi|bao nhieu tien|don gia|chiet khau|discount|price|pricing|cost|vnd|\busd\b|\bdong\b.*\b(tinh|tong|phi)\b/.test(commercialQuery)) {
-    return { answer: 'Thông tin thương mại cần được Sales/Finance GASCOLAE rà soát và phê duyệt. Trợ lý không cung cấp hoặc tính toán số tiền. Bạn có thể chuẩn bị phạm vi khảo sát, quy mô, sản phẩm bàn giao và thời gian dự kiến để trao đổi báo giá.', sources: [], serviceId, grounded: false, handoff: true };
-  }
   const chunks = knowledge.retrieve(serviceId, message, history);
   const context = chunks.map((c, i) => `[${i + 1}] ${c.file} · ${compactLocator(c.locator)}\n${c.text}`).join('\n\n');
   const contents = [
@@ -58,10 +50,18 @@ export async function answerChat(knowledge, input, provider = generate) {
     ...history.map(h => ({ role: h.role, parts: [{ text: h.text }] })),
     { role: 'user', parts: [{ text: message }] },
   ];
-  const answer = await provider({ systemInstruction: { parts: [{ text: systemPrompt(service) }] }, contents,
-    generationConfig: { temperature: 0.2, maxOutputTokens: /\bgap\b/i.test(query) ? 6000 : 2200 } });
+  let answer;
+  try {
+    answer = await provider({ systemInstruction: { parts: [{ text: systemPrompt(service) }] }, contents,
+      generationConfig: { temperature: 0.2, maxOutputTokens: /\bgap\b/i.test(query) ? 6000 : 2200 } });
+  } catch (error) {
+    if (error instanceof ChatError && /^GEMINI_/.test(error.code) && knowledge.data.publicReference) {
+      return documentReply(knowledge.data.publicReference, serviceId, message, history, error.code);
+    }
+    throw error;
+  }
   const cited = new Set([...answer.matchAll(/\[(\d+(?:\s*,\s*\d+)*)\]/g)].flatMap(m => m[1].split(',').map(Number)));
   const sources = chunks.map((c, i) => ({ number: i + 1, file: c.file, locator: compactLocator(c.locator), service: c.service }))
     .filter(s => cited.has(s.number));
-  return { answer, sources, serviceId, grounded: sources.length > 0, model: globalThis.process?.env?.GEMINI_MODEL || 'gemini-3.5-flash-lite' };
+  return { answer, sources, serviceId, grounded: sources.length > 0, mode: 'gemini', model: globalThis.process?.env?.GEMINI_MODEL || 'gemini-3.5-flash-lite' };
 }
