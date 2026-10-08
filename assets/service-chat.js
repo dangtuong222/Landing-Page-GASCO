@@ -11,8 +11,8 @@
   const api = new URL(configuredApi || '../api/', scriptUrl);
   // Public page excerpts keep the widget usable on static GitHub Pages.
   const documents = Promise.all([
-    import(new URL('document-chat.mjs?v=20261008-chat-5', scriptUrl)),
-    fetch(new URL('service-faq.json?v=20261008-chat-5', scriptUrl)).then(response => {
+    import(new URL('document-chat.mjs?v=20261008-chat-6', scriptUrl)),
+    fetch(new URL('service-faq.json?v=20261008-chat-6', scriptUrl)).then(response => {
       if (!response.ok) throw new Error('Chưa tải được nội dung dịch vụ.');
       return response.json();
     }),
@@ -37,7 +37,6 @@
       .message { margin:0 0 14px; padding:12px 14px; border-radius:14px; background:#162a40; overflow-wrap:anywhere; }
       .message.user { background:#194958; margin-left:30px; } .message.error { border:1px solid #f5ba7b; color:#ffe2bd; }
       .label { display:block; font-size:11px; color:#a1d8e3; margin-bottom:5px; } .text { white-space:pre-wrap; }
-      details { margin-top:10px; font-size:11px; color:#b6cee3; } summary { cursor:pointer; color:#73deef; } ol { padding-left:20px; } li { margin:7px 0; }
       .chips { padding:0 16px 12px; display:flex; flex-wrap:wrap; gap:6px; } .chips button { background:#142c42; border:1px solid #3d5e72; color:#cfedf5; border-radius:16px; padding:5px 10px; font-size:12px; }
       form { padding:12px 16px; border-top:1px solid #2a4058; display:flex; gap:8px; }
       input { min-width:0; flex:1; border:1px solid #456179; border-radius:10px; background:#091322; color:#fff; padding:10px; }
@@ -48,18 +47,18 @@
     </style>
     <button class="launcher" aria-expanded="false" aria-controls="chat-panel">🤖 Hỏi Trợ lý AI ${serviceId}</button>
     <section class="panel" id="chat-panel" role="dialog" aria-label="Trợ lý dịch vụ ${serviceId}" hidden>
-      <header><div><h2>Trợ lý ${serviceId}</h2><div class="subtitle">GASCOLAE · Tra cứu hồ sơ dịch vụ</div></div><div class="actions"><button class="reset" aria-label="Bắt đầu hội thoại mới" title="Hội thoại mới">↺</button><button class="close" aria-label="Đóng trợ lý">×</button></div></header>
+      <header><div><h2>Trợ lý ${serviceId}</h2><div class="subtitle">GASCOLAE · Tư vấn dịch vụ</div></div><div class="actions"><button class="reset" aria-label="Bắt đầu hội thoại mới" title="Hội thoại mới">↺</button><button class="close" aria-label="Đóng trợ lý">×</button></div></header>
       <div class="status" role="status">Đang kiểm tra kết nối…</div>
       <div class="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
       <div class="chips"><button data-query="Dịch vụ này phù hợp với nhu cầu nào?">Phạm vi dịch vụ</button><button data-query="So sánh Level 1, 2 và 3 của dịch vụ này">Các gói Level</button><button data-query="Khách hàng nhận được sản phẩm bàn giao nào?">Sản phẩm bàn giao</button><button data-query="Cần chuẩn bị thông tin gì trước khi khảo sát?">Cần chuẩn bị gì?</button></div>
       <form><input aria-label="Câu hỏi cho trợ lý" placeholder="Nhập câu hỏi của bạn…" maxlength="4000" autocomplete="off" required><button type="submit">Gửi</button></form>
-      <div class="note">${internal ? 'Chế độ review nội bộ · Hồ sơ chưa được duyệt công bố.' : 'Trả lời theo tài liệu · Thông tin thương mại qua Sales/Finance.'} Nội dung chat được gửi tới Gemini để trả lời.</div>
+      <div class="note">${internal ? 'Chế độ review nội bộ · Hồ sơ chưa được duyệt công bố.' : 'Thông tin thương mại cần trao đổi với Sales/Finance.'} Nội dung chat được gửi tới Gemini để trả lời.</div>
     </section>`;
   document.body.append(host);
   const $ = selector => root.querySelector(selector);
   const messages = $('.messages'), input = $('input'), launcher = $('.launcher'), panel = $('.panel');
   const history = [];
-  let busy = false, returnFocus = launcher, documentModeUntil = 0, answered = false;
+  let busy = false, returnFocus = launcher, answered = false;
 
   function open(origin = launcher) {
     returnFocus = origin;
@@ -74,32 +73,25 @@
     launcher.setAttribute('aria-expanded', 'false');
     returnFocus?.focus();
   }
-  function append(role, text, sources = []) {
+  function append(role, text) {
     const node = document.createElement('div');
     node.className = `message ${role}`;
     const label = document.createElement('span'); label.className = 'label';
     label.textContent = role === 'user' ? 'Bạn' : role === 'error' ? 'Thông báo kết nối' : `Trợ lý ${serviceId}`;
     const body = document.createElement('div'); body.className = 'text';
     // Format common Markdown without interpreting HTML, links or model-provided scripts.
-    const parts = text.replace(/^#{1,6}\s+/gm, '').replace(/`([^`]+)`/g, '$1').split(/(\*\*[^*]+\*\*)/g);
+    const visibleText = role === 'user' ? text : text.replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, '');
+    const parts = visibleText.replace(/^#{1,6}\s+/gm, '').replace(/`([^`]+)`/g, '$1').split(/(\*\*[^*]+\*\*)/g);
     for (const part of parts) {
       if (part.startsWith('**') && part.endsWith('**')) {
         const strong = document.createElement('strong'); strong.textContent = part.slice(2, -2); body.append(strong);
       } else body.append(document.createTextNode(part));
     }
     node.append(label, body);
-    if (sources.length) {
-      const details = document.createElement('details'), summary = document.createElement('summary'), list = document.createElement('ol');
-      summary.textContent = `${sources.length} nguồn được trích dẫn`;
-      for (const source of sources) {
-        const item = document.createElement('li'); item.textContent = `[${source.number}] ${source.file} · ${source.locator}`; list.append(item);
-      }
-      details.append(summary, list); node.append(details);
-    }
     messages.append(node); messages.scrollTop = messages.scrollHeight;
     return node;
   }
-  function welcome() { append('model', `Xin chào! Tôi hỗ trợ tìm hiểu hồ sơ ${serviceId}: phạm vi, quy trình, các Level, đầu ra và điều kiện triển khai. Bạn muốn tìm hiểu nội dung nào?`); }
+  function welcome() { append('model', `Chào bạn! Tôi là trợ lý ${serviceId} của GASCOLAE. Bạn đang cần hỗ trợ điều gì về dịch vụ này?`); }
   function setBusy(value) {
     busy = value;
     root.querySelectorAll('form button, .chips button, .reset').forEach(b => { b.disabled = value; });
@@ -112,37 +104,32 @@
     input.value = '';
     if (!retry) append('user', text);
     setBusy(true);
-    const pending = append('model', 'Đang tra cứu tài liệu và soạn câu trả lời…');
+    const pending = append('model', 'Đang soạn câu trả lời…');
     try {
       const [lookup, reference] = await documents;
       let data = lookup.guidanceReply(serviceId, text, reference.services);
       if (!data) {
-        if (Date.now() < documentModeUntil) {
+        try {
+          const response = await fetch(new URL('chat', api), { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ serviceId, message: text, history: history.slice(-12) }), signal: AbortSignal.timeout(50000) });
+          data = await response.json();
+          if (!response.ok) throw new Error(data.error || 'Máy chủ chưa sẵn sàng.');
+        } catch {
           data = lookup.documentReply(reference, serviceId, text, history.slice(-12));
-        } else {
-          try {
-            const response = await fetch(new URL('chat', api), { method: 'POST', headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ serviceId, message: text, history: history.slice(-12) }), signal: AbortSignal.timeout(15000) });
-            data = await response.json();
-            if (!response.ok) throw new Error(data.error || 'Máy chủ chưa sẵn sàng.');
-          } catch {
-            documentModeUntil = Date.now() + 600000;
-            data = lookup.documentReply(reference, serviceId, text, history.slice(-12));
-          }
         }
       }
       if (typeof data.answer !== 'string') throw new Error('Phản hồi chưa hợp lệ.');
       pending.remove();
-      append('model', data.answer, data.sources || []);
+      data.answer = lookup.customerText(data.answer);
+      append('model', data.answer);
       history.push({ role: 'user', text }, { role: 'model', text: data.answer.slice(0, 8000) });
       answered = true;
       if (data.mode === 'document_lookup') {
-        documentModeUntil = Date.now() + 600000;
-        $('.status').textContent = `Tra cứu tài liệu · ${serviceId}`;
-        $('.note').textContent = 'Đang dùng trích đoạn nội dung dịch vụ. Gemini hiện chưa khả dụng; câu trả lời này không do AI tổng hợp.';
+        $('.status').textContent = `Kết nối AI gián đoạn · Hỗ trợ cơ bản`;
+        $('.note').textContent = 'AI hiện chưa kết nối. Chế độ cơ bản chỉ trả lời thông tin có sẵn, chưa hỗ trợ trao đổi chuyên sâu.';
       } else if (data.mode === 'gemini') {
-        $('.status').textContent = 'Gemini đã kết nối · Trả lời theo hồ sơ dịch vụ';
-        $('.note').textContent = 'Trả lời theo tài liệu · Thông tin thương mại qua Sales/Finance. Nội dung chat được gửi tới Gemini để trả lời.';
+        $('.status').textContent = 'Gemini đã kết nối';
+        $('.note').textContent = 'Nội dung hội thoại được gửi tới Gemini để trả lời.';
       } else $('.status').textContent = `Trợ lý ${serviceId} · Sẵn sàng nhận câu hỏi`;
     } catch (error) {
       pending.remove();
@@ -161,7 +148,7 @@
   root.addEventListener('keydown', e => {
     if (e.key === 'Escape') { e.preventDefault(); close(); }
     if (e.key === 'Tab' && !panel.hidden) {
-      const focusable = [...panel.querySelectorAll('button:not(:disabled), input:not(:disabled), summary')];
+      const focusable = [...panel.querySelectorAll('button:not(:disabled), input:not(:disabled)')];
       const first = focusable[0], last = focusable.at(-1);
       if (e.shiftKey && root.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && root.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -170,11 +157,9 @@
   welcome();
   fetch(new URL('health', api), { signal: AbortSignal.timeout(8000) }).then(async response => {
     if (!response.ok) throw new Error();
-    const data = await response.json();
-    if (!answered) $('.status').textContent = data.configured ? `Kho hồ sơ đã kết nối · ${data.documents} tài liệu / 15 dịch vụ` : `Tra cứu nội dung ${serviceId}`;
+    if (!answered) $('.status').textContent = `Trợ lý ${serviceId}`;
   }).catch(() => {
-    documentModeUntil = Date.now() + 600000;
-    if (!answered) $('.status').textContent = `Tra cứu nội dung ${serviceId}`;
+    if (!answered) $('.status').textContent = `Trợ lý ${serviceId}`;
   });
 
   // Connect existing page entry points to one real conversation. Capture prevents the old mock handlers from replying.
@@ -185,10 +170,10 @@
   function consume(e) { e.preventDefault(); e.stopImmediatePropagation(); }
   document.querySelectorAll(inputSelector).forEach(field => {
     field.disabled = false; field.maxLength = 4000;
-    field.placeholder = `Hỏi trợ lý ${serviceId} theo tài liệu…`;
+    field.placeholder = `Hỏi trợ lý ${serviceId}…`;
   });
   document.querySelectorAll('.agent-placeholder-footer button').forEach(button => { button.disabled = false; });
-  document.querySelectorAll('.agent-embed-tag').forEach(label => { label.textContent = 'Hỏi đáp theo tài liệu'; });
+  document.querySelectorAll('.agent-embed-tag').forEach(label => { label.textContent = 'Trao đổi với trợ lý'; });
   document.addEventListener('click', e => {
     const target = e.target instanceof Element ? e.target : null;
     if (!target) return;
