@@ -64,6 +64,7 @@ test('Gemini quota errors and empty candidates produce honest sanitized failures
   try {
     await assert.rejects(generate({}, { fetchImpl: async () => new Response('secret-upstream', { status: 429 }) }), e => e.code === 'GEMINI_QUOTA' && !e.message.includes('secret'));
     await assert.rejects(generate({}, { fetchImpl: async () => Response.json({ candidates: [] }) }), e => e.code === 'GEMINI_EMPTY');
+    await assert.rejects(generate({}, { fetchImpl: async () => Response.json({ error: { message: 'User location is not supported for the API use.' } }, { status: 400 }) }), e => e.code === 'GEMINI_REGION');
   } finally { if (original === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = original; }
 });
 test('HTTP protects private paths, limits requests and serves the pages and chat', async () => {

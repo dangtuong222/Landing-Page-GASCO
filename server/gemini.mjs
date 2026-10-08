@@ -23,6 +23,15 @@ export async function generate(payload, { fetchImpl = fetch, timeoutMs = 45000,
   }
   if (!response.ok) {
     // Do not relay upstream payloads: they can contain secrets, internal project IDs or documents.
+    let upstream;
+    try { upstream = (await response.json()).error; } catch { upstream = undefined; }
+    const reason = String(upstream?.message || '');
+    if (response.status === 400 && /user location|location.*not supported|unsupported.*region/i.test(reason)) {
+      throw new ChatError(502, 'GEMINI_REGION', 'Vị trí máy chủ hiện chưa được Gemini hỗ trợ. Cần điều chỉnh vùng máy chủ.');
+    }
+    if (response.status === 400 && /API key.*(not valid|invalid|expired)/i.test(reason)) {
+      throw new ChatError(502, 'GEMINI_AUTH', 'Khóa API chưa được Gemini chấp nhận.');
+    }
     const messages = {
       400: ['GEMINI_REQUEST', 'Gemini từ chối cấu hình yêu cầu. Cần kiểm tra model hoặc khóa API ở máy chủ.'],
       401: ['GEMINI_AUTH', 'Khóa API chưa được Gemini chấp nhận.'],
@@ -33,8 +42,7 @@ export async function generate(payload, { fetchImpl = fetch, timeoutMs = 45000,
     const [code, message] = messages[response.status] || ['GEMINI_UNAVAILABLE', 'Gemini tạm thời chưa sẵn sàng. Vui lòng thử lại sau.'];
     const error = new ChatError(response.status === 429 ? 429 : 502, code, message);
     if (response.status === 429) {
-      let details;
-      try { details = (await response.json()).error?.details || []; } catch { details = []; }
+      const details = upstream?.details || [];
       const delay = details.find(d => d['@type']?.endsWith('RetryInfo'))?.retryDelay;
       const seconds = Number.parseFloat(delay);
       error.retryAfterSeconds = Math.ceil(Number.isFinite(seconds) ? Math.max(1, Math.min(seconds, 3600)) : 60);

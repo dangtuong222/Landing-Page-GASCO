@@ -30,7 +30,8 @@ export function createWorker(knowledge, { provider, allowedOrigins = ['https://d
         const model = env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
         if (url.pathname === '/api/health' && request.method === 'GET') {
           return json(200, { ok: true, configured: Boolean(env.GEMINI_API_KEY), model,
-            documents: knowledge.data.documents.length, updatedAt: knowledge.data.generatedAt });
+            documents: knowledge.data.documents.length, updatedAt: knowledge.data.generatedAt,
+            placement: request.headers.get('cf-placement') || null });
         }
         if (url.pathname === '/api/services' && request.method === 'GET') {
           return json(200, { services: knowledge.data.services.map(({ id, page, title, internal, documentCount }) => ({ id, page, title, internal, documentCount })) });

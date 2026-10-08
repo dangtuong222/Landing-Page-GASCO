@@ -68,7 +68,11 @@ Frontend giữ trên GitHub Pages. Thẻ script của mỗi trang có `data-api-
 
 API hiện tại: `https://gascolae-service-chat.almondlark.chatgpt.site/api/`. Chỉ endpoint HTTPS được đưa vào mã frontend, không có API key hoặc tài liệu nguyên bản.
 
+**Trạng thái kiểm tra ngày 08/10/2026:** frontend và backend HTTPS đã được xuất bản. Gọi API từ terminal trả lời thành công, nhưng kiểm tra trực tiếp trên trình duyệt tại Việt Nam gặp `GEMINI_REGION`: Google từ chối vị trí máy chủ. Sites chưa áp dụng placement từ cấu hình Wrangler đi kèm; chưa thể xác nhận chatbot dùng được ổn định cho khách trên GitHub Pages. Cần triển khai backend qua tài khoản hosting cho phép chọn vùng rồi kiểm tra lại từ trình duyệt.
+
 Backend triển khai bằng Cloudflare Worker qua Sites, cho phép CORS từ `https://dangtuong222.github.io`, xử lý preflight và gọi Gemini bằng secret máy chủ. `server/worker.mjs` dùng cùng bộ tra cứu và quy tắc với backend Node. `node scripts/prepare-chat-host.mjs` tạo checkout riêng tư `.chat-host/` với 15 kho dịch vụ trong bundle máy chủ; không đưa checkout này, tài liệu hoặc secret lên repository GitHub Pages. Nạp lại tài liệu và triển khai lại backend sau khi cập nhật hồ sơ. Để thay endpoint, chạy `node scripts/configure-chat-api.mjs https://your-backend.example/api/` rồi push frontend.
+
+Đã chuẩn bị `.chat-host/dist/server/wrangler.json` với `placement.region = gcp:us-central1` để triển khai trực tiếp qua tài khoản Cloudflare. Khi được cấp quyền hosting, triển khai bundle này, đặt Gemini secret bằng công cụ hosting, kiểm tra `/api/health` và câu hỏi thực tế từ GitHub Pages trước khi cập nhật endpoint. Cấu hình vùng chỉ có hiệu lực khi hosting áp dụng nó.
 
 S0075/S0064/S0061 tiếp tục được trợ lý mô tả là hồ sơ nghiên cứu nội bộ, chỉ hỗ trợ review và không cam kết triển khai.
 
