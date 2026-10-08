@@ -7,16 +7,17 @@
   if (!serviceId) return;
   const internal = Number(match[1]) >= 13;
   const scriptUrl = new URL(document.currentScript.src);
-  const api = new URL('../api/', scriptUrl);
+  const configuredApi = ['localhost', '127.0.0.1'].includes(location.hostname) ? '' : document.currentScript.dataset.apiBase;
+  const api = new URL(configuredApi || '../api/', scriptUrl);
   const host = document.createElement('gascolae-chat');
   const root = host.attachShadow({ mode: 'open' });
   root.innerHTML = `
     <style>
-      :host { position:fixed; right:22px; bottom:98px; z-index:10001; font:14px/1.6 system-ui,sans-serif; color:#e9f3ff; text-align:left; }
+      :host { position:fixed; right:22px; bottom:24px; z-index:10001; font:14px/1.6 system-ui,sans-serif; color:#e9f3ff; text-align:left; }
       * { box-sizing:border-box; } [hidden] { display:none!important; }
       button,input { font:inherit; } button { cursor:pointer; } button:disabled { cursor:wait; opacity:.65; }
       button:focus-visible,input:focus-visible { outline:3px solid #67e8f9; outline-offset:3px; }
-      .launcher { border:1px solid #67e8f9; border-radius:30px; padding:12px 19px; background:#12334b; color:#fff; box-shadow:0 8px 30px #0005; }
+      .launcher { border:0; border-radius:30px; padding:14px 22px; background:#00ce83; color:#00291c; font-weight:700; box-shadow:0 8px 30px #0005; }
       .panel { width:min(440px,calc(100vw - 32px)); height:min(640px,calc(100dvh - 150px)); min-height:330px; background:#0b1729; border:1px solid #3a526b; border-radius:20px; box-shadow:0 18px 70px #0009; display:flex; flex-direction:column; overflow:hidden; }
       header { padding:16px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #2a4058; background:#10283d; }
       h2 { margin:0; font-size:17px; } .subtitle { font-size:12px; color:#9bd9e8; } .actions { margin-left:auto; display:flex; gap:6px; }
@@ -33,9 +34,9 @@
       form button { border:0; border-radius:10px; background:#77dded; color:#092134; padding:8px 14px; font-weight:700; }
       .note { padding:0 16px 12px; font-size:11px; color:#a8bbcd; }
       .retry { margin-top:10px; border:1px solid #dec59e; border-radius:8px; padding:4px 10px; background:#24384b; color:#fff; }
-      @media(max-width:600px) { :host { left:12px; right:12px; bottom:88px; text-align:right; } .panel { width:100%; height:calc(100dvh - 112px); min-height:0; text-align:left; } .launcher { padding:10px 14px; } }
+      @media(max-width:600px) { :host { left:12px; right:12px; bottom:16px; text-align:right; } .panel { width:100%; height:calc(100dvh - 32px); min-height:0; text-align:left; } .launcher { padding:10px 14px; } }
     </style>
-    <button class="launcher" aria-expanded="false" aria-controls="chat-panel">✦ Hỏi trợ lý ${serviceId}</button>
+    <button class="launcher" aria-expanded="false" aria-controls="chat-panel">🤖 Hỏi Trợ lý AI ${serviceId}</button>
     <section class="panel" id="chat-panel" role="dialog" aria-label="Trợ lý dịch vụ ${serviceId}" hidden>
       <header><div><h2>Trợ lý ${serviceId}</h2><div class="subtitle">GASCOLAE · Tra cứu hồ sơ dịch vụ</div></div><div class="actions"><button class="reset" aria-label="Bắt đầu hội thoại mới" title="Hội thoại mới">↺</button><button class="close" aria-label="Đóng trợ lý">×</button></div></header>
       <div class="status" role="status">Đang kiểm tra kết nối…</div>
@@ -145,7 +146,7 @@
   // Connect existing page entry points to one real conversation. Capture prevents the old mock handlers from replying.
   const inputSelector = '#chat-input,#aiChatInput,#chatInput,#ai-user-input,#aiAgentInput,#agent-input-text,.chat-disabled-input';
   const promptSelector = '.chip-btn[data-question],.agent-chip[data-question],.prompt-chip,.suggest-btn,.suggested-btn,.q-chip,.qs-btn';
-  const triggerSelector = '#ai-trigger-btn,#floatingAiBtn,#aiAgentTrigger,#agent-fab-btn,.floating-agent,[data-open-service-chat]';
+  const triggerSelector = '#ai-trigger-btn,#floatingAiBtn,#aiAgentTrigger,#agent-fab-btn,#open-agent-header-btn,.floating-agent,[data-open-service-chat]';
   const sendSelector = '#aiSendBtn,button[onclick*="sendChatMessage"],button[onclick*="sendDemoMessage"],.agent-placeholder-footer button';
   function consume(e) { e.preventDefault(); e.stopImmediatePropagation(); }
   document.querySelectorAll(inputSelector).forEach(field => {
@@ -182,7 +183,24 @@
     }
   }, true);
   // Hide duplicate floating shells, retaining all inline questions and form entry points.
-  document.querySelectorAll('#ai-widget-modal,#agent-chat-modal,#aiAgentWindow,#ai-trigger-btn,#floatingAiBtn,#aiAgentTrigger,#agent-fab-btn,.floating-agent').forEach(el => { el.hidden = true; });
+  document.querySelectorAll('#ai-widget-modal,#agent-chat-modal,#aiAgentWindow,#ai-trigger-btn,#floatingAiBtn,#aiAgentTrigger,#agent-fab-btn,.floating-agent').forEach(el => {
+    el.hidden = true;
+    // Page styles declare display:flex, which overrides the browser's default [hidden] rule.
+    el.style.setProperty('display', 'none', 'important');
+  });
+  // Inline sections invite users into the same conversation; they do not contain a second chat UI.
+  document.querySelectorAll('#chat-box,#chat-messages,#aiChatBody,#agentPlaceholderChat,#agent-demo-chat,.chat-sample-msg').forEach(el => {
+    el.style.setProperty('display', 'none', 'important');
+  });
+  document.querySelectorAll(inputSelector).forEach(field => {
+    const oldForm = field.closest('form') || field.parentElement;
+    if (!oldForm || oldForm.closest('#ai-widget-modal,#agent-chat-modal,#aiAgentWindow')) return;
+    oldForm.style.setProperty('display', 'none', 'important');
+    const button = document.createElement('button');
+    button.type = 'button'; button.dataset.openServiceChat = '';
+    button.className = 'btn btn-primary'; button.textContent = `Hỏi Trợ lý AI ${serviceId}`;
+    oldForm.after(button);
+  });
   // Expose the existing page-3 suggested questions through the shared assistant without opening its mock modal.
   const inline = document.querySelector('#user-ai-agent-embed-slot');
   if (inline) {

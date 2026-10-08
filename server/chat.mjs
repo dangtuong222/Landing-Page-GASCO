@@ -62,5 +62,5 @@ export async function answerChat(knowledge, input, provider = generate) {
   const cited = new Set([...answer.matchAll(/\[(\d+(?:\s*,\s*\d+)*)\]/g)].flatMap(m => m[1].split(',').map(Number)));
   const sources = chunks.map((c, i) => ({ number: i + 1, file: c.file, locator: compactLocator(c.locator), service: c.service }))
     .filter(s => cited.has(s.number));
-  return { answer, sources, serviceId, grounded: sources.length > 0, model: process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite' };
+  return { answer, sources, serviceId, grounded: sources.length > 0, model: globalThis.process?.env?.GEMINI_MODEL || 'gemini-3.5-flash-lite' };
 }

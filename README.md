@@ -1,6 +1,6 @@
 # GASCOLAE — 15 landing page và trợ lý Gemini
 
-Chatbot đã nối vào cả 15 trang, dùng `gemini-3.5-flash-lite`. API key được đọc ở máy chủ từ `.env`; trình duyệt chỉ gọi `/api/chat`. Trợ lý tra cứu đúng dịch vụ, giữ lịch sử phiên chat và hiển thị tên file cùng vị trí nguồn trích dẫn.
+Cả 15 trang có 15 trợ lý riêng theo mã dịch vụ, dùng `gemini-3.5-flash-lite`. Mỗi trợ lý chỉ tra cứu tài liệu của dịch vụ tương ứng, giữ lịch sử phiên chat riêng và hiển thị nguồn trích dẫn. Mỗi trang có một nút chat nổi; các khu vực hỏi đáp trong trang mở cùng hội thoại của dịch vụ đó. API key được giữ ở máy chủ, không nằm trong HTML/JavaScript.
 
 Kho kiến thức được tạo từ **170 tài liệu** trong 15 thư mục bên cạnh dự án: 75 DOCX, 76 XLSX, 15 PPTX và 4 PDF, kể cả nguồn SRC và bản sao workbook. Đây là tra cứu tài liệu (RAG), không phải huấn luyện lại trọng số Gemini. Trợ lý có thể tổng hợp hồ sơ để trả lời câu hỏi mới; thông tin thiếu hoặc chưa xác minh cần được nêu rõ, không bảo đảm trả lời đúng mọi câu hỏi.
 
@@ -45,7 +45,7 @@ Chạy `scripts/ingest.py` sau khi sửa hồ sơ rồi khởi động lại bac
 - Sheet kiểm thử lưu câu hỏi và hành vi mong đợi để đánh giá, không dùng làm dữ kiện cho model. Guardrail thực tế được lấy từ workbook 10.
 - Khi trả lời, chỉ các đoạn liên quan của đúng dịch vụ cùng các quy tắc được gửi tới Gemini; không upload toàn bộ file hoặc fine-tuning. Người dùng được thông báo nội dung chat gửi tới Gemini.
 - Hội thoại giữ trong bộ nhớ trang; tải lại hoặc chọn hội thoại mới sẽ xóa lịch sử. Máy chủ không lưu nội dung chat vào log hoặc cơ sở dữ liệu.
-- Các nút và form chat cũ mở cùng một cuộc hội thoại thật, không chạy phản hồi giả lập. Widget ngoài ở trang 01 đã được thay bằng chatbot chung.
+- Giao diện chat mẫu cũ được ẩn; các nút gợi ý và nút mở trợ lý dùng đúng chatbot của trang. CSS `display:none!important` ngăn nút cũ xuất hiện trùng với nút mới.
 - Form đăng ký vẫn là demo. Chatbot không gửi lead, đặt lịch hoặc thực hiện chuyển tiếp đến chuyên viên; người dùng cần chủ động liên hệ.
 - Trợ lý không tìm kiếm web. Quy định trong hồ sơ được giải thích theo thời điểm tài liệu, không tự xác nhận tính hiệu lực hiện tại.
 
@@ -60,15 +60,19 @@ npm run eval:live
 
 `eval:retrieval` kiểm tra phạm vi tra cứu của các câu hỏi đã điền trong workbook 10; placeholder được thống kê riêng. `eval:live` gọi Gemini với một câu hỏi mỗi dịch vụ, lưu câu trả lời thực tế, nguồn và expected behavior tại `test-results/live-smoke.json`. Kiểm tra phạm vi/có phản hồi không đồng nghĩa đã đạt tất cả yêu cầu nội dung.
 
-Để chạy toàn bộ câu hỏi đã điền bằng Gemini, dùng `node --env-file=.env scripts/evaluate.mjs --live --all`. Lệnh này dùng quota Gemini theo số câu hỏi. Báo cáo có observed outputs để review, không tự gán PASS cho độ đúng chuyên môn. Có 8 kiểm thử tự động về phạm vi nguồn, lịch sử, dữ liệu đầu vào, lỗi Gemini, API HTTP và bảo vệ file riêng tư.
+Để chạy toàn bộ câu hỏi đã điền bằng Gemini, dùng `node --env-file=.env scripts/evaluate.mjs --live --all`. Lệnh này dùng quota Gemini theo số câu hỏi. Báo cáo có observed outputs để review, không tự gán PASS cho độ đúng chuyên môn. Các kiểm thử tự động bao gồm phạm vi 15 dịch vụ, lịch sử, dữ liệu đầu vào, lỗi Gemini, API HTTP, CORS GitHub Pages và bảo vệ file riêng tư.
 
 ## Hosting
 
-Bản này đang chạy **cục bộ**, chưa deploy. S0075/S0064/S0061 giữ trạng thái bản nháp nội bộ; chatbot dùng cho review tại máy. Việc công bố nội dung và sử dụng dữ liệu trên hosting cần được xác nhận theo hồ sơ nguồn.
+Frontend giữ trên GitHub Pages. Thẻ script của mỗi trang có `data-api-base` trỏ tới backend HTTPS riêng; khi chạy localhost, chatbot tự dùng Node API cùng origin. GitHub Pages chỉ phục vụ nội dung tĩnh, vì vậy không thể dùng `/api/chat` trên tên miền GitHub Pages.
 
-Chatbot cần hosting chạy **Node backend** hoặc API tương đương qua reverse proxy cùng origin. GitHub Pages và upload site tĩnh đơn thuần không chạy được API chat.
+API hiện tại: `https://gascolae-service-chat.almondlark.chatgpt.site/api/`. Chỉ endpoint HTTPS được đưa vào mã frontend, không có API key hoặc tài liệu nguyên bản.
 
-Trên hosting, đặt `GEMINI_API_KEY` và `GEMINI_MODEL` bằng biến môi trường, giữ knowledge index trong vùng riêng tư, chạy `node server/index.mjs`. Mặc định `HOST=127.0.0.1` để xem trên máy; chỉ dùng `HOST=0.0.0.0` khi đã thiết lập kiểm soát truy cập phù hợp. TLS/reverse proxy do hosting cung cấp. Backend giới hạn 20 request/phút theo địa chỉ kết nối và 4 request Gemini đồng thời mỗi process; cần điều chỉnh cho reverse proxy/số instance khi vận hành thực tế.
+Backend triển khai bằng Cloudflare Worker qua Sites, cho phép CORS từ `https://dangtuong222.github.io`, xử lý preflight và gọi Gemini bằng secret máy chủ. `server/worker.mjs` dùng cùng bộ tra cứu và quy tắc với backend Node. `node scripts/prepare-chat-host.mjs` tạo checkout riêng tư `.chat-host/` với 15 kho dịch vụ trong bundle máy chủ; không đưa checkout này, tài liệu hoặc secret lên repository GitHub Pages. Nạp lại tài liệu và triển khai lại backend sau khi cập nhật hồ sơ. Để thay endpoint, chạy `node scripts/configure-chat-api.mjs https://your-backend.example/api/` rồi push frontend.
+
+S0075/S0064/S0061 tiếp tục được trợ lý mô tả là hồ sơ nghiên cứu nội bộ, chỉ hỗ trợ review và không cam kết triển khai.
+
+Đặt `GEMINI_API_KEY` và `GEMINI_MODEL` bằng biến môi trường của hosting. Backend giới hạn 20 request/phút theo IP và 4 request Gemini đồng thời mỗi process/isolate. Giới hạn Worker nằm trong bộ nhớ từng isolate; vận hành nhiều instance cần giới hạn dùng chung nếu cần quota toàn hệ thống. Bản Node vẫn dùng `node server/index.mjs` và mặc định `HOST=127.0.0.1` để xem trên máy.
 
 Không upload toàn bộ thư mục này như site tĩnh vì `.env`, `.knowledge/` và kết quả kiểm thử là dữ liệu riêng tư. Backend chỉ phục vụ HTML và tài nguyên website được phép.
 

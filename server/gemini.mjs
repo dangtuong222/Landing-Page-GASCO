@@ -6,9 +6,10 @@ export class ChatError extends Error {
   }
 }
 
-export async function generate(payload, { fetchImpl = fetch, timeoutMs = 45000 } = {}) {
-  const key = process.env.GEMINI_API_KEY;
-  const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
+export async function generate(payload, { fetchImpl = fetch, timeoutMs = 45000,
+  apiKey = globalThis.process?.env?.GEMINI_API_KEY,
+  model = globalThis.process?.env?.GEMINI_MODEL || 'gemini-3.5-flash-lite' } = {}) {
+  const key = apiKey;
   if (!key) throw new ChatError(503, 'MISSING_KEY', 'Máy chủ chưa cấu hình khóa Gemini.');
   if (!/^[a-zA-Z0-9._-]+$/.test(model)) throw new ChatError(503, 'INVALID_MODEL', 'Tên model Gemini không hợp lệ.');
   let response;
